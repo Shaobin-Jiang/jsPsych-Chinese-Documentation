@@ -1,0 +1,5054 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../overview/browser-device-support/">
+      
+      
+        <link rel="next" href="../jspsych-data/">
+      
+      
+      <link rel="icon" href="../../img/jspsych-favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
+    
+    
+      
+        <title>jsPsych - jsPsych中文文档</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#jspsych" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="jsPsych中文文档" class="md-header__button md-logo" aria-label="jsPsych中文文档" data-md-component="logo">
+      
+  <img src="../../img/jspsych-logo-no-text-mono.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            jsPsych中文文档
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              jsPsych
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Shaobin-Jiang/jsPsych-Chinese-Documentation" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Shaobin-Jiang/jsPsych-Chinese-Documentation
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="jsPsych中文文档" class="md-nav__button md-logo" aria-label="jsPsych中文文档" data-md-component="logo">
+      
+  <img src="../../img/jspsych-logo-no-text-mono.svg" alt="logo">
+
+    </a>
+    jsPsych中文文档
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Shaobin-Jiang/jsPsych-Chinese-Documentation" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Shaobin-Jiang/jsPsych-Chinese-Documentation
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    简介
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    新手教程
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            新手教程
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/hello-world/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基础的Hello World
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/rt-task/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    演示实验：简单反应时实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/video-tutorials/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    视频教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    概述
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            概述
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/timeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    创建实验：时间线
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/plugins/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    插件
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/dynamic-parameters/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    动态参数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/style/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    控制呈现样式
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    数据存储、汇总和操作
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/running-experiments/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    运行实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/experiment-options/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    实验设置
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/callbacks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    事件相关回调函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/record-browser-interactions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    记录浏览器交互
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/media-preloading/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    多媒体文件预加载
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/fullscreen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    全屏实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/eye-tracking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    眼动
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/exclude-browser/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    根据浏览器类型排除被试
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/progress-bar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    进度条
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/prolific/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    接入Prolific
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/mturk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    接入Mechanical Turk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/browser-device-support/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    支持的浏览器和设备
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    参考
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            参考
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    jsPsych
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    jsPsych
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychaddnodetoendoftimeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.addNodeToEndOfTimeline
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.addNodeToEndOfTimeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychalltimelinevariables" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.allTimelineVariables
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.allTimelineVariables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychcurrenttimelinenodeid" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.currentTimelineNodeID
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.currentTimelineNodeID">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychcurrenttrial" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.currentTrial
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.currentTrial">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychendcurrenttimeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.endCurrentTimeline
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.endCurrentTimeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      如果按下特定键，则结束时间线
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychendexperiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.endExperiment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.endExperiment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      如果做出特定反应，直接结束实验
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychfinishtrial" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.finishTrial
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.finishTrial">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychgetdisplayelement" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.getDisplayElement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.getDisplayElement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychgetprogressbarcompleted" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.getProgressBarCompleted
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.getProgressBarCompleted">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychinit" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.init
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.init">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_41" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_42" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychinitsettings" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.initSettings
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.initSettings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_43" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_44" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_45" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_46" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychpauseexperiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.pauseExperiment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.pauseExperiment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_47" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_48" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_49" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_50" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychprogress" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.progress
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.progress">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_51" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_52" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_53" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_54" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychresumeexperiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.resumeExperiment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.resumeExperiment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_55" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_56" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_57" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_58" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychsetprogressbar" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.setProgressBar
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.setProgressBar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_59" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_60" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_61" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_62" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychstarttime" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.startTime
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.startTime">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_63" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_64" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_65" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_66" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychtimelinevariable" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.timelineVariable
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.timelineVariable">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_67" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_68" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_69" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_70" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_71" class="md-nav__link">
+    <span class="md-ellipsis">
+      标准使用方式，即，作为试次的参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_72" class="md-nav__link">
+    <span class="md-ellipsis">
+      在函数中直接调用
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychtotaltime" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.totalTime
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.totalTime">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_73" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_74" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_75" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_76" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.version
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.version">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_77" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_78" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_79" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_80" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jspsych-data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jsPsych.data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jspsych-randomization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jsPsych.randomization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jspsych-turk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jsPsych.turk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jspsych-pluginAPI/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jsPsych.pluginAPI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    插件
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            插件
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/list-of-plugins/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    插件列表
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-animation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-animation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-audio-button-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-audio-button-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-audio-keyboard-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-audio-keyboard-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-audio-slider-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-audio-slider-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-canvas-button-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-canvas-button-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-canvas-keyboard-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-canvas-keyboard-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-canvas-slider-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-canvas-slider-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-call-function/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-call-function
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-categorize-animation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-categorize-animation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-categorize-html/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-categorize-html
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-categorize-image/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-categorize-image
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-cloze/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-cloze
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-external-html/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-external-html
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-free-sort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-free-sort
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-fullscreen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-fullscreen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-html-button-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-html-button-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-html-keyboard-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-html-keyboard-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-html-slider-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-html-slider-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-iat-html/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-iat-html
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-iat-image/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-iat-image
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-image-button-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-image-button-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-image-keyboard-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-image-keyboard-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-image-slider-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-image-slider-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-instructions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-instructions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-maxdiff/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-maxdiff
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-preload/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-preload
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-rdk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-rdk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-reconstruction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-reconstruction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-resize/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-resize
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-same-different-html/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-same-different-html
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-same-different-image/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-same-different-image
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-serial-reaction-time/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-serial-reaction-time
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-serial-reaction-time-mouse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-serial-reaction-time-mouse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-survey-html-form/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-survey-html-form
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-survey-likert/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-survey-likert
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-survey-multi-choice/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-survey-multi-choice
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-survey-multi-select/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-survey-multi-select
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-survey-text/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-survey-text
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-video-button-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-video-button-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-video-keyboard-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-video-keyboard-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-video-slider-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-video-slider-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-virtual-chinrest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-virtual-chinrest
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-visual-search-circle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-visual-search-circle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-vsl-animate-occlusion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-vsl-animate-occlusion
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-vsl-grid-scene/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-vsl-grid-scene
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-webgazer-calibrate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-webgazer-calibrate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-webgazer-init-camera/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-webgazer-init-camera
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-webgazer-validate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-webgazer-validate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    扩展
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            扩展
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extensions/extensions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    扩展
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extensions/jspsych-ext-webgazer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-ext-webgazer.js
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    关于
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            关于
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    关于jsPsych
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/support/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    寻求帮助
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/contributing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    贡献代码
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/license/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    许可证
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychaddnodetoendoftimeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.addNodeToEndOfTimeline
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.addNodeToEndOfTimeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychalltimelinevariables" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.allTimelineVariables
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.allTimelineVariables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychcurrenttimelinenodeid" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.currentTimelineNodeID
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.currentTimelineNodeID">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychcurrenttrial" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.currentTrial
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.currentTrial">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychendcurrenttimeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.endCurrentTimeline
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.endCurrentTimeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      如果按下特定键，则结束时间线
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychendexperiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.endExperiment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.endExperiment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      如果做出特定反应，直接结束实验
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychfinishtrial" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.finishTrial
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.finishTrial">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychgetdisplayelement" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.getDisplayElement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.getDisplayElement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychgetprogressbarcompleted" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.getProgressBarCompleted
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.getProgressBarCompleted">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychinit" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.init
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.init">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_41" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_42" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychinitsettings" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.initSettings
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.initSettings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_43" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_44" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_45" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_46" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychpauseexperiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.pauseExperiment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.pauseExperiment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_47" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_48" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_49" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_50" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychprogress" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.progress
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.progress">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_51" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_52" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_53" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_54" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychresumeexperiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.resumeExperiment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.resumeExperiment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_55" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_56" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_57" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_58" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychsetprogressbar" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.setProgressBar
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.setProgressBar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_59" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_60" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_61" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_62" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychstarttime" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.startTime
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.startTime">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_63" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_64" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_65" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_66" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychtimelinevariable" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.timelineVariable
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.timelineVariable">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_67" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_68" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_69" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_70" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_71" class="md-nav__link">
+    <span class="md-ellipsis">
+      标准使用方式，即，作为试次的参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_72" class="md-nav__link">
+    <span class="md-ellipsis">
+      在函数中直接调用
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychtotaltime" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.totalTime
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.totalTime">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_73" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_74" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_75" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_76" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jspsychversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      jsPsych.version
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="jsPsych.version">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_77" class="md-nav__link">
+    <span class="md-ellipsis">
+      参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_78" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_79" class="md-nav__link">
+    <span class="md-ellipsis">
+      描述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_80" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="jspsych">jsPsych核心库<a class="headerlink" href="#jspsych" title="Permanent link">&para;</a></h1>
+<hr />
+<h2 id="jspsychaddnodetoendoftimeline">jsPsych.addNodeToEndOfTimeline<a class="headerlink" href="#jspsychaddnodetoendoftimeline" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">addNodeToEndOfTimeline</span><span class="p">(</span><span class="nx">node_parameters</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="_1">参数<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>node_parameters</td>
+<td>对象</td>
+<td>定义时间线的对象，必须有<code>timeline</code> 参数，且该参数值必须是一个有效的时间线数组 。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_2">返回值<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>无。</p>
+<h3 id="_3">描述<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>在实验末尾添加时间线。</p>
+<h3 id="_4">示例<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;html-keyboard-response&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">stimulus</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;This is a new trial.&#39;</span>
+<span class="p">}</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">new_timeline</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">timeline</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">trial</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="nx">jsPsych</span><span class="p">.</span><span class="nx">addNodeToEndOfTimeline</span><span class="p">(</span><span class="nx">new_timeline</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="jspsychalltimelinevariables">jsPsych.allTimelineVariables<a class="headerlink" href="#jspsychalltimelinevariables" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">allTimelineVariables</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="_5">参数<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>无。</p>
+<h3 id="_6">返回值<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>返回包含实验当前时刻所有可用时间线变量的对象，以键值对形式呈现。</p>
+<h3 id="_7">描述<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>可以使用该函数获取实验中某时刻所有的时间线变量。有助于对数据进行注释，详见下面的示例。</p>
+<h3 id="_8">示例<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;html-keyboard-response&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">stimulus</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Just a demo&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">on_finish</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+<span class="w">    </span><span class="c1">// merge all timeline variables available at this trial into the data for this trial</span>
+<span class="w">    </span><span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span><span class="w"> </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">allTimelineVariables</span><span class="p">())</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="jspsychcurrenttimelinenodeid">jsPsych.currentTimelineNodeID<a class="headerlink" href="#jspsychcurrenttimelinenodeid" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">currentTimelineNodeID</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="_9">参数<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>无。</p>
+<h3 id="_10">返回值<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>返回当前的时间线节点的ID。</p>
+<h3 id="_11">描述<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>获取当前的时间线节点的ID。ID是一个字符串，其格式如下：</p>
+<ul>
+<li><code>"0.0"</code> 代表第1个主时间线</li>
+<li><code>"1.0"</code> 代表第2个主时间线</li>
+<li><code>"2.0"</code> 代表第3个主时间线，以此类推...</li>
+</ul>
+<p>如果一个时间衔节点迭代了多次（例如，使用loop_function），则迭代的次数在第二个数字中进行标识：</p>
+<ul>
+<li><code>"0.0"</code> 代表第1个主时间线第1次迭代</li>
+<li><code>"0.1"</code> 代表第1个主时间线第2次迭代</li>
+<li><code>"0.2"</code> 代表第1个主时间线第3次迭代，以此类推...</li>
+</ul>
+<p>如果时间线节点嵌套在其他时间线节点中，则使用<code>-</code>表示层级关系：</p>
+<ul>
+<li><code>"0.0-1.0"</code> 代表第1个主时间线内的第2个时间线节点</li>
+<li><code>"0.0-2.0"</code> 代表第1个主时间线内的第3个时间线节点，以此类推...</li>
+</ul>
+<p>迭代规则对于子时间线同样适用：</p>
+<ul>
+<li><code>"0.2-1.3"</code> 代表第1个主时间线第3次执行时，该主时间线上的第二个时间线节点第4次执行。</li>
+</ul>
+<h3 id="_12">示例<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">currentTimelineNodeID</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;The current TimelineNode ID is &#39;</span><span class="o">+</span><span class="nx">id</span><span class="p">);</span>
+</code></pre></div>
+<hr />
+<h2 id="jspsychcurrenttrial">jsPsych.currentTrial<a class="headerlink" href="#jspsychcurrenttrial" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">currentTrial</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="_13">参数<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p>无。</p>
+<h3 id="_14">返回值<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<p>返回描述当前试次的对象，该对象包含了和当前试次相关的参数。</p>
+<h3 id="_15">描述<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<p>获取对当前试次的描述。</p>
+<h3 id="_16">示例<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">currentTrial</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;The current trial is using the &#39;</span><span class="o">+</span><span class="nx">trial</span><span class="p">.</span><span class="nx">类型</span><span class="o">+</span><span class="s1">&#39; plugin&#39;</span><span class="p">);</span>
+</code></pre></div>
+<hr />
+<h2 id="jspsychendcurrenttimeline">jsPsych.endCurrentTimeline<a class="headerlink" href="#jspsychendcurrenttimeline" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">endCurrentTimeline</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="_17">参数<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<p>无。</p>
+<h3 id="_18">返回值<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<p>无。</p>
+<h3 id="_19">描述<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
+<p>结束当前时间线。如果时间线是嵌套的，则只会结束包含直接包含当前试次的时间线。</p>
+<h3 id="_20">示例<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<h4 id="_21">如果按下特定键，则结束时间线<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">images</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="s2">&quot;img/1.gif&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;img/2.gif&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;img/3.gif&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;img/4.gif&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;img/5.gif&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;img/6.gif&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;img/7.gif&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;img/8.gif&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;img/9.gif&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;img/10.gif&quot;</span>
+<span class="p">];</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">trials</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">images</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">trials</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">stimulus</span><span class="o">:</span><span class="w"> </span><span class="nx">images</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">}</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">block</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;image-keyboard-response&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">choices</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;n&#39;</span><span class="p">],</span><span class="w"> </span>
+<span class="w">  </span><span class="nx">prompt</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&lt;p&gt;Press &quot;y&quot; to Continue. Press &quot;n&quot; to end this node of the experiment.&lt;/p&gt;&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">on_finish</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">pluginAPI</span><span class="p">.</span><span class="nx">compareKeys</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">response</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;n&#39;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">endCurrentTimeline</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">timeline</span><span class="o">:</span><span class="w"> </span><span class="nx">trials</span>
+<span class="p">}</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">after_block</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;html-keyboard-response&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">stimulus</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&lt;p&gt;The next node&lt;/p&gt;&#39;</span>
+<span class="p">}</span>
+
+<span class="nx">jsPsych</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">timeline</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">block</span><span class="p">,</span><span class="w"> </span><span class="nx">after_block</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">on_finish</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">displayData</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+<hr />
+<h2 id="jspsychendexperiment">jsPsych.endExperiment<a class="headerlink" href="#jspsychendexperiment" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">endExperiment</span><span class="p">(</span><span class="nx">end_message</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="_22">参数<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>end_message</td>
+<td>字符串</td>
+<td>实验结束后呈现在屏幕上的消息。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_23">返回值<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h3>
+<p>无。</p>
+<h3 id="_24">描述<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h3>
+<p>跳过剩下的所有试次，结束实验。</p>
+<h3 id="_25">示例<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h3>
+<h4 id="_26">如果做出特定反应，直接结束实验<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;image-keyboard-response&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">stimulus</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;image1.jpg&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">choices</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;n&#39;</span><span class="p">]</span>
+<span class="w">  </span><span class="nx">prompt</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&lt;p&gt;Press &quot;y&quot; to Continue. Press &quot;n&quot; to end the experiment&lt;/p&gt;&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">on_finish</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">pluginAPI</span><span class="p">.</span><span class="nx">compareKeys</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">response</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;n&quot;</span><span class="p">)){</span>
+<span class="w">      </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">endExperiment</span><span class="p">(</span><span class="s1">&#39;The experiment was ended by pressing &quot;n&quot;.&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="jspsychfinishtrial">jsPsych.finishTrial<a class="headerlink" href="#jspsychfinishtrial" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">finishTrial</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="_27">参数<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td>对象</td>
+<td>当前试次需要存储的数据。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_28">返回值<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h3>
+<p>无。</p>
+<h3 id="_29">描述<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h3>
+<p>该方法告诉jsPsych当前试次结束，用于在各个插件中结束当前试次。试次结束后会执行以下任务：</p>
+<ul>
+<li>使用<code>jsPsych.data.write()</code>存储数据</li>
+<li>执行试次的on_finish回调函数</li>
+<li>执行on_trial_finish回调函数</li>
+<li>如果呈现了进度条，则更新进度条</li>
+<li>如果当前试次是最后一个（且on_finish回调已经执行了），则结束实验</li>
+<li>如果有下一个试次则开始下一个试次</li>
+</ul>
+<h3 id="_30">示例<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// this code would be in a plugin</span>
+<span class="nx">jsPsych</span><span class="p">.</span><span class="nx">finishTrial</span><span class="p">({</span><span class="nx">correct_response</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">});</span>
+</code></pre></div>
+<hr />
+<h2 id="jspsychgetdisplayelement">jsPsych.getDisplayElement<a class="headerlink" href="#jspsychgetdisplayelement" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">getDisplayElement</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="_31">参数<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h3>
+<p>无。</p>
+<h3 id="_32">返回值<a class="headerlink" href="#_32" title="Permanent link">&para;</a></h3>
+<p>返回呈现实验内容的DOM元素。</p>
+<h3 id="_33">描述<a class="headerlink" href="#_33" title="Permanent link">&para;</a></h3>
+<p>获取呈现实验内容的DOM元素。</p>
+<h3 id="_34">示例<a class="headerlink" href="#_34" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">el</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">getDisplayElement</span><span class="p">();</span>
+
+<span class="c1">// hide the jsPsych display</span>
+<span class="nx">el</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">visibility</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;hidden&#39;</span><span class="p">;</span>
+</code></pre></div>
+<hr />
+<h2 id="jspsychgetprogressbarcompleted">jsPsych.getProgressBarCompleted<a class="headerlink" href="#jspsychgetprogressbarcompleted" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">getProgressBarCompleted</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="_35">参数<a class="headerlink" href="#_35" title="Permanent link">&para;</a></h3>
+<p>无。</p>
+<h3 id="_36">返回值<a class="headerlink" href="#_36" title="Permanent link">&para;</a></h3>
+<p>返回一个0 - 1之间的数值，表示目前进度条的进度。</p>
+<h3 id="_37">描述<a class="headerlink" href="#_37" title="Permanent link">&para;</a></h3>
+<p>用来获取进度条当前进度。对于自动和手动控制都有效。</p>
+<h3 id="_38">示例<a class="headerlink" href="#_38" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">progress_bar_amount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">getProgressBarCompleted</span><span class="p">();</span>
+</code></pre></div>
+<hr />
+<h2 id="jspsychinit">jsPsych.init<a class="headerlink" href="#jspsychinit" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="nx">settings</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="_39">参数<a class="headerlink" href="#_39" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>settings</td>
+<td>对象</td>
+<td>初始化jsPsych对象时的设置项。</td>
+</tr>
+</tbody>
+</table>
+<p>该对象可以包含多个参数，只有<code>timeline</code>参数是必须有的。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>timeline</td>
+<td>数组</td>
+<td>当前实验使用的时间线。详见<a href="../overview/timeline.html">创建实验：时间线</a>。</td>
+</tr>
+<tr>
+<td>display_element</td>
+<td>字符串</td>
+<td>呈现实验内容的HTML元素的ID。如果不指定，则jsPsych使用<code>&lt;body&gt;</code>元素呈现内容。键盘监听事件会绑定到该元素上。如果要能够检测到键盘事件，则该元素需要获得焦点（被试需要点一下）。</td>
+</tr>
+<tr>
+<td>on_finish</td>
+<td>函数</td>
+<td>实验结束时执行的函数。</td>
+</tr>
+<tr>
+<td>on_trial_start</td>
+<td>函数</td>
+<td>新的试次开始时执行的函数。</td>
+</tr>
+<tr>
+<td>on_trial_finish</td>
+<td>函数</td>
+<td>试次结束时执行的函数。</td>
+</tr>
+<tr>
+<td>on_data_update</td>
+<td>函数</td>
+<td>每次使用<code>jsPsych.data.write</code>方法存储数据时执行的函数。所有插件都是用这个方法存储数据（调用<code>jsPsych.finishTrial</code>），所以每次插件存储新的数据时当前函数都会执行。</td>
+</tr>
+<tr>
+<td>on_interaction_data_update</td>
+<td>函数</td>
+<td>每次出现新的交互行为时执行的函数。交互事件包括点开别的窗口（blur）、回到实验窗口（focus）、进入全屏模式（fullscreenenter）和退出全屏模式（fullscreenexit）。</td>
+</tr>
+<tr>
+<td>on_close</td>
+<td>函数</td>
+<td>被试离开页面时执行的函数。例如，如果要在被试关闭页面前保存数据，可以使用这个函数。</td>
+</tr>
+<tr>
+<td>exclusions</td>
+<td>对象</td>
+<td>对被试可以用来做实验的浏览器进行限制。详见下面的表格。</td>
+</tr>
+<tr>
+<td>show_progress_bar</td>
+<td>布尔</td>
+<td>如果为true，则会在页面顶端显示<a href="../overview/progress-bar.html">进度条</a>。</td>
+</tr>
+<tr>
+<td>message_progress_bar</td>
+<td>字符串</td>
+<td>进度条旁边显示的文字，默认为'Completion Progress'。</td>
+</tr>
+<tr>
+<td>auto_update_progress_bar</td>
+<td>布尔</td>
+<td>如果为true，则页面顶端的进度条在主时间线中的试次结束后会自动更新。</td>
+</tr>
+<tr>
+<td>use_webaudio</td>
+<td>布尔</td>
+<td>如果为false。则jsPsych不会使用WebAudio API播放音频，而是会使用HTML5的Audio对象。WebAudio API计时更精确，如果可以的话，还是应该使用它。默认值为true。</td>
+</tr>
+<tr>
+<td>default_iti</td>
+<td>数值</td>
+<td>试次间间隔，单位为毫秒。默认值为0毫秒。</td>
+</tr>
+<tr>
+<td>experiment_width</td>
+<td>数值</td>
+<td>jsPsych包裹实验元素的容器的宽度，单位为像素。如果不指定，则其宽度为jsPsych呈现内容的元素宽度的100%。通常来说，呈现内容的元素是<code>&lt;body&gt;</code>元素，所以此时容器宽度等于屏幕宽度。<br><span style="color: red;">译者注：jsPsych包括了多层嵌套，外面一层是body标签，即呈现实验内容的元素；包裹实验元素的容器只会包含实验任务相关的，而不会包含进度条这些东西（进度条也是在呈现内容的元素内呈现的，但被另一个容器包裹）</span></td>
+</tr>
+<tr>
+<td>minimum_valid_rt</td>
+<td>数值</td>
+<td>按键反应有效反应时的最小值。如果在此之前按键，则该反应无效。注意次参数仅对按键反应有效，对按钮和滑动条无效。默认值为0。</td>
+</tr>
+<tr>
+<td>override_safe_mode</td>
+<td>布尔</td>
+<td>直接在浏览器中运行实验（如，双击打开HTML文件）会使用 <code>file://</code> 协议，此时部分功能不可用。默认情况下，jsPsych在检测到当前HTML文件是通过<code>file://</code>协议运行时，会进入安全模式，自动禁用不能使用的功能。具体来说，禁用Web Audio（使用HTML5的audio，即使<code>use_webaudio</code>为true)和视频预加载。<code>override_safe_mode</code>参数默认为false，但我们也可以在使用<code>file://</code>协议时将其设置为true，以强制使用被禁用的功能。此时，我们需要禁用浏览器的安全 (CORS)功能——不过你需要明白你的这些操作是干什么的。注意，当前参数在在线运行实验时没有影响。因为使用了<code>http://</code>或<code>https://</code>协议。</td>
+</tr>
+<tr>
+<td>case_sensitive_responses</td>
+<td>布尔</td>
+<td>如果为true，则jsPsych会在记录键盘反应时对大小写进行区分。例如，如果试次仅接受"a"按键，则"A"为无效按键。如果为false，则jsPsych不会对键盘反应区分大小写，即，在choices参数为"a"时，"a"和"A"都是有效的反应。如果我们不希望被试反应的记录被打开了大写锁定或按下了<kbd>Shift</kbd>这些因素影响，应该将当前参数设置为false。默认值为false。</td>
+</tr>
+<tr>
+<td>extensions</td>
+<td>数组</td>
+<td>包含了使用的扩展的数组。数组中的每个元素是一个对象，对应一个扩展。每个对象必须有<code>type</code>属性，即扩展的名称。可以给对象添加<code>params</code>参数，该参数是一个对象，会被传入扩展的<code>initialize</code>函数中。当前参数默认为空数组。</td>
+</tr>
+</tbody>
+</table>
+<p>上述的exclusions参数的可选参数：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>min_width</td>
+<td>数值</td>
+<td>浏览器窗口宽度的最小值。如果宽度小于该值，则会给被试呈现一条消息，要求放大窗口。窗口足够大的时候才会开始实验。</td>
+</tr>
+<tr>
+<td>min_height</td>
+<td>数值</td>
+<td>同上，但规定的是最小高度。</td>
+</tr>
+<tr>
+<td>audio</td>
+<td>布尔</td>
+<td>如果需要支持WebAudio API（播放音频的插件中使用）则设置为true。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_40">返回值<a class="headerlink" href="#_40" title="Permanent link">&para;</a></h3>
+<p>无。</p>
+<h3 id="_41">描述<a class="headerlink" href="#_41" title="Permanent link">&para;</a></h3>
+<p>配置并启动试验。</p>
+<h3 id="_42">示例<a class="headerlink" href="#_42" title="Permanent link">&para;</a></h3>
+<p>详见GitHub仓库里<a href="https://github.com/jodeleeuw/jsPsych/tree/master/示例s">examples文件夹</a>下的示例。</p>
+<hr />
+<h2 id="jspsychinitsettings">jsPsych.initSettings<a class="headerlink" href="#jspsychinitsettings" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">initSettings</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="_43">参数<a class="headerlink" href="#_43" title="Permanent link">&para;</a></h3>
+<p>无。</p>
+<h3 id="_44">返回值<a class="headerlink" href="#_44" title="Permanent link">&para;</a></h3>
+<p>返回初始化实验的setting对象。</p>
+<h3 id="_45">描述<a class="headerlink" href="#_45" title="Permanent link">&para;</a></h3>
+<p>获取当前实验记录所有设置项的对象。</p>
+<h3 id="_46">示例<a class="headerlink" href="#_46" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">settings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">initSettings</span><span class="p">();</span>
+
+<span class="c1">// check the experiment structure</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">settings</span><span class="p">.</span><span class="nx">timeline</span><span class="p">));</span>
+</code></pre></div>
+<hr />
+<h2 id="jspsychpauseexperiment">jsPsych.pauseExperiment<a class="headerlink" href="#jspsychpauseexperiment" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">pauseExperiment</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="_47">参数<a class="headerlink" href="#_47" title="Permanent link">&para;</a></h3>
+<p>无。</p>
+<h3 id="_48">返回值<a class="headerlink" href="#_48" title="Permanent link">&para;</a></h3>
+<p>无。</p>
+<h3 id="_49">描述<a class="headerlink" href="#_49" title="Permanent link">&para;</a></h3>
+<p>当前试次结束后暂停实验，但在调用<code>jsPsych.resumeExperiment()</code>前不会执行后面的试次。</p>
+<h3 id="_50">示例<a class="headerlink" href="#_50" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;html-keyboard-response&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">stimulus</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Press p to take a 30 second break. Otherwise, press c to continue immediately.&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">choices</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">on_finish</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">pluginAPI</span><span class="p">.</span><span class="nx">compareKeys</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">response</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;p&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">      </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">pauseExperiment</span><span class="p">();</span>
+<span class="w">      </span><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">resumeExperiment</span><span class="p">,</span><span class="w"> </span><span class="mf">30000</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="jspsychprogress">jsPsych.progress<a class="headerlink" href="#jspsychprogress" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">progress</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="_51">参数<a class="headerlink" href="#_51" title="Permanent link">&para;</a></h3>
+<p>无。</p>
+<h3 id="_52">返回值<a class="headerlink" href="#_52" title="Permanent link">&para;</a></h3>
+<p>返回包含以下属性的对象：</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>total_trials</td>
+<td>数值</td>
+<td>实验中试次的综述。注意，不会计入循环的或因为条件时间线而跳过的试次。</td>
+</tr>
+<tr>
+<td>current_trial_global</td>
+<td>数值</td>
+<td>返回当前试次编号。前面每有一个试次，当前值都会加1。</td>
+</tr>
+<tr>
+<td>percent_complete</td>
+<td>数值</td>
+<td>估算已完成实验的百分比。如果不使用条件或循环时间线时预测值和实际值相同。对于复杂的时间线，该百分比只是一个近似值。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_53">描述<a class="headerlink" href="#_53" title="Permanent link">&para;</a></h3>
+<p>该方法返回的信息包含了实验长度、被试当前在实验的时间线上的位置。</p>
+<h3 id="_54">示例<a class="headerlink" href="#_54" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">progress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">progress</span><span class="p">();</span>
+<span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;You have completed approximately &#39;</span><span class="o">+</span><span class="nx">progress</span><span class="p">.</span><span class="nx">percent_complete</span><span class="o">+</span><span class="s1">&#39;% of the experiment&#39;</span><span class="p">);</span>
+</code></pre></div>
+<hr />
+<h2 id="jspsychresumeexperiment">jsPsych.resumeExperiment<a class="headerlink" href="#jspsychresumeexperiment" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">resumeExperiment</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="_55">参数<a class="headerlink" href="#_55" title="Permanent link">&para;</a></h3>
+<p>无。</p>
+<h3 id="_56">返回值<a class="headerlink" href="#_56" title="Permanent link">&para;</a></h3>
+<p>无。</p>
+<h3 id="_57">描述<a class="headerlink" href="#_57" title="Permanent link">&para;</a></h3>
+<p>在调用<code>jsPsych.pauseExperiment()</code>后恢复实验进行。如果还没达到<code>post_trial_gap</code>，则会等到该间隔结束后再继续实验。例如，如果<code>post_trial_gap</code>为10,000ms，但<code>jsPsych.resumeExperiment()</code>在前一个试次结束后6,000ms的时候被调用了，则会再等4,000ms才会开始下一个试次。</p>
+<h3 id="_58">示例<a class="headerlink" href="#_58" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;html-keyboard-response&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">stimulus</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Press p to take a 30 second break. Otherwise, press c to continue immediately.&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">choices</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">on_finish</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">pluginAPI</span><span class="p">.</span><span class="nx">compareKeys</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">response</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;p&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">      </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">pauseExperiment</span><span class="p">();</span>
+<span class="w">      </span><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">resumeExperiment</span><span class="p">,</span><span class="w"> </span><span class="mf">30000</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="jspsychsetprogressbar">jsPsych.setProgressBar<a class="headerlink" href="#jspsychsetprogressbar" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">setProgressBar</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="_59">参数<a class="headerlink" href="#_59" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td>数值</td>
+<td>进度条进度（0 - 1之间）。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_60">返回值<a class="headerlink" href="#_60" title="Permanent link">&para;</a></h3>
+<p>无。</p>
+<h3 id="_61">描述<a class="headerlink" href="#_61" title="Permanent link">&para;</a></h3>
+<p>设置进度条进度，取值范围为0 - 1，大于1的值记为1。</p>
+<h3 id="_62">示例<a class="headerlink" href="#_62" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">setProgressBar</span><span class="p">(</span><span class="mf">0.85</span><span class="p">);</span>
+</code></pre></div>
+<hr />
+<h2 id="jspsychstarttime">jsPsych.startTime<a class="headerlink" href="#jspsychstarttime" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">startTime</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="_63">参数<a class="headerlink" href="#_63" title="Permanent link">&para;</a></h3>
+<p>无。</p>
+<h3 id="_64">返回值<a class="headerlink" href="#_64" title="Permanent link">&para;</a></h3>
+<p>返回实验开始时间的<code>Date</code>对象。</p>
+<h3 id="_65">描述<a class="headerlink" href="#_65" title="Permanent link">&para;</a></h3>
+<p>获取实验开始时间。</p>
+<h3 id="_66">示例<a class="headerlink" href="#_66" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">start_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">startTime</span><span class="p">();</span>
+</code></pre></div>
+<hr />
+<h2 id="jspsychtimelinevariable">jsPsych.timelineVariable<a class="headerlink" href="#jspsychtimelinevariable" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">timelineVariable</span><span class="p">(</span><span class="nx">variable</span><span class="p">,</span><span class="w"> </span><span class="nx">call_immediate</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="_67">参数<a class="headerlink" href="#_67" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>variable</td>
+<td>字符串</td>
+<td>Name of the timeline variable</td>
+</tr>
+<tr>
+<td>call_immediate</td>
+<td>布尔</td>
+<td>可选参数，通常不会指定，会改变<code>jsPsych.timelineVariable</code>的返回值。如果为true，则函数会返回当前时间线变量的值，否则会返回一个返回当前时间线变量值的函数。如果不使用<code>call_immediate</code>，则会根据函数调用的环境决定返回什么值。如果把<code>jsPsych.timelineVariable</code>用作参数值，则<code>call_immediate</code>为false，这样我们就可以把<code>jsPsych.timelineVariable</code>当做<a href="/overview/dynamic-parameters.html">动态参数</a>使用。如果<code>jsPsych.timelineVariable</code>在函数内使用，<code>call_immediate</code>为true。我们也可以直接把当前参数设置为true，强制<code>jsPsych.timelineVariable</code>返回当前时间线变量的值。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_68">返回值<a class="headerlink" href="#_68" title="Permanent link">&para;</a></h3>
+<p>返回时间线变量值的函数，或时间线变量的值，这取决于使用的环境。详见上面的<code>call_immediate</code>部分。</p>
+<h3 id="_69">描述<a class="headerlink" href="#_69" title="Permanent link">&para;</a></h3>
+<p><a href="/overview/timeline.html#_5">时间线变量</a>非常适合用于创建重复但每次重复使用不同参数值的实验。当前函数会获取时间线变量当前的值。必须和使用时间线变量的时间线一起使用。详见<a href="/overview/timeline.html#_5">时间线变量部分</a>。</p>
+<h3 id="_70">示例<a class="headerlink" href="#_70" title="Permanent link">&para;</a></h3>
+<h4 id="_71">标准使用方式，即，作为试次的参数<a class="headerlink" href="#_71" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;image-keyboard-response&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">stimulus</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">timelineVariable</span><span class="p">(</span><span class="s1">&#39;image&#39;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">procedure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">timeline</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">trial</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">timeline_variables</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="nx">image</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;face1.png&#39;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nx">image</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;face2.png&#39;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nx">image</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;face3.png&#39;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nx">image</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;face4.png&#39;</span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="_72">在函数中直接调用<a class="headerlink" href="#_72" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;html-keyboard-response&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">stimulus</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">(){</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s2">&quot;&lt;img style=&#39;width:100px; height:100px;&#39; src=&#39;&quot;</span><span class="o">+</span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">timelineVariable</span><span class="p">(</span><span class="s1">&#39;image&#39;</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;&#39;&gt;&lt;/img&gt;&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">procedure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">timeline</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">trial</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">timeline_variables</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="nx">image</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;face1.png&#39;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nx">image</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;face2.png&#39;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nx">image</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;face3.png&#39;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nx">image</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;face4.png&#39;</span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>jsPsych v6.3.0版本以前，我们在函数中使用<code>jsPsych.timelineVariable</code>时必须将<code>call_immediate</code>参数设置为true：</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;html-keyboard-response&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">stimulus</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">(){</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s2">&quot;&lt;img style=&#39;width:100px; height:100px;&#39; src=&#39;&quot;</span><span class="o">+</span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">timelineVariable</span><span class="p">(</span><span class="s1">&#39;image&#39;</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;&#39;&gt;&lt;/img&gt;&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">procedure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">timeline</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">trial</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">timeline_variables</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="nx">image</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;face1.png&#39;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nx">image</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;face2.png&#39;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nx">image</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;face3.png&#39;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nx">image</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;face4.png&#39;</span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="jspsychtotaltime">jsPsych.totalTime<a class="headerlink" href="#jspsychtotaltime" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">totalTime</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="_73">参数<a class="headerlink" href="#_73" title="Permanent link">&para;</a></h3>
+<p>无。</p>
+<h3 id="_74">返回值<a class="headerlink" href="#_74" title="Permanent link">&para;</a></h3>
+<p>返回从调用<code>jsPsych.init</code>到当前经过的毫秒数。</p>
+<h3 id="_75">描述<a class="headerlink" href="#_75" title="Permanent link">&para;</a></h3>
+<p>获取被试做实验的时间。</p>
+<h3 id="_76">示例<a class="headerlink" href="#_76" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">totalTime</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">time</span><span class="p">);</span>
+</code></pre></div>
+<hr />
+<h2 id="jspsychversion">jsPsych.version<a class="headerlink" href="#jspsychversion" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">version</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="_77">参数<a class="headerlink" href="#_77" title="Permanent link">&para;</a></h3>
+<p>无。</p>
+<h3 id="_78">返回值<a class="headerlink" href="#_78" title="Permanent link">&para;</a></h3>
+<p>以字符串形式返回版本号。</p>
+<h3 id="_79">描述<a class="headerlink" href="#_79" title="Permanent link">&para;</a></h3>
+<p>获取jsPsych的版本。</p>
+<h3 id="_80">示例<a class="headerlink" href="#_80" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">version</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">version</span><span class="p">);</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2021 Shaobin Jiang
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Shaobin-Jiang/jsPsych-Chinese-Documentation" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+        <script src="../../scripts/convert.js"></script>
+      
+    
+  </body>
+</html>
