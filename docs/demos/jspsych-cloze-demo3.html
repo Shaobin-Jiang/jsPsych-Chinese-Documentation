@@ -3,8 +3,8 @@
   <head>
     <script src="docs-demo-timeline.js"></script>
     <script src="https://unpkg.com/jspsych@7.3.4"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-cloze@1.2.1"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.2.0"></script>
-    <script src="https://unpkg.com/@jspsych/plugin-sketchpad@1.0.4"></script>
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.3.4/css/jspsych.css" />
     <link rel="stylesheet" href="docs-demo.css" type="text/css">
   </head>
@@ -12,18 +12,14 @@
   <script>
 
     const jsPsych = initJsPsych();
-
-    const trial = {
-      type: jsPsychSketchpad,
-      prompt: '<p>Circle the mouth using red. Circle the eyes using blue.</p>',
-      prompt_location: 'abovecanvas',
-      stroke_color_palette: ['red', 'blue'],
-      stroke_color: 'red',
-      background_image: 'img/sad_face_4.jpg',
-      canvas_width: 380,
-      canvas_height: 252
-    }
     
+    var trial = {
+        type: jsPsychCloze,
+        text: 'Science notebooks have a %%-colored front cover. Math notebooks have a %%-colored front cover.',
+        allow_blanks: false,
+        mistake_fn: function() { alert('Please fill in all blanks.'); }
+    };
+
     const timeline = [trial];
 
     if (typeof jsPsych !== "undefined") {

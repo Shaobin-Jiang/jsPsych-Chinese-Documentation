@@ -2,9 +2,13 @@
 <html>
   <head>
     <script src="docs-demo-timeline.js"></script>
+    <!-- <script src="../../packages/jspsych/dist/index.browser.js"></script> -->
     <script src="https://unpkg.com/jspsych@7.3.4"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.2.0"></script>
-    <script src="https://unpkg.com/@jspsych/plugin-sketchpad@1.0.4"></script>
+    <!-- <script src="../../packages/plugin-mirror-camera/dist/index.browser.js"></script> -->
+    <script src="https://unpkg.com/@jspsych/plugin-mirror-camera@1.0.2"></script>
+    <!-- <script src="../../packages/plugin-initialize-camera/dist/index.browser.js"></script> -->
+    <script src="https://unpkg.com/@jspsych/plugin-initialize-camera@1.0.2"></script>
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.3.4/css/jspsych.css" />
     <link rel="stylesheet" href="docs-demo.css" type="text/css">
   </head>
@@ -13,18 +17,15 @@
 
     const jsPsych = initJsPsych();
 
-    const trial = {
-      type: jsPsychSketchpad,
-      prompt: '<p>Circle the mouth using red. Circle the eyes using blue.</p>',
-      prompt_location: 'abovecanvas',
-      stroke_color_palette: ['red', 'blue'],
-      stroke_color: 'red',
-      background_image: 'img/sad_face_4.jpg',
-      canvas_width: 380,
-      canvas_height: 252
+    const init_camera = {
+      type: jsPsychInitializeCamera,
     }
-    
-    const timeline = [trial];
+
+    const mirror_camera = {
+      type: jsPsychMirrorCamera,
+    }
+
+    const timeline = [init_camera, mirror_camera];
 
     if (typeof jsPsych !== "undefined") {
       jsPsych.run(generateDocsDemoTimeline(timeline));
