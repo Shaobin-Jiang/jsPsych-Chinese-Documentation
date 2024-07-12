@@ -1,0 +1,3362 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../eye-tracking/">
+      
+      
+        <link rel="next" href="../exclude-browser/">
+      
+      
+      <link rel="icon" href="../../img/jspsych-favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
+    
+    
+      
+        <title>调查研究 - jsPsych中文文档</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#jspsych" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="jsPsych中文文档" class="md-header__button md-logo" aria-label="jsPsych中文文档" data-md-component="logo">
+      
+  <img src="../../img/jspsych-logo-no-text-mono.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            jsPsych中文文档
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              调查研究
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Shaobin-Jiang/jsPsych-Chinese-Documentation" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Shaobin-Jiang/jsPsych-Chinese-Documentation
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="jsPsych中文文档" class="md-nav__button md-logo" aria-label="jsPsych中文文档" data-md-component="logo">
+      
+  <img src="../../img/jspsych-logo-no-text-mono.svg" alt="logo">
+
+    </a>
+    jsPsych中文文档
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Shaobin-Jiang/jsPsych-Chinese-Documentation" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Shaobin-Jiang/jsPsych-Chinese-Documentation
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    简介
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    新手教程
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            新手教程
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/hello-world/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基础的Hello World
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/rt-task/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    演示实验：简单反应时实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/video-tutorials/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    视频教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    概述
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            概述
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../timeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    创建实验：时间线
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugins/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    插件
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extensions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    扩展
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dynamic-parameters/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    动态参数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../style/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    控制呈现样式
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    数据存储、汇总和操作
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simulation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    模拟模式
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../running-experiments/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    运行实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../experiment-options/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    实验设置
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../events/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    事件
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../record-browser-interactions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    记录浏览器交互
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../media-preloading/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    多媒体文件预加载
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fullscreen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    全屏实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eye-tracking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    眼动
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    调查研究
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    调查研究
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用相应的插件
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#surveyjs" class="md-nav__link">
+    <span class="md-ellipsis">
+      初识SurveyJS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="初识SurveyJS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用JSON创建问卷
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="使用JSON创建问卷">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      多页调查
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      问卷相关的属性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#javascript" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用JavaScript创建或修改问卷
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      JSON和函数的组合使用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      JSON与函数的取舍
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用JSON创建动态的内容
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      通过代码定义调查试次/题目
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exclude-browser/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    根据浏览器类型排除被试
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../progress-bar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    进度条
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prolific/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    接入Prolific
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mturk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    接入Mechanical Turk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-device-support/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    支持的浏览器和设备
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../timing-accuracy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    计时精度
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    参考
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            参考
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/jspsych/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jsPsych
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/jspsych-data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jsPsych.data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/jspsych-randomization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jsPsych.randomization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/jspsych-turk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jsPsych.turk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/jspsych-pluginAPI/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jsPsych.pluginAPI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    插件
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            插件
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/list-of-plugins/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    插件列表
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/animation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    animation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/audio-button-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    audio-button-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/audio-keyboard-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    audio-keyboard-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/audio-slider-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    audio-slider-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/browser-check/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    browser-check
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/call-function/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    call-function
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/canvas-button-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    canvas-button-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/canvas-keyboard-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    canvas-keyboard-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/canvas-slider-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    canvas-slider-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/categorize-animation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    categorize-animation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/categorize-html/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    categorize-html
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/categorize-image/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    categorize-image
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/cloze/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cloze
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/external-html/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    external-html
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/free-sort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    free-sort
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/fullscreen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    fullscreen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/html-audio-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    html-audio-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/html-button-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    html-button-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/html-keyboard-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    html-keyboard-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/html-slider-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    html-slider-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/html-video-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    html-video-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/iat-html/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    iat-html
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/iat-image/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    iat-image
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/image-button-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    image-button-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/image-keyboard-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    image-keyboard-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/image-slider-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    image-slider-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/initialize-camera/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    initialize-camera
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/initialize-microphone/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    initialize-microphone
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/instructions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    instructions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/maxdiff/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    maxdiff
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/mirror-camera/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mirror-camera
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/preload/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    preload
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/reconstruction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    reconstruction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/resize/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    resize
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/same-different-html/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    same-different-html
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/same-different-image/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    same-different-image
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/serial-reaction-time/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    serial-reaction-time
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/serial-reaction-time-mouse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    serial-reaction-time-mouse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/sketchpad/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sketchpad
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/survey/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    survey
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/survey-html-form/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    survey-html-form
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/survey-likert/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    survey-likert
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/survey-multi-choice/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    survey-multi-choice
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/survey-multi-select/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    survey-multi-select
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/survey-text/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    survey-text
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/video-button-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    video-button-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/video-keyboard-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    video-keyboard-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/video-slider-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    video-slider-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/virtual-chinrest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    virtual-chinrest
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/visual-search-circle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    visual-search-circle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/webgazer-calibrate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    webgazer-calibrate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/webgazer-init-camera/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    webgazer-init-camera
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/webgazer-validate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    webgazer-validate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    扩展
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            扩展
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extensions/list-of-extensions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    扩展
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extensions/mouse-tracking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    鼠标追踪
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extensions/record-video/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    录像
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extensions/webgazer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    眼动
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    开发者
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            开发者
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developers/configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    配置
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developers/documentation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    构建文档
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developers/contributing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    贡献代码
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developers/plugin-development/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    开发插件
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developers/extension-development/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    开发扩展
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    支持
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            支持
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../support/support/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    寻求帮助
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../support/migration-v7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    从6.x版本到7.x版本
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    关于
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            关于
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    关于jsPsych
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/license/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    许可证
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用相应的插件
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#surveyjs" class="md-nav__link">
+    <span class="md-ellipsis">
+      初识SurveyJS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="初识SurveyJS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用JSON创建问卷
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="使用JSON创建问卷">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      多页调查
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      问卷相关的属性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#javascript" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用JavaScript创建或修改问卷
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      JSON和函数的组合使用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      JSON与函数的取舍
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用JSON创建动态的内容
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      通过代码定义调查试次/题目
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="jspsych">使用jsPsych进行调查研究<a class="headerlink" href="#jspsych" title="Permanent link">&para;</a></h1>
+<h2 id="_1">使用相应的插件<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>jsPsych提供了多种插件供我们进行调查研究。具体该选择哪一种插件取决于你的研究目的，以及你在开发过程中是想要图方便、只调整几个参数就实现相应的需求，还是想要更灵活地控制呈现效果。</p>
+<ul>
+<li>Survey-*插件: <a href="../../plugins/survey-likert/"><code>survey-likert</code></a>, <a href="../../plugins/survey-multi-choice/"><code>survey-multi-choice</code></a>, <a href="../../plugins/survey-multi-select/"><code>survey-multi-select</code></a>, <a href="../../plugins/survey-text/"><code>survey-text</code></a><ul>
+<li>只有一种题型，每一页对应一个试次</li>
+<li>设置几个参数就可以轻松定义题目</li>
+<li>完美兼容<a href="../timeline/#_5">时间线变量</a></li>
+<li>适合重复性强的试次</li>
+<li>功能和自定义能力受限</li>
+</ul>
+</li>
+<li><a href="../../plugins/survey-html-form/"><code>survey-html-form</code></a>插件<ul>
+<li>一页上可以呈现多种题目类型</li>
+<li>不通过各种参数编写题目，因为整个表单的HTML都由你编写</li>
+<li>极其灵活，如果你想要最大程度掌控调查问卷的内容和样式的话，这个是最合适的选择</li>
+</ul>
+</li>
+<li><a href="../../plugins/survey/"><code>survey</code></a>插件<ul>
+<li>不能很好地兼容<a href="../timeline/#_5">时间线变量</a></li>
+<li>内置了大量题型，可以通过参数方便地自定义</li>
+<li>一页上可以呈现多种题目类型</li>
+<li>运行被试前后切换页面且不会丢失作答数据</li>
+<li>虽然同样使用参数编写问题，但相较于<code>survey-*</code>插件需要更多配置/代码</li>
+<li>内置参数功能丰富（例如，作答校验、满足特定条件才呈现问题、其他/无/全选等选项）</li>
+</ul>
+</li>
+</ul>
+<p><a href="../../plugins/survey/"><code>survey</code> plugin</a>与多数jsPsych插件不同之处在于它基于另一个外部的JavaScript库：SurveyJS。这样，我们就可以用到SurveyJS提供的所有特性、文档、示例代码，但是这也意味着<code>survey</code>插件不能完全和其他插件按照同样的方式使用。在使用这个插件的时候，我们还需要对SurveyJS库有一定了解。这一页上剩余部分的文档会简单介绍SurveyJS以及jsPsych的<code>survey</code>插件。</p>
+<h2 id="surveyjs">初识SurveyJS<a class="headerlink" href="#surveyjs" title="Permanent link">&para;</a></h2>
+<p><a href="https://surveyjs.io/form-library/documentation/overview">SurveyJS</a>是一个十分强大的用于构建调查问卷的框架，自带了丰富的文档、示例代码和实机演示。这里，我们的重点是让jsPsych用户了解这一框架的基本使用，并着重介绍几个用途最广的特性。当然，我们显然不可能把整份SurveyJS的文档都放到这里，所以我们鼓励你也去看看他们那边的文档和示例。</p>
+<p>SurveyJS允许我们通过JSON对象、JavaScript函数或者是二者的组合构建调查问卷。你可以在下述两篇SurveyJS的文档中了解一下：</p>
+<ul>
+<li><a href="https://surveyjs.io/form-library/documentation/design-survey/create-a-simple-survey#define-a-static-survey-model-in-json">使用JSON创建问卷</a></li>
+<li><a href="https://surveyjs.io/form-library/documentation/design-survey/create-a-simple-survey#create-or-change-a-survey-model-dynamically">使用JavaScript创建问卷</a></li>
+</ul>
+<p>jsPsych的<code>survey</code>插件使用<code>survey_json</code>和<code>survey_function</code>参数编写调查问卷，二者分别对应SurveyJS中使用JSON和JavaScript方法。本篇接下来的两个小节会分别介绍两种方法：<a href="#json">使用JSON构建问卷</a> and <a href="#javascript">使用JavaScript创建或修改问卷</a>。</p>
+<p>如果要更深入了解SurveyJS，可以参照以下内容：</p>
+<ul>
+<li><a href="https://surveyjs.io/form-library/documentation/design-survey/create-a-multi-page-survey#add-multiple-pages-to-a-survey">构建多页的调查问卷</a></li>
+<li><a href="https://surveyjs.io/form-library/documentation/design-survey/create-a-multi-page-survey#configure-page-visibility">根据条件设置页面是否可见</a></li>
+<li><a href="https://surveyjs.io/form-library/documentation/design-survey/create-a-multi-page-survey#page-navigation-ui">页面浏览相关的UI</a> (后退、前进、提交按钮)</li>
+<li><a href="https://surveyjs.io/form-library/documentation/design-survey/conditional-logic">设置条件逻辑和动态文本</a></li>
+<li><a href="https://surveyjs.io/form-library/documentation/design-survey/pre-populate-form-fields#default-question-values">设置默认值</a></li>
+</ul>
+<p>SurveyJS还提供了一些特性，可以用在特定研究领域，例如：</p>
+<ul>
+<li><a href="https://surveyjs.io/form-library/examples/how-to-number-pages-and-questions/jquery">自动为题目标号</a> (整个研究、某一页上、使用特殊值和文本，等等)</li>
+<li><a href="https://surveyjs.io/form-library/examples/javascript-form-validation/jquery">作答校验</a></li>
+<li><a href="https://surveyjs.io/form-library/examples/table-of-contents/jquery">目录、浏览不同小节</a></li>
+<li><a href="https://surveyjs.io/form-library/examples/configure-form-navigation-with-progress-indicators/jquery">进度条</a></li>
+<li><a href="https://surveyjs.io/form-library/examples/carry-forward-responses/jquery">使用前面的选择题的作答</a></li>
+<li><a href="https://surveyjs.io/form-library/examples/pipe-answers-from-dynamic-matrix-or-panel/jquery">使用前面的矩阵题型的作答</a></li>
+<li><a href="https://surveyjs.io/form-library/documentation/design-survey/conditional-logic#conditional-visibility">Conditional visibility for elements/questions</a> (另见<a href="https://surveyjs.io/form-library/examples/implement-conditional-logic-to-change-question-visibility/jquery">此示例</a>)</li>
+<li>单选题特殊选项：<a href="https://surveyjs.io/form-library/documentation/api-reference/radio-button-question-model#showNoneItem">无</a>, <a href="https://surveyjs.io/form-library/documentation/api-reference/radio-button-question-model#showOtherItem">其他</a>, <a href="https://surveyjs.io/form-library/documentation/api-reference/checkbox-question-model#showSelectAllItem">全选</a>, <a href="https://surveyjs.io/form-library/documentation/api-reference/radio-button-question-model#showRefuseItem">拒绝作答</a>, 以及<a href="https://surveyjs.io/form-library/documentation/api-reference/radio-button-question-model#showDontKnowItem">不知道</a></li>
+<li><a href="https://surveyjs.io/form-library/examples/survey-localization/jquery">本地化</a> (根据国家/地区设置语言)</li>
+<li><a href="https://surveyjs.io/form-library/examples/text-piping-in-surveys/jquery">文本管道操作</a> (根据前面的作答，动态将作答内容添加到问题文本/回答中)</li>
+</ul>
+<p>你可以在<a href="https://surveyjs.io/form-library/examples/overview">SurveyJS示例页</a>找到各种案例。如果想要查看其他参数，也可以查看<a href="https://surveyjs.io/form-library/documentation/api-reference/survey-data-model">Survey API文档</a>。</p>
+<h3 id="json">使用JSON创建问卷<a class="headerlink" href="#json" title="Permanent link">&para;</a></h3>
+<p>SurveyJS允许我们通过一个对象定义调查问卷的内容。最简单的情况下，这个对象应该包含<code>elements</code>属性，其值是包含当前页面上呈现的元素/题目的数组（至少包含一个项目）。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Survey with a single text entry question.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">survey_json</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">elements</span><span class="o">:</span><span class="w"> </span><span class="p">[{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;example&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Enter some text in the box below!&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span>
+<span class="w">  </span><span class="p">}]</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>每个元素都有<code>type</code>属性，即该元素的类型（见<code>survey</code>插件的<a href="../../plugins/survey/#_2">问题/元素类型部分</a>）。元素对象还应包含相应类型问题所需要的属性，例如<code>name</code>（用于在数据中标明该题目）、<code>title</code>（呈现给被试的题目内容）、是否必须作答，等等。 The <a href="../../plugins/survey/#_2">问题/元素类型部分</a>包含SurveyJS文档对应问题类型的链接，你可以在那里查看必选/可选参数。</p>
+<p>在像上面的示例那样创建了一个JSON对象后，就可以用于jsPsych的<code>survey</code>试次中的<code>survey_json</code>参数：</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">survey_trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychSurvey</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">survey_json</span><span class="o">:</span><span class="w"> </span><span class="nx">survey_json</span>
+<span class="p">};</span>
+
+<span class="nx">timeline</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">survey_trial</span><span class="p">);</span>
+</code></pre></div>
+<p>完事！上面这段代码编写了一个调查问卷。</p>
+<div class="admonition note">
+<p class="admonition-title">JSON和JavaScript对象</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON">JSON (JavaScript Object Notation)</a>是一种组织数据的文本格式，和JavaScript对象相似但又不尽相同。<code>survey_json</code>参数的内容是一个兼容JSON的JavaScript对象而非JSON字符串。这里我们一直使用JSON一词是为了明确该参数中不应该包含函数，同时也是为了和SurveyJS官方文档保持一致。如果想更多了解JSON和JavaScript对象的区别，可以参见<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON#javascript_and_json_differences">这里</a>以及<a href="https://www.w3schools.com/js/js_json_intro.asp">这里</a>.</p>
+</div>
+<h4 id="_2">多页调查<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<p>我们可以将<code>elements</code>设置为顶层的属性，此时所有元素都会呈现在一页上。如果希望分页呈现，则可以在JSON中添加<code>pages</code>属性，该属性是一个对象构成的数组，每个对象对应一个页面，且应包含<code>elements</code>数组。</p>
+<p>下面的示例中创建了一个两页的调查问卷。每一页上都有一系列元素/题目以及一些可选参数（页面名称和标题）。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">survey_json</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">pages</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;page_1&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Your Name&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">elements</span><span class="o">:</span><span class="w"> </span><span class="p">[{</span>
+<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;first_name&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Enter your first name:&quot;</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;last_name&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Enter your last name:&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;page_2&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Personal Information&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">elements</span><span class="o">:</span><span class="w"> </span><span class="p">[{</span>
+<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;location&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Where do you live?&quot;</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;occupation&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;What is your occupation?&quot;</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;age&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;How old are you?&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">inputType</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;number&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">min</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">max</span><span class="o">:</span><span class="w"> </span><span class="mf">120</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}]</span>
+<span class="p">};</span>
+</code></pre></div>
+<h4 id="_3">问卷相关的属性<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<p>我们还可以添加一些和问卷整体相关的属性，例如标题（呈现在页面顶部）、是否自动对问题标号、浏览页面的按钮上的内容、标记必答题目的文本等等。这些参数并不是必须指定的，除非说我们不想使用默认值的时候才需要去设置。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">survey_json</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Survey title&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">showQuestionNumbers</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;off&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">completeText</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Done&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">pageNextText</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Next&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">pagePrevText</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Back&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">requiredText</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;[REQUIRED]&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">pages</span><span class="o">:</span><span class="w"> </span><span class="p">[{</span>
+<span class="w">    </span><span class="nx">elements</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// ... page 1 questions</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">elements</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// ... page 2 questions</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}]</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>一些属性需要在页面水平上进行设置，见<a href="https://surveyjs.io/form-library/documentation/api-reference/page-model">页面API文档</a>。</p>
+<p>更多JSON相关示例详见<a href="https://surveyjs.io/form-library/documentation/design-survey/create-a-simple-survey#define-a-static-survey-model-in-json">SurveyJS JSON文档</a>、<code>survey</code>插件文档页的<a href="../../plugins/survey/#examples">示例</a>部分以及<code>survey</code>插件源代码中的<a href="https://github.com/jspsych/jsPsych/tree/main/packages/plugin-survey">examples文件夹</a>。</p>
+<h3 id="javascript">使用JavaScript创建或修改问卷<a class="headerlink" href="#javascript" title="Permanent link">&para;</a></h3>
+<p>SurveyJS允许我们通过JavaScript创建、修改问卷，这一方法可以实现使用JSON创建问卷得到的效果，而且更加灵活。例如，我们可以通过设置特殊的函数，实现根据被试前面的作答修改问卷的内容的功能。我们可以在调查的多个阶段设置需要执行的不同的函数，比如说，在页面改变或者是被试输入的时候执行某段代码。</p>
+<p>在jsPsych的<code>survey</code>插件中，<code>survey_function</code>函数需要有一个传入参数<code>survey</code>，该参数是一个SurveyJS模型，我们可以对其进行各种操作。如果<code>survey_json</code>参数为空，则<code>servey_function</code>的传入参数也为空。此时，我们需要在<code>survey_function</code>中添加至少一个包含至少一个元素/题目的页面。</p>
+<p>下面这段代码会创建一个和JSON部分第一个例子相同的问卷：</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">survey_function</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">survey</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// add page</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">page</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">survey</span><span class="p">.</span><span class="nx">addNewPage</span><span class="p">(</span><span class="s2">&quot;page1&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// add question</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">text_question</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">page</span><span class="p">.</span><span class="nx">addNewQuestion</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;example&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="nx">text_question</span><span class="p">.</span><span class="nx">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Enter some text in the box below!&quot;</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">survey_trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychSurvey</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">survey_function</span><span class="o">:</span><span class="w"> </span><span class="nx">survey_function</span>
+<span class="p">};</span>
+
+<span class="nx">timeline</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">survey_trial</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="json_1">JSON和函数的组合使用<a class="headerlink" href="#json_1" title="Permanent link">&para;</a></h3>
+<p>如果我们使用了<code>survey_json</code>参数，则<code>survey_function</code>会传入一个基于此JSON创建的问卷对象，此时我们可以在函数中访问该JSON中定义的所有元素。</p>
+<p>这里有一个比较切合实际的例子。比如说，我们要求被试在实验开始的时候选择一个颜色，然后后面在<code>survey</code>试次中用到了选择的颜色。仅使用JSON是不足以实现这一需求的，因为我们事先不知道被试的选择，只有在实验开始后我们才知道。</p>
+<p>不过，我们可以用<code>survey_function</code>从jsPsych的数据中获取被试选择的颜色并用到我们的问卷中。仅此一部分动态的内容需要用到<code>survey_function</code>，其他的部分可以在JSON中定义。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Create an array of color choices</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">color_choices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;green&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;pink&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;orange&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;purple&#39;</span><span class="p">];</span>
+
+<span class="c1">// Create an html-button-response trial where the participant can choose a color</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">select_color_trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychHtmlButtonResponse</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">stimulus</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&lt;p&gt;Which of these is your favorite color?&lt;/p&gt;&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">choices</span><span class="o">:</span><span class="w"> </span><span class="nx">color_choices</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">button_html</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&lt;button class=&quot;jspsych-btn&quot; style=&quot;color:%choice%&quot;;&quot;&gt;%choice%&lt;/button&gt;&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">trial_id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;color_trial&#39;</span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// Create the survey JSON </span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">color_survey_json</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">elements</span><span class="o">:</span><span class="w"> </span><span class="p">[{</span>
+<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;boolean&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">renderAs</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;radio&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;color_confirmation&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="c1">// This value will be set in the survey function</span>
+<span class="w">  </span><span class="p">}]</span>
+<span class="p">};</span>
+
+<span class="c1">// Create a survey function to access the participant&#39;s response </span>
+<span class="c1">// from an earlier trial and modify the survey accordingly</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">color_survey_function</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">survey</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Get the earlier color selection response (button index) from the jsPsych data</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">color_choice_index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">get</span><span class="p">().</span><span class="nx">filter</span><span class="p">({</span><span class="nx">trial_id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;color_trial&#39;</span><span class="p">}).</span><span class="nx">values</span><span class="p">()[</span><span class="mf">0</span><span class="p">].</span><span class="nx">response</span><span class="p">;</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">color_choice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">color_choices</span><span class="p">[</span><span class="nx">color_choice_index</span><span class="p">];</span>
+<span class="w">  </span><span class="c1">// Get the question that we want to modify</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">color_confirmation_question</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">survey</span><span class="p">.</span><span class="nx">getQuestionByName</span><span class="p">(</span><span class="s1">&#39;color_confirmation&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Change the question title to include the name of the color that was selected</span>
+<span class="w">  </span><span class="nx">color_confirmation_question</span><span class="p">.</span><span class="nx">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">    Earlier you chose </span><span class="si">${</span><span class="nx">color_choice</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()</span><span class="si">}</span><span class="sb">. Do you still like that color?</span>
+<span class="sb">  `</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Create the jsPsych survey trial using both the survey JSON and survey function</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">color_survey_trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychSurvey</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">survey_json</span><span class="o">:</span><span class="w"> </span><span class="nx">color_survey_json</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">survey_function</span><span class="o">:</span><span class="w"> </span><span class="nx">color_survey_function</span>
+<span class="p">};</span>
+
+<span class="nx">jsPsych</span><span class="p">.</span><span class="nx">run</span><span class="p">([</span><span class="nx">select_color_trial</span><span class="p">,</span><span class="w"> </span><span class="nx">color_survey_trial</span><span class="p">]);</span>
+</code></pre></div>
+<p>如果想要更多了解如何使用JavaScript创建/修改问卷，详见<a href="https://surveyjs.io/form-library/documentation/design-survey/create-a-simple-survey#create-or-change-a-survey-model-dynamically">SurveyJS文档</a>。SurveyJS的API包含了所有的问卷、页面、题目相关的属性、方法、事件。</p>
+<h3 id="json_2">JSON与函数的取舍<a class="headerlink" href="#json_2" title="Permanent link">&para;</a></h3>
+<p>我们可以完全使用JSON构建<code>survey</code>试次，也可以完全使用JavaScript函数，也可以二者兼用。很多时候，具体选择哪种方案更多是一个个人偏好的问题，但也有一些情况下，我们必须用<code>surey_function</code>：</p>
+<ul>
+<li>根据被试在前面的试次中作答或者问卷开始前无从获取的信息修改问卷内容</li>
+<li>问卷配置时使用了自定义的函数。例如，我们希望某个特定事件触发某个事件，如被试作答内容改变或者是完成问卷的时候。<code>survey_json</code>中不允许出现函数，这时候我们就需要把它放到<code>survey_function</code>中</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">对作答进行验证</p>
+<p>有一些特殊情况下不需要使用<code>survey_function</code>运行自定义函数，那就是对被试作答校验的时候。<code>survey</code>插件提供了一个<code>validation_function</code>参数，可以使用自定义的代码对被试作答进行校验。当然，你也可以用<code>survey_function</code>实现同样的功能，此时你就需要设置该校验函数在问卷的<a href="https://surveyjs.io/form-library/documentation/api-reference/survey-data-model#onValidateQuestion"><code>onValidateQuestion</code></a>事件触发的时候执行。</p>
+</div>
+<h3 id="json_3">使用JSON创建动态的内容<a class="headerlink" href="#json_3" title="Permanent link">&para;</a></h3>
+<p>虽然<code>survey_json</code>中不能出现函数，SurveyJS还是提供了一些特殊的配置项，以方便我们通过JSON为问卷配置一定的动态功能。例如，我们可以通过JSON设置满足条件时呈现/隐藏题目、选项等（见<a href="https://surveyjs.io/form-library/documentation/design-survey/conditional-logic#conditional-visibility">Conditional Visibility</a>以及<a href="https://surveyjs.io/form-library/documentation/design-survey/conditional-logic#expressions">Expressions</a>）。此外，SurveyJS还允许我们将某个特定问题的回答插入到一段文本中（见<a href="https://surveyjs.io/form-library/documentation/design-survey/conditional-logic#question-values">动态文本</a>）。</p>
+<p>总的来说，JSON中可以获取当前问卷中的信息并将其用于一些动态的行为。单数，如果我们需要访问这以外的信息，就需要用到<code>survey_function</code>参数了。</p>
+<h3 id="_4">通过代码定义调查试次/题目<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>有时候我们也需要通过编程创建我们的问卷内容。例如，我们需要在一页上呈现一系列格式相同、仅有部分内容存在差异的问题，此时我们当然可以一个一个在<code>survey_json</code>中创建，但这样做的结果就是我们的JSON非常大而且多是重复的内容。</p>
+<p>更好的做法是将重复的内容分离出来。这样，我们可以方便地进行修改、避免错误，因为我们只需要对重复的部分编写一次。</p>
+<p>下面这一段展示了如何从一个数组生成大体相同、只有部分地方需要修改的多个问题。</p>
+<p>下面的示例中，在<code>survey_function</code>中对题目水平的变量进行遍历（标题、<code>name</code>），并分别将每个题目添加到单独的页面上。我们可以用同样的方法在多个页面上添加题目。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">survey_function</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">survey</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="c1">// this array stores any information that changes across questions</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">questions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Question 1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;q1&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Question 2&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;q2&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="c1">// ... more question-level variables ...</span>
+<span class="w">    </span><span class="p">{</span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Question N&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;qN&quot;</span><span class="p">}</span>
+<span class="w">  </span><span class="p">];</span>
+
+<span class="w">  </span><span class="c1">// create a single page</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">page</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">survey</span><span class="p">.</span><span class="nx">addNewPage</span><span class="p">(</span><span class="s2">&quot;questions&quot;</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="o">=</span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">questions</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// for each object in the questions array,</span>
+<span class="w">    </span><span class="c1">// create a new question and add it to the same page</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">page</span><span class="p">.</span><span class="nx">addNewQuestion</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">questions</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">i</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">q</span><span class="p">.</span><span class="nx">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">questions</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">title</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">q</span><span class="p">.</span><span class="nx">inputType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;range&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">q</span><span class="p">.</span><span class="nx">min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">q</span><span class="p">.</span><span class="nx">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">q</span><span class="p">.</span><span class="nx">step</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">q</span><span class="p">.</span><span class="nx">defaultValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">50</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">q</span><span class="p">.</span><span class="nx">isRequired</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">使用备选项相同的矩阵题型</p>
+<p>有些时候，当我们的题目文本不同但选项相同的时候，可以使用SurveyJS的<a href="https://surveyjs.io/form-library/examples/single-selection-matrix-table-question/jquery">“矩阵”题型</a>，它会创建一个表格，每一行对应一个问题，每一列对应一种选项。这种格式常用于李克特量表、满意度等等。你真是可以创建<a href="https://surveyjs.io/form-library/examples/multi-select-matrix-question/jquery#">备选项不同的矩阵题型</a>。</p>
+</div>
+<p>我们也可以使用试次水平的变量创建不同的<code>survey</code>试次。jsPsych的
+<a href="../timeline/#_5">时间线变量</a>可以和这种做法配合使用，但用法我们习惯的方式有所不同。这是因为我们需要在试次中修改的各个参数并没有对应的插件参数，而是层层嵌套在<code>survey_json</code>中。可以通过下面的例子看看是怎样做的。</p>
+<ol>
+<li>
+<p><strong>使用传统的时间线变量方式</strong>。这种做法并不好，因为需要将每个试次的<code>survey_json</code>都写进时间线变量里，这样一来时间线变量就没意义了。无论如何，这种做法写起来是这样的：</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">word_trials</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">timeline</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychHtmlKeyboardResponse</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">stimulus</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;+&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">choices</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;NO_KEYS&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">trial_duration</span><span class="o">:</span><span class="w"> </span><span class="mf">500</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychHtmlKeyboardResponse</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">stimulus</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">timelineVariable</span><span class="p">(</span><span class="s1">&#39;word&#39;</span><span class="p">),</span>
+<span class="w">      </span><span class="nx">choices</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;NO_KEYS&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">trial_duration</span><span class="o">:</span><span class="w"> </span><span class="mf">1000</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychSurvey</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">survey_json</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">timelineVariable</span><span class="p">(</span><span class="s1">&#39;survey_json&#39;</span><span class="p">),</span>
+<span class="w">      </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">word</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">timelineVariable</span><span class="p">(</span><span class="s1">&#39;word&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nx">timeline_variables</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">word</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;cheese&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">survey_json</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">elements</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Enter a word related to CHEESE:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">autocomplete</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;off&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="nx">showQuestionNumbers</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nx">completeText</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Next&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">focusFirstQuestionAutomatic</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">word</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ring&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">survey_json</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">elements</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Enter a word related to RING:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">autocomplete</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;off&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="nx">showQuestionNumbers</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nx">completeText</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Next&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">focusFirstQuestionAutomatic</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">word</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;bat&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">survey_json</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">elements</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Enter a word related to BAT:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">autocomplete</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;off&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="nx">showQuestionNumbers</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nx">completeText</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Next&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">focusFirstQuestionAutomatic</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">word</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;cow&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">survey_json</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">elements</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Enter a word related to COW:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">autocomplete</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;off&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="nx">showQuestionNumbers</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nx">completeText</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Next&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">focusFirstQuestionAutomatic</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">};</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">如果只呈现一种题型，可以使用survey-* 插件</p>
+<p>上述示例只是用来展示如何将<code>survey</code>插件和时间线变量一起使用。如果是真实实验中，由于每个试次只包含一个问题，我们可以直接使用survey-* 插件，因为这些插件和时间线变量配合起来更好。当然，如果你一定要用<code>survey</code>插件一定也是有自己的理由，比如说开发更方便，等等。</p>
+</div>
+</li>
+<li>
+<p><strong>使用jsPsych的<a href="../dynamic-parameters/">动态参数功能</a></strong>。这样，我们可以直接通过函数返回相应的JSON。</p>
+<p>这种方法允许我们通过各种变量和固定值定义问卷内容。此外，jsPsych会在试次开始前才运行该函数，所以我们可以根据实验中才拿到的一些信息动态修改问卷的内容。参见下面的例子：</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">word_trials</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">timeline</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychHtmlKeyboardResponse</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">stimulus</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;+&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">choices</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;NO_KEYS&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">trial_duration</span><span class="o">:</span><span class="w"> </span><span class="mf">500</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychHtmlKeyboardResponse</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">stimulus</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">timelineVariable</span><span class="p">(</span><span class="s1">&#39;word&#39;</span><span class="p">),</span>
+<span class="w">      </span><span class="nx">choices</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;NO_KEYS&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">trial_duration</span><span class="o">:</span><span class="w"> </span><span class="mf">1000</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychSurvey</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">survey_json</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// This is a function that dynamically creates the JSON configuration for each trial.</span>
+<span class="w">        </span><span class="c1">// Inside the function, you can access timeline variables, jsPsych data, and other global variables</span>
+<span class="w">        </span><span class="c1">// that you define. This function will be called right before the trial starts.</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">this_trial_json</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">          </span><span class="nx">elements</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">              </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">              </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="sb">`Enter a word related to </span><span class="si">${</span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">timelineVariable</span><span class="p">(</span><span class="s1">&#39;word&#39;</span><span class="p">).</span><span class="nx">toUpperCase</span><span class="p">()</span><span class="si">}</span><span class="sb">:`</span><span class="p">,</span><span class="w"> </span>
+<span class="w">              </span><span class="nx">autocomplete</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;off&quot;</span><span class="w"> </span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">          </span><span class="p">],</span><span class="w"> </span>
+<span class="w">          </span><span class="nx">showQuestionNumbers</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span>
+<span class="w">          </span><span class="nx">completeText</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Next&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">          </span><span class="nx">focusFirstQuestionAutomatic</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">this_trial_json</span><span class="p">;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">word</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">timelineVariable</span><span class="p">(</span><span class="s1">&#39;word&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nx">timeline_variables</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">word</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;cheese&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">word</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ring&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">word</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;bat&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">word</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;cow&#39;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">};</span>
+</code></pre></div>
+</li>
+<li>
+<p><strong>使用<code>survey_function</code>参数</strong>。我们可以在其中访问到试次水平的变量，所以大致的思路和上面的例子一样。区别在于，这里我们使用的是SurveyJS的JavaScript API语法而不是JSON。我们当然可以不用时间线变量，但这里这样做更方便：</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">create_word_survey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">survey</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Create question using timeline variables</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">page</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">survey</span><span class="p">.</span><span class="nx">addNewPage</span><span class="p">(</span><span class="s1">&#39;page1&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">question</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">page</span><span class="p">.</span><span class="nx">addNewQuestion</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">);</span><span class="w"> </span>
+<span class="w">  </span><span class="nx">question</span><span class="p">.</span><span class="nx">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`Enter a word related to </span><span class="si">${</span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">timelineVariable</span><span class="p">(</span><span class="s1">&#39;word&#39;</span><span class="p">).</span><span class="nx">toUpperCase</span><span class="p">()</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">question</span><span class="p">.</span><span class="nx">autocomplete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;off&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Set survey-level parameters</span>
+<span class="w">  </span><span class="nx">survey</span><span class="p">.</span><span class="nx">showQuestionNumbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">survey</span><span class="p">.</span><span class="nx">completeText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Next&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">survey</span><span class="p">.</span><span class="nx">focusFirstQuestionAutomatic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">word_trials</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">timeline</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychHtmlKeyboardResponse</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">stimulus</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;+&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">choices</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;NO_KEYS&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">trial_duration</span><span class="o">:</span><span class="w"> </span><span class="mf">500</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychHtmlKeyboardResponse</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">stimulus</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">timelineVariable</span><span class="p">(</span><span class="s1">&#39;word&#39;</span><span class="p">),</span>
+<span class="w">      </span><span class="nx">choices</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;NO_KEYS&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">trial_duration</span><span class="o">:</span><span class="w"> </span><span class="mf">1000</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychSurvey</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">survey_function</span><span class="o">:</span><span class="w"> </span><span class="nx">create_word_survey</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">word</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">timelineVariable</span><span class="p">(</span><span class="s1">&#39;word&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nx">timeline_variables</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">word</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;cheese&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">word</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;ring&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">word</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;bat&#39;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">word</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;cow&#39;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">};</span>
+</code></pre></div>
+</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2021-2024 Shaobin Jiang
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Shaobin-Jiang/jsPsych-Chinese-Documentation" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+    
+  </body>
+</html>
