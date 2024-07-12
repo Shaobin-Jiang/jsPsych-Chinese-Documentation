@@ -4,16 +4,18 @@
 
 ## 记录Participant ID, Study ID, and Session ID
 
-在Prolific上创建研究时，我们需要提供研究的URL。在把实验托管到服务器上后（详见[运行实验](/overview/running-experiments.html#_6)），就有了实验的URL， 我们此时需要把该URL填写到Prolific的 *study link* 部分，然后点击通过URL记录Prolific ID选项。
+在Prolific上创建研究时，我们需要提供研究的URL。在把实验托管到服务器上后（详见[运行实验](./running-experiments.md#_6)），就有了实验的URL， 我们此时需要把该URL填写到Prolific的 *study link* 部分，然后点击通过URL记录Prolific ID选项。
 
-![Prolific screenshot](/img/prolific-study-link.png)
+![Prolific screenshot](../img/prolific-study-link.png)
 
 这样，就会把被试的prolific ID (`PROLIFIC_PID`)，研究的ID (`STUDY_ID`)和session的ID (`SESSION_ID`)添加到被试访问实验的URL后面。
 
-jsPsych中会记录这些量并添加到数据中。可以在代码中任意部分执行该功能，而不需要再时间线中进行。
+jsPsych中会记录这些变量并添加到数据中。可以在代码中任意部分执行该功能，而不需要再时间线中进行。
 
 ```html
 <script>
+  var jsPsych = initJsPsych();
+
   // capture info from Prolific
   var subject_id = jsPsych.data.getURLVariable('PROLIFIC_PID');
   var study_id = jsPsych.data.getURLVariable('STUDY_ID');
@@ -28,9 +30,7 @@ jsPsych中会记录这些量并添加到数据中。可以在代码中任意部�
   // create the rest of the experiment
   var timeline = [...]
 
-  jsPsych.init({
-    timeline: timeline
-  })
+  jsPsych.run(timeline)
 </script>
 ```
 
@@ -38,12 +38,12 @@ jsPsych中会记录这些量并添加到数据中。可以在代码中任意部�
 
 实验结束时，Prolific要求将被试跳转到Prolific服务器上标志着session结束的一个URL上。该链接由Prolific在设置阶段的 *study completion* 部分提供。
 
-![Prolific Study Completion Screenshot](/img/prolific-study-completion.png)
+![Prolific Study Completion Screenshot](../img/prolific-study-completion.png)
 
-我们可以用多种范式实现这个功能。
+我们可以用多种方式实现这个功能。
 
-!!! warning "警告"
-    在被试回到Prolific之前，我们需要保存数据。请确保在此之前，已经完成了和服务器之间的通讯。解决方法之一是使用`call-function`插件中的异步功能 ([参照这个示例](/plugins/jspsych-call-function.html#_6))。
+!!!warning "警告"
+    在被试回到Prolific之前，我们需要保存数据。请确保在此之前，已经完成了和服务器之间的通讯。解决方法之一是使用`call-function`插件中的异步功能 ([参照这个示例](../plugins/call-function.md#_6))。
 
 ### 被试点击链接
 
@@ -53,10 +53,10 @@ jsPsych中会记录这些量并添加到数据中。可以在代码中任意部�
 
 ```js
 var final_trial = {
-  type: 'html-keyboard-response',
+  type: jsPsychHtmlKeyboardResponse,
   stimulus: `<p>You've finished the last task. Thanks for participating!</p>
     <p><a href="https://app.prolific.co/submissions/complete?cc=XXXXXXX">Click here to return to Prolific and complete the study</a>.</p>`,
-  choices: jsPsych.NO_KEYS
+  choices: "NO_KEYS"
 }
 ```
 
@@ -67,8 +67,7 @@ var final_trial = {
 下面的示例中在`on_finish`中加入了自动跳转。
 
 ```js
-jsPsych.init({
-  timeline: [...],
+var jsPsych = initJsPsych({
   on_finish: function(){
     window.location = "https://app.prolific.co/submissions/complete?cc=XXXXXXX"
   }

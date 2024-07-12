@@ -1,114 +1,119 @@
-# 简单反应时实验
+# 教程内容摘要
 
-## 教程内容摘要
+本部分教程会带你了解如何编写一个简单反应时任务。该任务的内容是，当屏幕上呈现一个蓝色的圆形或橙色的圆形时分别按不同的键。尽管这个任务很简单，但本部分的教程其实涵盖了jsPsych中很多关键的特性，包括：
 
-当前教程会讲述如何创建一个简单反应时实验。具体任务是：呈现蓝色圆的时候按一个键，呈现橙色圆的时候按另一个键。尽管这个实验很简单，但这个教程包含了jsPsych很多的关键特性，包括：
+* 使用插件创建一个标准试次
+* 将多种插件结合在一起创建不同种类的试次
+* 使用时间线变量来最大程度地复用代码
+* 预加载多媒体文件
+* 呈现顺序地随机
+* 操作、筛选和汇总数据
+* 根据被试反应动态改变实验参数
 
-* 使用插件创建一个标准的试次
-* 将多个插件结合起来创建全新种类的试次
-* 使用时间线变量实现代码复用
-* 多媒体文件的预加载
-* 呈现顺序的随机
-* 操作、筛选、汇总数据
-* 根据被试反应改变实验参数
+## 第1部分：初始化实验
 
-## 第1部分: 创建空白实验
+我们首先创建一个HTML文件，并引入`jsPsych`、`html-keyboard-response`插件和`jspsych.css`等文件。如果你不知道这一步该怎么做，可以参见[Hello World的呈现](hello-world.md)。现在，你的HTML文件应该是这样的：
 
-我们从下载jsPsych以及创建实验项目文件夹开始。如果你还不知道这些该怎么做，可以参照[Hello World教程](hello-world.md)中的步骤1-5。在第5步后面，你的实验文件应该是这样的：
+!!!info "补充"
+    当前的教程[使用CDN引入jsPsych](hello-world.md#1cdn)。如果你使用别的方式引入jsPsych，那么你的代码和示例代码应该只有引入jsPsych的方式有所不同。
 
 ```html
 <!DOCTYPE html>
 <html>
   <head>
     <title>My experiment</title>
-    <script src="jspsych-6.3.0/jspsych.js"></script>
-    <script src="jspsych-6.3.0/plugins/jspsych-html-keyboard-response.js"></script>
-    <link href="jspsych-6.3.0/css/jspsych.css" rel="stylesheet" type="text/css">
+    <script src="https://unpkg.com/jspsych@7.1.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
+    <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
   </head>
   <body></body>
+  <script>
+  </script>
 </html>
 ```
 
-在此基础上，我们来编写实验的剩余部分。
+我们接下来，就以这一部分代码为基础，完成实验的编写。
 
-## 第2部分: 呈现欢迎消息
+## 第2部分：呈现欢迎的内容
 
-所有用jsPsych编写的实验都是由时间线定义的。时间线是一个包含着实验中各个试次的数组。我们先来定义时间线数组：
+首先，我们需要将jsPsych初始化。实现这一功能需要调用[`initJsPsych()`函数](../reference/jspsych.md#initjspsych)，并将其返回值赋给一个变量。我们将这个变量命名为`jsPsych`。
+
+```javascript
+var jsPsych = initJsPsych();
+```
+
+所有使用jsPsych编写的实验流程都是通过时间线进行定义的。时间线是一个数组，该数组包括了实验中所有的试次。我们可以先创建一个空的时间线数组，后面我们创建新的试次的时候，会将这些试次添加到这个数组中。
 
 ```javascript
 var timeline = [];
 ```
 
-现在，我们来使用[jspsych-html-keyboard-response](/plugins/jspsych-html-keyboard-response.html)插件，用一条简短的文字来欢迎被试。
+现在，我们来给被试呈现一段文字表示欢迎。这一功能可以使用[html-keyboard-response](../plugins/html-keyboard-response.md)插件实现。
 
-首先，我们创建一个使用`jspsych-html-keyboard-response`插件的试次，这个试次包含了一段要呈现给被试的文字。
+首先，我们创建一个使用`html-keyboard-response`插件的试次，该试次包含了一条呈现给被试的简短的内容。我们在[插件文档页](../overview/plugins.md)中提到，试次对象必须有一个`type`参数，该参数的作用是告诉jsPsych使用哪个插件。`type`参数的值和所使用的插件名很想，但是它的开头有一个`jsPsych`，并且是按驼峰法命名的，而不是使用横线进行分割。所以，如果我们要使用`html-keyboard-response`插件，就需要将试次的`type`指定为`jsPsychHtmlKeyboardResponse`。
 
 ```javascript
 var welcome = {
-  type: "html-keyboard-response",
+  type: jsPsychHtmlKeyboardResponse,
   stimulus: "Welcome to the experiment. Press any key to begin."
 };
 ```
 
-接着，我们把这个试次push到时间线中，这样它就会出现在数组的最后。
-
-<span style='color: red;'>译者注：push是JavaScript中数组的操作方法，会将元素添加到数组的最末尾</span>
+接着，我们需要将这个试次push到时间线中。这样，该试次就被添加到了数组的末尾。
 
 ```javascript
 timeline.push(welcome);
 ```
 
-最后，我们需要告诉jsPsych开始运行实验。这就需要我们调用[jsPsych.init() 函数](../core_library/jspsych-core.html#jspsychinit)并把定义了时间线的数组传进去。
+最后，我们需要告诉jsPsych去运行实验。这就要求我们调用[jsPsych.run()函数](../reference/jspsych.md#jspsychrun)并传入时间线数组。
 
 ```javascript
-jsPsych.init({
-  timeline: timeline
-});
+jsPsych.run(timeline);
 ```
-教程的每一部分结束后，你都可以点击下面查看到当前位置的完整代码。
+在教程的每一步骤的末尾，我们都可以查看到目前位置的完整代码：
 
 ??? example "完整代码"
-
-    ``` html
+    ```html
     <!DOCTYPE html>
     <html>
       <head>
         <title>My experiment</title>
-        <script src="jspsych-6.3.0/jspsych.js"></script>
-        <script src="jspsych-6.3.0/plugins/jspsych-html-keyboard-response.js"></script>
-        <link href="jspsych-6.3.0/css/jspsych.css" rel="stylesheet" type="text/css">
+        <script src="https://unpkg.com/jspsych@7.1.2"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
+        <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
       </head>
       <body></body>
       <script>
-          
+        
+        /* initialize jsPsych */
+        var jsPsych = initJsPsych();
+
         /* create timeline */
         var timeline = [];
-          
+
         /* define welcome message trial */
         var welcome = {
-          type: "html-keyboard-response",
+          type: jsPsychHtmlKeyboardResponse,
           stimulus: "Welcome to the experiment. Press any key to begin."
         };
         timeline.push(welcome);
-          
+
         /* start the experiment */
-        jsPsych.init({
-          timeline: timeline
-        });
+        jsPsych.run(timeline);
+
       </script>
     </html>
     ```
 
+## 第3部分：呈现指导语
 
-## 第3部分: 呈现指导语
+我们可以按照第2部分的方式，再创建一个`html-keyboard-response`试次，用来给被试呈现指导语。不过有所不同的是，在这个试次中，我们会使用到HTML格式的字符串来控制指导与的呈现，并且我们会指定`post_trial_gap`参数，使得指导语呈现结束后经过2秒，才会进入下一个试次。
 
-我们可以使用和第2部分类似的步骤来创建一个呈现指导语的试次。唯一的区别在于，这里我们会使用HTML来控制指导语的呈现，并且会在试次结束后通过`post_trial_gap`参数添加一段2秒的间隔。
-
-试次的定义如下：
+试次定义如下：
 
 ```javascript
 var instructions = {
-  type: "html-keyboard-response",
+  type: jsPsychHtmlKeyboardResponse,
   stimulus: `
     <p>In this experiment, a circle will appear in the center 
     of the screen.</p><p>If the circle is <strong>blue</strong>, 
@@ -118,7 +123,7 @@ var instructions = {
     <div style='width: 700px;'>
     <div style='float: left;'><img src='img/blue.png'></img>
     <p class='small'><strong>Press the F key</strong></p></div>
-    <div class='float: right;'><img src='img/orange.png'></img>
+    <div style='float: right;'><img src='img/orange.png'></img>
     <p class='small'><strong>Press the J key</strong></p></div>
     </div>
     <p>Press any key to begin.</p>
@@ -127,16 +132,15 @@ var instructions = {
 };
 ```
 
-!!! tip "小贴士"
+!!!tip "小贴士"
+    JavaScript中，定义`字符串`的方式有3种。我们可以使用单引号`'`、双引号`"`、或者反引号`` ` ``。使用反引号创建字符串相比于其他两种方式的优势在于，我们可以把字符串写成多行的形式，且可以使用[模板字符串](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)来更方便地将变量引入到字符串种。这两大优势在创建较长的HTML字符串的时候尤为突出。
 
-    在JavaScript中，有三种定义`字符串`的方法。你可以使用单引号`'`、双引号`"`或反引号`` ` ``。使用反引号相较于其他方法有两个优势，一是可以分行书写`字符串`，二是可以通过[模板字符串](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)来引入变量。这些优点在创建长的HTML字符串时显得格外突出。
-
-注意，代码中的HTML中包含了`<img>`标签，它用来呈现刺激图片。我们需要下载这些图片文件，右键点击下面的图片并选择**图片另存为**，将它们保存到第1部分中创建的实验文件夹下名为`img`的文件夹下。
+我们可以看到，上面的HTML种包含了`<img>`标签，用于呈现实验刺激。我们需要下载这两张图片。右键点击下方的图片并选择*图片另存为...*，然后将保存的图片放到实验项目所在文件夹下的`img`文件夹中。
 
 ![blue circle](../img/blue.png)
 ![orange circle](../img/orange.png)
 
-不要忘了把试次添加到时间线中：
+不要忘了把这个试次添加到时间线中：
 
 ```javascript
 timeline.push(instructions);
@@ -149,26 +153,29 @@ timeline.push(instructions);
     <html>
       <head>
         <title>My experiment</title>
-        <script src="jspsych-6.3.0/jspsych.js"></script>
-        <script src="jspsych-6.3.0/plugins/jspsych-html-keyboard-response.js"></script>
-        <link href="jspsych-6.3.0/css/jspsych.css" rel="stylesheet" type="text/css">
+        <script src="https://unpkg.com/jspsych@7.1.2"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
+        <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
       </head>
       <body></body>
       <script>
-    
+
+        /* initialize jsPsych */
+        var jsPsych = initJsPsych();
+
         /* create timeline */
         var timeline = [];
-          
+
         /* define welcome message trial */
         var welcome = {
-          type: "html-keyboard-response",
+          type: jsPsychHtmlKeyboardResponse,
           stimulus: "Welcome to the experiment. Press any key to begin."
         };
         timeline.push(welcome);
-          
+
         /* define instructions trial */
         var instructions = {
-          type: "html-keyboard-response",
+          type: jsPsychHtmlKeyboardResponse,
           stimulus: `
             <p>In this experiment, a circle will appear in the center 
             of the screen.</p><p>If the circle is <strong>blue</strong>, 
@@ -178,7 +185,7 @@ timeline.push(instructions);
             <div style='width: 700px;'>
             <div style='float: left;'><img src='img/blue.png'></img>
             <p class='small'><strong>Press the F key</strong></p></div>
-            <div class='float: right;'><img src='img/orange.png'></img>
+            <div style='float: right;'><img src='img/orange.png'></img>
             <p class='small'><strong>Press the J key</strong></p></div>
             </div>
             <p>Press any key to begin.</p>
@@ -186,46 +193,45 @@ timeline.push(instructions);
           post_trial_gap: 2000
         };
         timeline.push(instructions);
-          
+
         /* start the experiment */
-        jsPsych.init({
-          timeline: timeline
-        });
+        jsPsych.run(timeline);
+
       </script>
     </html>
     ```
 
-## 第4部分: 呈现刺激并获取反应
+## 第4部分：呈现刺激并记录被试反应
 
-呈现图片刺激的试次和呈现指导语的试次并没有太多不同，只是现在我们呈现的是图片而不是文字或者是HTML。这也就意味着我们需要使用新的插件：jspsych-image-keyboard-response。我们来通过`<script>`标签把它引入文档。
+呈现刺激和呈现指导语是一个道理，只不过我们现在要呈现的是图片，而不是文字或HTML。因此，现在需要用到另一个插件——`image-keyboard-response`。我们先来通过`<script>`标签将这个插件添加进来。
 
 ```html hl_lines="5"
 <head>
   <title>My experiment</title>
-  <script src="jspsych-6.3.0/jspsych.js"></script>
-  <script src="jspsych-6.3.0/plugins/jspsych-html-keyboard-response.js"></script>
-  <script src="jspsych-6.3.0/plugins/jspsych-image-keyboard-response.js"></script>
-  <link href="jspsych-6.3.0/css/jspsych.css" rel="stylesheet" type="text/css">
+  <script src="https://unpkg.com/jspsych@7.1.2"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
+  <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
 </head>
 ```
 
-现在，我们只会让每张图片呈现一次。我们将试次的`stimulus`属性设置为图片的路径，并通过`choices`属性指定允许被试按键的范围，将 <kbd>f</kbd> 键和 <kbd>j</kbd> 键设为有效的反应。
+现在，我们先将每张图片呈现一次。插件的`stimulus`参数用于指定所使用的图片文件的路径，`choices`属性指有效的按键。这里，我们规定只有'f'和'j'键是有效的按键。
 
 ```javascript
 var blue_trial = {
-  type: 'image-keyboard-response',
+  type: jsPsychImageKeyboardResponse,
   stimulus: 'img/blue.png',
   choices: ['f', 'j']
 };
 
 var orange_trial = {
-  type: 'image-keyboard-response',
+  type: jsPsychImageKeyboardResponse,
   stimulus: 'img/orange.png',
   choices: ['f', 'j']
-}
+};
 ```
 
-和前面一样，将试次添加到时间线当中：
+和前面一样，需要将这个试次添加到时间线当中。
 
 ```javascript
 timeline.push(blue_trial, orange_trial);
@@ -238,27 +244,30 @@ timeline.push(blue_trial, orange_trial);
     <html>
       <head>
         <title>My experiment</title>
-        <script src="jspsych-6.3.0/jspsych.js"></script>
-        <script src="jspsych-6.3.0/plugins/jspsych-html-keyboard-response.js"></script>
-        <script src="jspsych-6.3.0/plugins/jspsych-image-keyboard-response.js"></script>
-        <link href="jspsych-6.3.0/css/jspsych.css" rel="stylesheet" type="text/css">
+        <script src="https://unpkg.com/jspsych@7.1.2"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
+        <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
       </head>
       <body></body>
       <script>
-    
+
+        /* initialize jsPsych */
+        var jsPsych = initJsPsych();
+
         /* create timeline */
         var timeline = [];
-    
+
         /* define welcome message trial */
         var welcome = {
-          type: "html-keyboard-response",
+          type: jsPsychHtmlKeyboardResponse,
           stimulus: "Welcome to the experiment. Press any key to begin."
         };
         timeline.push(welcome);
-    
+
         /* define instructions trial */
         var instructions = {
-          type: "html-keyboard-response",
+          type: jsPsychHtmlKeyboardResponse,
           stimulus: `
             <p>In this experiment, a circle will appear in the center 
             of the screen.</p><p>If the circle is <strong>blue</strong>, 
@@ -268,7 +277,7 @@ timeline.push(blue_trial, orange_trial);
             <div style='width: 700px;'>
             <div style='float: left;'><img src='img/blue.png'></img>
             <p class='small'><strong>Press the F key</strong></p></div>
-            <div class='float: right;'><img src='img/orange.png'></img>
+            <div style='float: right;'><img src='img/orange.png'></img>
             <p class='small'><strong>Press the J key</strong></p></div>
             </div>
             <p>Press any key to begin.</p>
@@ -276,59 +285,58 @@ timeline.push(blue_trial, orange_trial);
           post_trial_gap: 2000
         };
         timeline.push(instructions);
-    
-        /* test trials */
+
+        /* define test trials */
         var blue_trial = {
-          type: 'image-keyboard-response',
+          type: jsPsychImageKeyboardResponse,
           stimulus: 'img/blue.png',
           choices: ['f', 'j']
         };
-    
+
         var orange_trial = {
-          type: 'image-keyboard-response',
+          type: jsPsychImageKeyboardResponse,
           stimulus: 'img/orange.png',
           choices: ['f', 'j']
-        }
-    
+        };
+
         timeline.push(blue_trial, orange_trial);
-    
+
         /* start the experiment */
-        jsPsych.init({
-          timeline: timeline
-        });
+        jsPsych.run(timeline);
+
       </script>
     </html>
     ```
 
-## 第5部分: 多媒体文件的预加载
+## 第5部分：预加载多媒体文件
 
-我们在实验中使用多媒体元素时（图片、音频、视频），最好在使用它们之前进行预加载，这样我们就在使用这些素材之前将它们下载好，从而避免在使用时因为还要下载而出现延迟。
+当我们在实验中使用多媒体文件 (图片、音频、视频)时，应该在使用之前进行预加载，即，浏览器会在用到这些文件前将它们下载好，这样就不会在试次中用到这些资源时因为还需要下载它们而造成延迟了。
 
-我们会使用[jspsych-preload插件](/plugins/jspsych-preload.html)预加载这两张图片。[多媒体文件预加载部分](/overview/media-preloading.html)更详尽地讲解了预加载的各种可选项以及使用这一插件的不同方式，但这里我们我们只会把我们要预加载的文件列表告诉这个插件。
+现在，我们来使用[预加载插件](../plugins/preload.md)来预加载这两张图片。[多媒体文件预加载部分](../overview/media-preloading.md)会对这个插件的各个选项进行更详尽的讲解，但现在，我们就只把需要预加载的文件列表传入这个插件。
 
-首先，我们得把preload插件引入我们的`<head>`标签内部：
+首先，我们在`<head>`标签内将插件引入。
 
 ```html hl_lines="6"
 <head>
   <title>My experiment</title>
-  <script src="jspsych-6.3.0/jspsych.js"></script>
-  <script src="jspsych-6.3.0/plugins/jspsych-html-keyboard-response.js"></script>
-  <script src="jspsych-6.3.0/plugins/jspsych-image-keyboard-response.js"></script>
-  <script src="jspsych-6.3.0/plugins/jspsych-preload.js"></script>
-  <link href="jspsych-6.3.0/css/jspsych.css" rel="stylesheet" type="text/css">
+  <script src="https://unpkg.com/jspsych@7.1.2"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.0"></script>
+  <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
 </head>
 ```
 
-我们需要把这个trial添加实验的最开始，所以请把下面的代码添加到`welcome`试次前。
+这个试次需要放在实验的最前面，所以需要将这段代码添加到`welcome`试次前。
 
 ```js
 var preload = {
-  type: 'preload',
+  type: jsPsychPreload,
   images: ['img/blue.png', 'img/orange.png']
-}
+};
 ```
 
-和前面一样，把试次添加到时间线当中：
+和前面一样，需要将这个试次添加到时间线当中。
 
 ```js
 timeline.push(preload);
@@ -341,35 +349,38 @@ timeline.push(preload);
     <html>
       <head>
         <title>My experiment</title>
-        <script src="jspsych-6.3.0/jspsych.js"></script>
-        <script src="jspsych-6.3.0/plugins/jspsych-html-keyboard-response.js"></script>
-        <script src="jspsych-6.3.0/plugins/jspsych-image-keyboard-response.js"></script>
-        <script src="jspsych-6.3.0/plugins/jspsych-preload.js"></script>
-        <link href="jspsych-6.3.0/css/jspsych.css" rel="stylesheet" type="text/css">
+        <script src="https://unpkg.com/jspsych@7.1.2"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.0"></script>
+        <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
       </head>
       <body></body>
       <script>
-    
+
+        /* initialize jsPsych */
+        var jsPsych = initJsPsych();
+
         /* create timeline */
         var timeline = [];
-    
+
         /* preload images */
         var preload = {
-          type: 'preload',
+          type: jsPsychPreload,
           images: ['img/blue.png', 'img/orange.png']
-        }
+        };
         timeline.push(preload);
-    
+
         /* define welcome message trial */
         var welcome = {
-          type: "html-keyboard-response",
+          type: jsPsychHtmlKeyboardResponse,
           stimulus: "Welcome to the experiment. Press any key to begin."
         };
         timeline.push(welcome);
-    
+
         /* define instructions trial */
         var instructions = {
-          type: "html-keyboard-response",
+          type: jsPsychHtmlKeyboardResponse,
           stimulus: `
             <p>In this experiment, a circle will appear in the center 
             of the screen.</p><p>If the circle is <strong>blue</strong>, 
@@ -379,7 +390,7 @@ timeline.push(preload);
             <div style='width: 700px;'>
             <div style='float: left;'><img src='img/blue.png'></img>
             <p class='small'><strong>Press the F key</strong></p></div>
-            <div class='float: right;'><img src='img/orange.png'></img>
+            <div style='float: right;'><img src='img/orange.png'></img>
             <p class='small'><strong>Press the J key</strong></p></div>
             </div>
             <p>Press any key to begin.</p>
@@ -387,37 +398,35 @@ timeline.push(preload);
           post_trial_gap: 2000
         };
         timeline.push(instructions);
-    
-        /* test trials */
+
+        /* define test trials */
         var blue_trial = {
-          type: 'image-keyboard-response',
+          type: jsPsychImageKeyboardResponse,
           stimulus: 'img/blue.png',
           choices: ['f', 'j']
         };
-    
+
         var orange_trial = {
-          type: 'image-keyboard-response',
+          type: jsPsychImageKeyboardResponse,
           stimulus: 'img/orange.png',
           choices: ['f', 'j']
-        }
-    
+        };
         timeline.push(blue_trial, orange_trial);
-    
+
         /* start the experiment */
-        jsPsych.init({
-          timeline: timeline
-        });
+        jsPsych.run(timeline);
+
       </script>
     </html>
     ```
 
-## 第6部分: 时间线变量
+## 第6部分：时间线变量
 
-在整个实验中，我们需要的可不止两个试次。增加试次的方法之一是多创建一些对象来定义更多的试次，并把它们都添加到时间线里，但是还有一种更有效的方法：使用时间线变量 (timeline variables)。
+在一个完整的实验中，可不能只有两个试次。如果要添加更多的试次，可以创建多个对象并添加到时间线中，也可以使用更高效的方式——时间线变量。
 
-呈现蓝色和橙色圆所用到的参数十分之相似，唯一的区别就是所使用的图片的路径。时间线变量允许我们定义呈现刺激的流程，这一流程可以重复使用，每次使用时可以指定不同的变量。可以想象，即便在现有的这个简单的例子中，这种方法也能大幅减少代码量。
+可以看到，呈现蓝色和橙色圆的试次的参数十分相似，唯一的不同之处在于呈现的图片文件。如果使用了时间线变量，就可以只定义一个呈现刺激的试次，然后不断复用，每次使用不同的参数。下面的例子中，我们可以看到，对于当前这种简单的实验，使用时间线变量也可以显著减少代码量。
 
-我们首先创建一个包含了测试阶段所有试次的数组。现阶段实验中只有两个试次：蓝色和橙色。
+首先，我们创建数组，将实验中要用到的试次放进去。现在这个实验只有两个试次——蓝色和橙色。
 
 ```javascript
 var test_stimuli = [
@@ -426,28 +435,28 @@ var test_stimuli = [
 ];
 ```
 
-现在我们在呈现蓝色或橙色圆的基础上再在试次间添加呈现注视点（+）的试次。通过指定html-keyboard-response的`trial_duration`参数并将其`choices`参数设置为`jsPsych.NO_KEYS`，我们可以控制试次呈现注视点的时长。此时，当前试次不接受任何被试反应，会持续到`trial_duration`所指定的时长结束。
+然后，我们在显示蓝色或橙色的圆形以外，再在试次间呈现一个注视点 (+)。通过设置`html-keyboard-response`插件的`trial_duration`参数 (试次持续的时间)并将`choices`参数设置为`NO_KEYS` (所有按键均为无效案按键)，就可以让注视点呈现固定时长。
 
 ```javascript
 var fixation = {
-  type: 'html-keyboard-response',
+  type: jsPsychHtmlKeyboardResponse,
   stimulus: '<div style="font-size:60px;">+</div>',
-  choices: jsPsych.NO_KEYS,
+  choices: "NO_KEYS",
   trial_duration: 1000,
-}
+};
 ```
 
-我们还需要创建一个使用image-keyboard-response插件的试次来呈现圆形，这一次我们使用`jsPsych.timelineVariable()`函数来指定`stimulus`属性的值，用来告诉jsPsych每次运行当前试次的时候用时间线变量中的值作为该属性的值。
+我们再添加一个`image-keyboard-response`插件来显示刺激，不过这一次，我们用`jsPsych.timelineVariable()`函数来指定`stimulus`参数，jsPsych会从时间线变量中选取并对此赋值。
 
 ```javascript
 var test = {
-  type: "image-keyboard-response",
+  type: jsPsychImageKeyboardResponse,
   stimulus: jsPsych.timelineVariable('stimulus'),
   choices: ['f', 'j']
 }
 ```
 
-然后，我们要把`test_stimuli`数组中的变量和`jsPsych.timelineVariable()`联系起来。我们再来创建一条新的时间线，并指定`timeline_variables`属性。
+为了让jsPsych知道调用`jsPsych.timelineVariable()`的时候是要从`test_stimuli`数组中取值，我们还需要创建一条新的时间线，并为其添加`timeline_variables`属性。
 
 ```javascript
 var test_procedure = {
@@ -456,13 +465,13 @@ var test_procedure = {
 }
 ```
 
-我们把`test_procedure`添加到主时间线数组中；注意不需要再把`fixation`和`test`添加进去，因为它们已经在`test_procedure`当中了。
+我们需要将`test_procedure`添加到主时间线，即`timeline`数组中，而`fixation`和`test`则不需要添加，因为我们已经把它们添加到`test_procedure`时间线中了。
 
 ```javascript
 timeline.push(test_procedure);
 ```
 
-代码运行到`test_procedure`这里时，对于`test_stimuli`中的每一个元素，jsPsych都会运行一次`test_procedure`中的时间线（在这里一共会运行两次）。第一次运行时，jsPsych会使用`test_stimuli`中的第一个元素来替换时间线变量（蓝色），第二次则会使用第二个元素（橙色）。注意，在呈现橙色圆形和蓝色圆形的试次中间是注视点试次，因为`test_procedure`的整条时间线都会被重复运行。
+当实验来到`test_procedure`这里时，jsPsych会根据`test_stimuli`数组的长度决定运行`test_procedure`时间线的次数 (当前实验中是2次)。第一次运行时，jsPsych会使用时间线变量中的第一个值 (蓝色)，第二次运行时则会使用第二个值 (橙色)。注意，呈现橙色圆和蓝色圆之前都会显示注视点，因为`timeline_variables`数组中每有一个值，都会将`test_procedure`的时间线完整重复一次。
 
 ??? example "完整代码"
 
@@ -471,35 +480,38 @@ timeline.push(test_procedure);
     <html>
       <head>
         <title>My experiment</title>
-        <script src="jspsych-6.3.0/jspsych.js"></script>
-        <script src="jspsych-6.3.0/plugins/jspsych-html-keyboard-response.js"></script>
-        <script src="jspsych-6.3.0/plugins/jspsych-image-keyboard-response.js"></script>
-        <script src="jspsych-6.3.0/plugins/jspsych-preload.js"></script>
-        <link href="jspsych-6.3.0/css/jspsych.css" rel="stylesheet" type="text/css">
+        <script src="https://unpkg.com/jspsych@7.1.2"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.0"></script>
+        <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
       </head>
       <body></body>
       <script>
-    
+
+        /* initialize jsPsych */
+        var jsPsych = initJsPsych();
+
         /* create timeline */
         var timeline = [];
-    
+
         /* preload images */
         var preload = {
-          type: 'preload',
+          type: jsPsychPreload,
           images: ['img/blue.png', 'img/orange.png']
         }
         timeline.push(preload);
-    
+
         /* define welcome message trial */
         var welcome = {
-          type: "html-keyboard-response",
+          type: jsPsychHtmlKeyboardResponse,
           stimulus: "Welcome to the experiment. Press any key to begin."
         };
         timeline.push(welcome);
-    
+
         /* define instructions trial */
         var instructions = {
-          type: "html-keyboard-response",
+          type: jsPsychHtmlKeyboardResponse,
           stimulus: `
             <p>In this experiment, a circle will appear in the center 
             of the screen.</p><p>If the circle is <strong>blue</strong>, 
@@ -509,7 +521,7 @@ timeline.push(test_procedure);
             <div style='width: 700px;'>
             <div style='float: left;'><img src='img/blue.png'></img>
             <p class='small'><strong>Press the F key</strong></p></div>
-            <div class='float: right;'><img src='img/orange.png'></img>
+            <div style='float: right;'><img src='img/orange.png'></img>
             <p class='small'><strong>Press the J key</strong></p></div>
             </div>
             <p>Press any key to begin.</p>
@@ -517,54 +529,54 @@ timeline.push(test_procedure);
           post_trial_gap: 2000
         };
         timeline.push(instructions);
-    
-        /* test trials */
+
+        /* define trial stimuli array for timeline variables */
         var test_stimuli = [
           { stimulus: "img/blue.png"},
           { stimulus: "img/orange.png"}
         ];
-    
+
+        /* define fixation and test trials */
         var fixation = {
-          type: 'html-keyboard-response',
+          type: jsPsychHtmlKeyboardResponse,
           stimulus: '<div style="font-size:60px;">+</div>',
-          choices: jsPsych.NO_KEYS,
+          choices: "NO_KEYS",
           trial_duration: 1000,
-        }
-    
+        };
+
         var test = {
-          type: "image-keyboard-response",
+          type: jsPsychImageKeyboardResponse,
           stimulus: jsPsych.timelineVariable('stimulus'),
           choices: ['f', 'j']
-        }
-    
+        };
+
+        /* define test procedure */
         var test_procedure = {
           timeline: [fixation, test],
           timeline_variables: test_stimuli
-        }
-    
+        };
         timeline.push(test_procedure);
-    
+
         /* start the experiment */
-        jsPsych.init({
-          timeline: timeline
-        });
+        jsPsych.run(timeline);
+
       </script>
     </html>
     ```
 
-## 第7部分: 使用时间线变量的时间线的参数
+## 第7部分：为添加了时间线变量的时间线设置参数
 
-现在，我们的实验仅有2个试次，而且每次实验刺激的呈现顺序还完全一致。但是，我们在使用时间线变量的时候，还可以使用一些随机化和重复试次的方法。如果要将呈现顺序进行随机，我们可以在设置了`timeline_variables`参数的对象中设置`randomize_order: true`。
+现在，我们的实验只有两个试次，而且每次实验中刺激的呈现顺序还是固定不变的。而在使用时间线变量的时候，我们可以对试次进行随机或多次重复。如果需要随机，可以对指定了`timeline_variables`属性的那个对象设置`randomie_order: true`。
 
 ```javascript
 var test_procedure = {
   timeline: [fixation, test],
   timeline_variables: test_stimuli,
   randomize_order: true
-}
+};
 ```
 
-我们还可以通过设定`repetitions`参数让测试阶段长一点。这一参数控制的是实验将时间线变量数组循环多少次。例如，如果我们设置`repetitions: 5`，那么是实验就会将时间线变量中的两个元素循环5次，因此实验共有10个试次。
+我们还可以通过设置`repetitions`参数来延长实验。这一参数的作用是指定`timeline_variables`数组的重复次数。例如，如果我们设置`repetitiosn: 5`，则实验会将`timeline_variables`数组重复5次，因而，实验共有10个试次。
 
 ```javascript
 var test_procedure = {
@@ -572,7 +584,7 @@ var test_procedure = {
   timeline_variables: test_stimuli,
   randomize_order: true,
   repetitions: 5
-}
+};
 ```
 ??? example "完整代码"
 
@@ -581,35 +593,38 @@ var test_procedure = {
     <html>
       <head>
         <title>My experiment</title>
-        <script src="jspsych-6.3.0/jspsych.js"></script>
-        <script src="jspsych-6.3.0/plugins/jspsych-html-keyboard-response.js"></script>
-        <script src="jspsych-6.3.0/plugins/jspsych-image-keyboard-response.js"></script>
-        <script src="jspsych-6.3.0/plugins/jspsych-preload.js"></script>
-        <link href="jspsych-6.3.0/css/jspsych.css" rel="stylesheet" type="text/css">
+        <script src="https://unpkg.com/jspsych@7.1.2"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.0"></script>
+        <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
       </head>
       <body></body>
       <script>
-    
+
+        /* initialize jsPsych */
+        var jsPsych = initJsPsych();
+
         /* create timeline */
         var timeline = [];
-    
+
         /* preload images */
         var preload = {
-          type: 'preload',
+          type: jsPsychPreload,
           images: ['img/blue.png', 'img/orange.png']
-        }
+        };
         timeline.push(preload);
-    
+
         /* define welcome message trial */
         var welcome = {
-          type: "html-keyboard-response",
+          type: jsPsychHtmlKeyboardResponse,
           stimulus: "Welcome to the experiment. Press any key to begin."
         };
         timeline.push(welcome);
-    
+
         /* define instructions trial */
         var instructions = {
-          type: "html-keyboard-response",
+          type: jsPsychHtmlKeyboardResponse,
           stimulus: `
             <p>In this experiment, a circle will appear in the center 
             of the screen.</p><p>If the circle is <strong>blue</strong>, 
@@ -619,7 +634,7 @@ var test_procedure = {
             <div style='width: 700px;'>
             <div style='float: left;'><img src='img/blue.png'></img>
             <p class='small'><strong>Press the F key</strong></p></div>
-            <div class='float: right;'><img src='img/orange.png'></img>
+            <div style='float: right;'><img src='img/orange.png'></img>
             <p class='small'><strong>Press the J key</strong></p></div>
             </div>
             <p>Press any key to begin.</p>
@@ -627,61 +642,61 @@ var test_procedure = {
           post_trial_gap: 2000
         };
         timeline.push(instructions);
-    
-        /* test trials */
+
+        /* define trial stimuli array for timeline variables */
         var test_stimuli = [
           { stimulus: "img/blue.png"},
           { stimulus: "img/orange.png"}
         ];
-    
+
+        /* define fixation and test trials */
         var fixation = {
-          type: 'html-keyboard-response',
+          type: jsPsychHtmlKeyboardResponse,
           stimulus: '<div style="font-size:60px;">+</div>',
-          choices: jsPsych.NO_KEYS,
+          choices: "NO_KEYS",
           trial_duration: 1000,
-        }
-    
+        };
+
         var test = {
-          type: "image-keyboard-response",
+          type: jsPsychImageKeyboardResponse,
           stimulus: jsPsych.timelineVariable('stimulus'),
           choices: ['f', 'j']
-        }
-    
+        };
+
+        /* define test procedure */
         var test_procedure = {
           timeline: [fixation, test],
           timeline_variables: test_stimuli,
           randomize_order: true,
           repetitions: 5
-        }
-    
+        };
         timeline.push(test_procedure);
-    
+
         /* start the experiment */
-        jsPsych.init({
-          timeline: timeline
-        });
+        jsPsych.run(timeline);
+
       </script>
     </html>
     ```
 
-## 第8部分: 使用函数生成参数
+## 第8部分：使用函数指定参数
 
-现在，实验还有一处可以改进的地方，那就是注视点的呈现时长。在目前版本的实验中，圆形出现的时间太容易预测了，因此我们应该对于每个试次中的`fixation`的`trial_duration`参数值进行修改。但是，在保持现有的清晰的代码结构的前提下，我们该如何实现这一功能呢？现在的代码中，我们只需要定义注视点试次一次就好了。我们自然想到，可以再添加一个时间线变量，如`fixation_duration`，用它来控制注视点呈现时长。但这里，我们介绍另一种方法，那就是用一个函数作为`trial_duration`参数的值。如果参数值是一个函数，jsPsych会在试次运行的时候执行该函数，因此通过让函数每次都返回不同的值，我们就可以在试次每次运行的时候改变参数值。
+现在的实验还有一处可以改进的地方，那就是注视点的呈现时间。现在，刺激出现的时间是固定的，但是我们可以控制`fixation`试次的`trial_duration`属性来改变这一现状，只不过这样做的难处在于怎么保持现在这种代码结构。我们可以再添加一个时间线变量来控制时长，如`fixation_duration`，也可以选择另一种方案，将`trial_duration`定义为一个函数。如果参数为函数，则jsPsych会在运行到这个试次的时候执行这个函数。这意味着，如果这个函数每次的返回值是随机的，那么每次运行到这个试次时，我们可能会得到不同的参数值。
 
-这里，我们来用jsPsych在[jsPsych随机化模块](/core_library/jspsych-randomization.html)内置的随机化方法进行实现。`jsPsych.randomization.sampleWithoutReplacement()`会从一个数组中随机取出*N*个不重复元素组成一个长度为*N*的数组作为返回值。
+在当前的代码中，我们需要用到jsPsych内置的随机方法，参见[jsPsych.randomization模块](../reference/jspsych-randomization.md)。`jsPsych.randomization.sampleWithoutReplacement()`方法会从数组中无重复地随机抽取 *N* 个元素组成一个新的数组。
 
 ```javascript
 var fixation = {
-  type: 'html-keyboard-response',
+  type: jsPsychHtmlKeyboardResponse,
   stimulus: '<div style="font-size:60px;">+</div>',
-  choices: jsPsych.NO_KEYS,
+  choices: "NO_KEYS",
   trial_duration: function(){
     return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];
   }
 }
 ```
 
-在上面的代码中，我们把`trial_duration: 1000`的参数值替换为了一个函数。函数中，我们从数组 `[250, 500, 750, 1000, 1250, 1500, 1750, 2000]` 中随机取出一个元素。由于`jsPsych.randomization.sampleWithoutReplacement`方法的返回值是一个数组，我们在后面加上了`[0]`来将数组中唯一的元素提取出来。
+上面的代码中，我们把`fixation`中原本的`trial_duration: 1000`参数替换成了一个函数。函数里，我们从数组`[250, 500, 750, 1000, 1250, 1500, 1750, 2000]`中随机抽取1个元素 (传入`jsPsych.randomization.sampleWithoutReplacement`的第二个参数)。`jsPsych.randomization.sampleWithoutReplacement`的返回值是一个长度为1的数组，所以我们还需要加上`[0]`来获取随机抽取的元素的值。
 
 ??? example "完整代码"
 
@@ -698,27 +713,30 @@ var fixation = {
       </head>
       <body></body>
       <script>
-    
+
+        /* initialize jsPsych */
+        var jsPsych = initJsPsych();
+
         /* create timeline */
         var timeline = [];
-    
+
         /* preload images */
         var preload = {
-          type: 'preload',
+          type: jsPsychPreload,
           images: ['img/blue.png', 'img/orange.png']
         }
         timeline.push(preload);
-    
+
         /* define welcome message trial */
         var welcome = {
-          type: "html-keyboard-response",
+          type: jsPsychHtmlKeyboardResponse,
           stimulus: "Welcome to the experiment. Press any key to begin."
         };
         timeline.push(welcome);
-    
+
         /* define instructions trial */
         var instructions = {
-          type: "html-keyboard-response",
+          type: jsPsychHtmlKeyboardResponse,
           stimulus: `
             <p>In this experiment, a circle will appear in the center 
             of the screen.</p><p>If the circle is <strong>blue</strong>, 
@@ -728,7 +746,7 @@ var fixation = {
             <div style='width: 700px;'>
             <div style='float: left;'><img src='img/blue.png'></img>
             <p class='small'><strong>Press the F key</strong></p></div>
-            <div class='float: right;'><img src='img/orange.png'></img>
+            <div style='float: right;'><img src='img/orange.png'></img>
             <p class='small'><strong>Press the J key</strong></p></div>
             </div>
             <p>Press any key to begin.</p>
@@ -736,54 +754,53 @@ var fixation = {
           post_trial_gap: 2000
         };
         timeline.push(instructions);
-    
-        /* test trials */
+
+        /* define trial stimuli array for timeline variables */
         var test_stimuli = [
           { stimulus: "img/blue.png"},
           { stimulus: "img/orange.png"}
         ];
-    
+
+        /* define fixation and test trials */
         var fixation = {
-          type: 'html-keyboard-response',
+          type: jsPsychHtmlKeyboardResponse,
           stimulus: '<div style="font-size:60px;">+</div>',
-          choices: jsPsych.NO_KEYS,
+          choices: "NO_KEYS",
           trial_duration: function(){
             return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];
           }
-        }
-    
+        };
+
         var test = {
-          type: "image-keyboard-response",
+          type: jsPsychImageKeyboardResponse,
           stimulus: jsPsych.timelineVariable('stimulus'),
           choices: ['f', 'j']
-        }
-    
+        };
+
+        /* define test procedure */
         var test_procedure = {
           timeline: [fixation, test],
           timeline_variables: test_stimuli,
           randomize_order: true,
           repetitions: 5
-        }
-    
+        };
         timeline.push(test_procedure);
-    
+
         /* start the experiment */
-        jsPsych.init({
-          timeline: timeline
-        });
+        jsPsych.run(timeline);
+
       </script>
-      </html>
+    </html>
     ```
 
-## 第10部分: 呈现数据
+## 第9部分：呈现数据
 
-我们已经创建了一个虽简单但完整的实验，现在就让我们来看看实验数据吧。jsPsych有一个内置的[`jsPsych.data.displayData()`函数](/core_library/jspsych-data.html#jspsychdatadisplaydata)，该方法在debug的时候很是好用，它会在清屏后将目前收集到的原始数据呈现在屏幕上。如果你真的在做实验收数据，这个方法倒不是很好，但是在开发过程中用来查看数据倒是不错的。
+现在这个简单的实验已经成型了，可以来看一看收集的数据了。jsPsych内置了[`jsPsych.data.displayData()`函数](../reference/jspsych-data.md#jspsychdatadisplaydata)，在debug的时候非常有用。该函数会清空屏幕上的内容，并显示实验进行到当前阶段所收集到的原始数据。我们在真正开展实验的时候，这个功能并没有什么用处，但是在开发阶段，用这个功能去查看收集到的数据还是很好用的。
 
-我们需要`displayData`函数在实验结束后进行。实现的一种方式是使用[`on_finish`回调函数](/overview/callbacks.html#on_finish-experiment)，它会自动在实验中所有试次结束后执行。我们可以在`jsPsych.init`中定义一个回调函数。
+如果想让`displayData`函数在实验结束时运行一次，可以使用[`on_finish`回调函数](../overview/events.md#on_finish-experiment)。该函数会自动在实验中所有试次结束后执行一次。我们可以在通过`initJsPsych`方法初始化jsPsych的时候设置这个函数。
 
 ```javascript
-jsPsych.init({
-  timeline: timeline,
+var jsPsych = initJsPsych({
   on_finish: function() {
     jsPsych.data.displayData();
   }
@@ -797,35 +814,42 @@ jsPsych.init({
     <html>
       <head>
         <title>My experiment</title>
-        <script src="jspsych-6.3.0/jspsych.js"></script>
-        <script src="jspsych-6.3.0/plugins/jspsych-html-keyboard-response.js"></script>
-        <script src="jspsych-6.3.0/plugins/jspsych-image-keyboard-response.js"></script>
-        <script src="jspsych-6.3.0/plugins/jspsych-preload.js"></script>
-        <link href="jspsych-6.3.0/css/jspsych.css" rel="stylesheet" type="text/css">
+        <script src="https://unpkg.com/jspsych@7.1.2"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.0"></script>
+        <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
       </head>
       <body></body>
       <script>
-    
+
+        /* initialize jsPsych */
+        var jsPsych = initJsPsych({
+          on_finish: function() {
+            jsPsych.data.displayData();
+          }
+        });
+
         /* create timeline */
         var timeline = [];
-    
+
         /* preload images */
         var preload = {
-          type: 'preload',
+          type: jsPsychPreload,
           images: ['img/blue.png', 'img/orange.png']
-        }
+        };
         timeline.push(preload);
-    
+
         /* define welcome message trial */
         var welcome = {
-          type: "html-keyboard-response",
+          type: jsPsychHtmlKeyboardResponse,
           stimulus: "Welcome to the experiment. Press any key to begin."
         };
         timeline.push(welcome);
-    
+
         /* define instructions trial */
         var instructions = {
-          type: "html-keyboard-response",
+          type: jsPsychHtmlKeyboardResponse,
           stimulus: `
             <p>In this experiment, a circle will appear in the center 
             of the screen.</p><p>If the circle is <strong>blue</strong>, 
@@ -835,7 +859,7 @@ jsPsych.init({
             <div style='width: 700px;'>
             <div style='float: left;'><img src='img/blue.png'></img>
             <p class='small'><strong>Press the F key</strong></p></div>
-            <div class='float: right;'><img src='img/orange.png'></img>
+            <div style='float: right;'><img src='img/orange.png'></img>
             <p class='small'><strong>Press the J key</strong></p></div>
             </div>
             <p>Press any key to begin.</p>
@@ -843,68 +867,65 @@ jsPsych.init({
           post_trial_gap: 2000
         };
         timeline.push(instructions);
-    
-        /* test trials */
+
+        /* define trial stimuli array for timeline variables */
         var test_stimuli = [
           { stimulus: "img/blue.png"},
           { stimulus: "img/orange.png"}
         ];
-    
+
+        /* define fixation and test trials */
         var fixation = {
-          type: 'html-keyboard-response',
+          type: jsPsychHtmlKeyboardResponse,
           stimulus: '<div style="font-size:60px;">+</div>',
-          choices: jsPsych.NO_KEYS,
+          choices: "NO_KEYS",
           trial_duration: function(){
             return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];
           }
-        }
-    
+        };
+
         var test = {
-          type: "image-keyboard-response",
+          type: jsPsychImageKeyboardResponse,
           stimulus: jsPsych.timelineVariable('stimulus'),
           choices: ['f', 'j']
-        }
-    
+        };
+
+        /* define test procedure */
         var test_procedure = {
           timeline: [fixation, test],
           timeline_variables: test_stimuli,
           randomize_order: true,
           repetitions: 5
-        }
-    
+        };
         timeline.push(test_procedure);
-    
+
         /* start the experiment */
-        jsPsych.init({
-          timeline: timeline,
-          on_finish: function() {
-            jsPsych.data.displayData();
-          }
-        });
+        jsPsych.run(timeline);
+
       </script>
-      </html>
+    </html>
     ```
 
-## 第11部分: 给试次添加额外的数据
+## 第10部分：添加数据
 
-jsPsych中的所有试次都可以添加额外的数据，这些数据会和插件默认收集的数据一起存储起来，从而允许实验者在记录试次中产生的数据之外，还可以记录试次本身的一些属性。
+jsPsych中，所有的试次都可以任意添加额外的数据。这一部分数据会和插件自身记录的数据一起被记录下来，这样，实验者就可以记录除了实验数据以外的、试次相关的属性。
 
-我们什么时候会用到这一特性呢？在现在这个实验中，我们可以给所有呈现图片的试次标记为`response`试次，这样我们可以从完整数据中更方便地筛选出我们需要分析的试次：
+我们什么时候会用到这一特性呢？在这个实验中，如果给所有呈现圆形的试次都标记为`response`试次，在数据处理阶段就可以更方便地筛选出那些关键试次。我们可以这样实现这一功能：
 
 ```javascript
 var test = {
-  type: "image-keyboard-response",
+  type: jsPsychImageKeyboardResponse,
   stimulus: jsPsych.timelineVariable('stimulus'),
   choices: ['f', 'j'],
   data: {
     task: 'response'
   }
-}
+};
 ```
 
-我们还可以在测试试次中添加一个说明正确反应的属性（对于蓝色圆形，F是正确反应；对于橙色圆性，J是正确反应）。现阶段，我们用时间线变量控制呈现的圆形的颜色；因为正确反应是由呈现的圆形颜色决定的，我们需要把用于标记试次的数据也添加到`test_stimuli`数组中，并使用`jsPsych.timelineVariable()`函数将其赋给`data`的某个属性。
+我们还可以给试次添加诸如正确反应这一类属性 (蓝色圆按F，橙色圆按J)。在当前的代码中，是通过时间线变量来控制呈现什么颜色的圆形。所以，如果要根据呈现刺激的不同来给试次添加不同的正确反应，就需要在`test_stimuli`中添加这个正确反应，并在试次的`data`属性中调用`jsPsych.timelineVariable()`函数进行赋值。
 
-我们先来修改`test_stimuli`:
+我们先给`test_stimuli`中的每个对象添加一个"correct_response"属性并赋值。
 
 ```javascript
 var test_stimuli = [
@@ -913,34 +934,34 @@ var test_stimuli = [
 ];
 ```
 
-现在我们在`test`试次的`data`参数中使用`timelineVariable()`：
+这样，就可以在`test`试次的`data`参数中调用`timelineVariable()`函数来获取各个试次的"correct_response"值。
 
 ```javascript
 var test = {
-  type: "image-keyboard-response",
+  type: jsPsychImageKeyboardResponse,
   stimulus: jsPsych.timelineVariable('stimulus'),
   choices: ['f', 'j'],
   data: {
     task: 'response',
     correct_response: jsPsych.timelineVariable('correct_response')
   }
-}
+};
 ```
 
-我们还可以像下面这样给注视点试次进行标记，从而在数据处理阶段能够更方便地剔除注视点试次的数据。
+我们可能还会需要将呈现注视点的试次标记出来，这样就可以更方便地将这些试次的数据移除
 
 ```js
 var fixation = {
-  type: 'html-keyboard-response',
+  type: jsPsychHtmlKeyboardResponse,
   stimulus: '<div style="font-size:60px;">+</div>',
-  choices: jsPsych.NO_KEYS,
+  choices: "NO_KEYS",
   trial_duration: function(){
     return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];
   },
   data: {
     task: 'fixation'
   }
-}
+};
 ```
 
 ??? example "完整代码"
@@ -950,35 +971,42 @@ var fixation = {
     <html>
       <head>
         <title>My experiment</title>
-        <script src="jspsych-6.3.0/jspsych.js"></script>
-        <script src="jspsych-6.3.0/plugins/jspsych-html-keyboard-response.js"></script>
-        <script src="jspsych-6.3.0/plugins/jspsych-image-keyboard-response.js"></script>
-        <script src="jspsych-6.3.0/plugins/jspsych-preload.js"></script>
-        <link href="jspsych-6.3.0/css/jspsych.css" rel="stylesheet" type="text/css">
+        <script src="https://unpkg.com/jspsych@7.1.2"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.0"></script>
+        <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
       </head>
       <body></body>
       <script>
-    
+
+        /* initialize jsPsych */
+        var jsPsych = initJsPsych({
+          on_finish: function() {
+            jsPsych.data.displayData();
+          }
+        });
+
         /* create timeline */
         var timeline = [];
-    
+
         /* preload images */
         var preload = {
-          type: 'preload',
+          type: jsPsychPreload,
           images: ['img/blue.png', 'img/orange.png']
-        }
+        };
         timeline.push(preload);
-    
+
         /* define welcome message trial */
         var welcome = {
-          type: "html-keyboard-response",
+          type: jsPsychHtmlKeyboardResponse,
           stimulus: "Welcome to the experiment. Press any key to begin."
         };
         timeline.push(welcome);
-    
+
         /* define instructions trial */
         var instructions = {
-          type: "html-keyboard-response",
+          type: jsPsychHtmlKeyboardResponse,
           stimulus: `
             <p>In this experiment, a circle will appear in the center 
             of the screen.</p><p>If the circle is <strong>blue</strong>, 
@@ -988,7 +1016,7 @@ var fixation = {
             <div style='width: 700px;'>
             <div style='float: left;'><img src='img/blue.png'></img>
             <p class='small'><strong>Press the F key</strong></p></div>
-            <div class='float: right;'><img src='img/orange.png'></img>
+            <div style='float: right;'><img src='img/orange.png'></img>
             <p class='small'><strong>Press the J key</strong></p></div>
             </div>
             <p>Press any key to begin.</p>
@@ -996,68 +1024,65 @@ var fixation = {
           post_trial_gap: 2000
         };
         timeline.push(instructions);
-    
-        /* test trials */
+
+        /* define trial stimuli array for timeline variables */
         var test_stimuli = [
           { stimulus: "img/blue.png",  correct_response: 'f'},
           { stimulus: "img/orange.png",  correct_response: 'j'}
         ];
-    
+
+        /* define fixation and test trials */
         var fixation = {
-          type: 'html-keyboard-response',
+          type: jsPsychHtmlKeyboardResponse,
           stimulus: '<div style="font-size:60px;">+</div>',
-          choices: jsPsych.NO_KEYS,
+          choices: "NO_KEYS",
           trial_duration: function(){
             return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];
           },
           data: {
             task: 'fixation'
           }
-        }
-    
+        };
+
         var test = {
-          type: "image-keyboard-response",
+          type: jsPsychImageKeyboardResponse,
           stimulus: jsPsych.timelineVariable('stimulus'),
           choices: ['f', 'j'],
           data: {
             task: 'response',
             correct_response: jsPsych.timelineVariable('correct_response')
           }
-        }
-    
+        };
+
+        /* define test procedure */
         var test_procedure = {
           timeline: [fixation, test],
           timeline_variables: test_stimuli,
           randomize_order: true,
           repetitions: 5
-        }
-    
+        };
         timeline.push(test_procedure);
-    
+
         /* start the experiment */
-        jsPsych.init({
-          timeline: timeline,
-          on_finish: function() {
-            jsPsych.data.displayData();
-          }
-        });
+        jsPsych.run(timeline);
+
       </script>
       </html>
     ```
 
-## 第12部分: 在实验中对数据进行操作
+## 第11部分：在实验中操作实验数据
 
-我们已经对每一个试次的正确反应进行了记录，这让实验结束后的数据分析中判断被试是否做出了正确的选择变得方便得多。
+在对试次进行了标记后，分析阶段就可以更方便地判断被试反应是否正确了。
 
-不过在jsPsych中，我们也可以在实验运行过程中进行这一判断过程，这样可以为后续的数据分析省下不少时间。
+但是，我们也可以在实验运行过程中就把这件事情做了，这样也为事后的分析省了不少时间。
 
-这一功能的实现需要用到试次的`on_finish`事件。我们可以把一个函数赋给`on_finish`，该函数会接收一个记录了当前试次数据的对象作为传入参数，我们可以在函数内部对这个数据对象进行直接的操作，所做的调整都会改变jsPsych内部存储的原始数据。
+这需要用到试次的`on_finish`事件。我们可以把函数赋给`on_finish`，该函数的传入值为当前试次记录的数据。函数内部可以对这个数据对象进行操作，对该传入参数的改变也应用到jsPsych内部记录的数据上。
 
-在下面的这个例子中，我们会对被试是否做出了正确反应进行判断，并且据此给数据对象中添加一个`correct`属性。
+下面的示例中，我们会对被试反应是否正确进行判断，并给数据对象添加一个`correct`属性。
 
 ```javascript
 var test = {
-  type: "image-keyboard-response",
+  type: jsPsychImageKeyboardResponse,
   stimulus: jsPsych.timelineVariable('stimulus'),
   choices: ['f', 'j'],
   data: {
@@ -1067,10 +1092,16 @@ var test = {
   on_finish: function(data){
     data.correct = jsPsych.pluginAPI.compareKeys(data.response, data.correct_response);
   }
-}
+};
 ```
 
-`data.response`的值是以字符串形式记录的被试的按键，我们可以把这个值和`data.correct_response`进行比较，并将比较的结果赋给`data.correct`。
+`data.response`的值是被试按的键，我们把这个值和`data.correct_response`值进行比较，并将计算出的结果赋给`data.correct`。
+
+!!!info "补充"
+  在这里，我们用到了[jsPsych.pluginAPI.compareKeys](../reference/jspsych-pluginAPI.md#jspsychpluginapicomparekeys)函数来比较`data.response`和`data.correct_response`。之所以使用这个函数，是因为它进行比较既可以是 *大小写敏感* 也可以是 *大小写不敏感*，这取决于[实验的配置](../overview/experiment-options.md)。被试按键的记录是大小写敏感的 (例如，'f'或'F')，但很多时候我们并不在乎被试的按键是大写还是小写的 (所以默认情况下，我们将实验设置中的`case_sensitive`属性设置为`false`)。使用了`jsPsych.pluginAPI.commpareKeys`函数后，即使被试在按键的同时按下了Shift或Caps Lock，jsPsych也能正确记录被试的反应。这个函数仅和键盘按键相关；对于其他类型的反应，如点击按钮，则可以直接将被试反应和正确答案进行比较，例如：
+  ```js
+  data.correct = data.response === data.correct_response;
+  ```
 
 ??? example "完整代码"
 
@@ -1079,35 +1110,42 @@ var test = {
     <html>
       <head>
         <title>My experiment</title>
-        <script src="jspsych-6.3.0/jspsych.js"></script>
-        <script src="jspsych-6.3.0/plugins/jspsych-html-keyboard-response.js"></script>
-        <script src="jspsych-6.3.0/plugins/jspsych-image-keyboard-response.js"></script>
-        <script src="jspsych-6.3.0/plugins/jspsych-preload.js"></script>
-        <link href="jspsych-6.3.0/css/jspsych.css" rel="stylesheet" type="text/css">
+        <script src="https://unpkg.com/jspsych@7.1.2"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.0"></script>
+        <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
       </head>
       <body></body>
       <script>
-    
+
+        /* initialize jsPsych */
+        var jsPsych = initJsPsych({
+          on_finish: function() {
+            jsPsych.data.displayData();
+          }
+        });
+
         /* create timeline */
         var timeline = [];
-    
+
         /* preload images */
         var preload = {
-          type: 'preload',
+          type: jsPsychPreload,
           images: ['img/blue.png', 'img/orange.png']
-        }
+        };
         timeline.push(preload);
-    
+
         /* define welcome message trial */
         var welcome = {
-          type: "html-keyboard-response",
+          type: jsPsychHtmlKeyboardResponse,
           stimulus: "Welcome to the experiment. Press any key to begin."
         };
         timeline.push(welcome);
-    
+
         /* define instructions trial */
         var instructions = {
-          type: "html-keyboard-response",
+          type: jsPsychHtmlKeyboardResponse,
           stimulus: `
             <p>In this experiment, a circle will appear in the center 
             of the screen.</p><p>If the circle is <strong>blue</strong>, 
@@ -1117,7 +1155,7 @@ var test = {
             <div style='width: 700px;'>
             <div style='float: left;'><img src='img/blue.png'></img>
             <p class='small'><strong>Press the F key</strong></p></div>
-            <div class='float: right;'><img src='img/orange.png'></img>
+            <div style='float: right;'><img src='img/orange.png'></img>
             <p class='small'><strong>Press the J key</strong></p></div>
             </div>
             <p>Press any key to begin.</p>
@@ -1125,27 +1163,28 @@ var test = {
           post_trial_gap: 2000
         };
         timeline.push(instructions);
-    
-        /* test trials */
+
+        /* define trial stimuli array for timeline variables */
         var test_stimuli = [
           { stimulus: "img/blue.png",  correct_response: 'f'},
           { stimulus: "img/orange.png",  correct_response: 'j'}
         ];
-    
+
+        /* define fixation and test trials */
         var fixation = {
-          type: 'html-keyboard-response',
+          type: jsPsychHtmlKeyboardResponse,
           stimulus: '<div style="font-size:60px;">+</div>',
-          choices: jsPsych.NO_KEYS,
+          choices: "NO_KEYS",
           trial_duration: function(){
             return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];
           },
           data: {
             task: 'fixation'
           }
-        }
-    
+        };
+
         var test = {
-          type: "image-keyboard-response",
+          type: jsPsychImageKeyboardResponse,
           stimulus: jsPsych.timelineVariable('stimulus'),
           choices: ['f', 'j'],
           data: {
@@ -1155,40 +1194,38 @@ var test = {
           on_finish: function(data){
             data.correct = jsPsych.pluginAPI.compareKeys(data.response, data.correct_response);
           }
-        }
-    
+        };
+
+        /* define test procedure */
         var test_procedure = {
           timeline: [fixation, test],
           timeline_variables: test_stimuli,
           randomize_order: true,
           repetitions: 5
-        }
-    
+        };
         timeline.push(test_procedure);
-    
+
         /* start the experiment */
-        jsPsych.init({
-          timeline: timeline,
-          on_finish: function() {
-            jsPsych.data.displayData();
-          }
-        });
+        jsPsych.run(timeline);
+
       </script>
-      </html>
+    </html>
     ```
 
+## 第12部分：数据汇总
 
-## 第13部分: 数据汇总
+jsPsych提供了一些用于分析数据的函数，例如计算指定试次的平均反应时。在这一部分，我们就来试着用这些函数，给实验最后添加一个试次，把被试的准确率和平均反应时呈现给他们。
 
-jsPsych内置了一些数据分析的函数，可以计算诸如特定试次的平均反应时之类的东西。这一部分，我们来利用这些函数，给当前的实验添加最后一个试次，告知被试他们的正确率和做出正确反应的试次的平均反应时。
+这里用的是`html-keyboard-response`插件。因为呈现的内容是由被试在实验中的表现所决定的，因而我们需要用函数给`stimulus`参数赋值，这个函数的返回值就是需要呈现的文本内容。
 
-这里用的是`html-keyboard-response`插件。因为所呈现的文本内容由被试在实验中的表现决定，这里的`stimulus`参数值应该是一个函数。
+!!!info "补充"
+  把函数赋值给一个"普通"的参数 (即，所要求的数据类型不是函数的参数)有很多方便之处，因为这样就可以根据被试前面的反应和其他在实验开始时无从得知的信息动态改变参数值。详见[动态参数部分](../overview/dynamic-parameters.md)。
 
-下面是代码：
+这一部分的代码是这样的：
 
 ```js
 var debrief_block = {
-  type: "html-keyboard-response",
+  type: jsPsychHtmlKeyboardResponse,
   stimulus: function() {
 
     var trials = jsPsych.data.get().filter({task: 'response'});
@@ -1202,56 +1239,62 @@ var debrief_block = {
 
   }
 };
-
 timeline.push(debrief_block);
 ```
 
-我们用`jsPsych.data.get()`给`trials`赋值，这个方法会返回一个jsPsych的数据集，包含了实验的所有数据。可以用`.filter`来筛选出`task`为`response`的试次（这就体现出了第11部分对数据进行标记的好处了）。`trials`包含了所有呈现圆形的试次的数据。
+给`trials`变量赋值时，用到了`jsPsych.data.get()`，这个函数的返回值是一个jsPsych数据集，它包含了实验中收集的所有数据。我们可以用`.filter`来选取出`task`属性为`'response'`的试次 (这就体现出了第10部分中对试次进行标记的好处了)。`trials`包含了所有呈现刺激的试次的数据。
 
-我们可以再用`.filter`筛选出反应正确的试次，即，从`trial`中选出所有`correct`属性为`true`的试次。
+我们可以再调用一次`.filter()`来从`trials`数据集中选取出`correct`属性为`true`的试次，从而筛选出被试做出正确反应的试次
 
-计算正确率时，可以用`.count()`方法来判断正确的试次数以及总试次数，还可以用`Math.round()`对结果进行取整。
+计算正确率的时候，我们调用了`.count()`方法来判断正确的试次数和总试次数，并使用了`Math.round()`函数来去除小数点后的位数。
 
-最后，我们利用`correct_trials`数据集的`.select`方法计算正确反应的平均反应时，即筛选出这些试次的`rt`属性，再用`.mean()`方法计算出这些反应时数据的平均值。
+最后，我们对`correct_trials`数据集使用了`.select`方法，选取这些试次的`'rt'`属性，去计算正确反应试次的平均反应时，然后再使用`.mean()`方法来计算平均反应时。
 
 ## 完整代码
 
-完整的代码可以在你jsPsych的`/examples`文件夹下找到，文件名为`demo-simple-rt-task.html`。
+下面的代码可以在下载的jsPsych的`/examples`文件夹中找到，文件名为`demo-simple-rt-task.html`。
 
 ```html
 <!DOCTYPE html>
 <html>
   <head>
     <title>My experiment</title>
-    <script src="jspsych-6.3.0/jspsych.js"></script>
-    <script src="jspsych-6.3.0/plugins/jspsych-html-keyboard-response.js"></script>
-    <script src="jspsych-6.3.0/plugins/jspsych-image-keyboard-response.js"></script>
-    <script src="jspsych-6.3.0/plugins/jspsych-preload.js"></script>
-    <link href="jspsych-6.3.0/css/jspsych.css" rel="stylesheet" type="text/css">
+    <script src="https://unpkg.com/jspsych@7.1.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.0"></script>
+    <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
   </head>
   <body></body>
   <script>
+
+    /* initialize jsPsych */
+    var jsPsych = initJsPsych({
+      on_finish: function() {
+        jsPsych.data.displayData();
+      }
+    });
 
     /* create timeline */
     var timeline = [];
 
     /* preload images */
     var preload = {
-      type: 'preload',
+      type: jsPsychPreload,
       images: ['img/blue.png', 'img/orange.png']
-    }
+    };
     timeline.push(preload);
 
     /* define welcome message trial */
     var welcome = {
-      type: "html-keyboard-response",
+      type: jsPsychHtmlKeyboardResponse,
       stimulus: "Welcome to the experiment. Press any key to begin."
     };
     timeline.push(welcome);
 
     /* define instructions trial */
     var instructions = {
-      type: "html-keyboard-response",
+      type: jsPsychHtmlKeyboardResponse,
       stimulus: `
         <p>In this experiment, a circle will appear in the center 
         of the screen.</p><p>If the circle is <strong>blue</strong>, 
@@ -1261,7 +1304,7 @@ timeline.push(debrief_block);
         <div style='width: 700px;'>
         <div style='float: left;'><img src='img/blue.png'></img>
         <p class='small'><strong>Press the F key</strong></p></div>
-        <div class='float: right;'><img src='img/orange.png'></img>
+        <div style='float: right;'><img src='img/orange.png'></img>
         <p class='small'><strong>Press the J key</strong></p></div>
         </div>
         <p>Press any key to begin.</p>
@@ -1270,26 +1313,27 @@ timeline.push(debrief_block);
     };
     timeline.push(instructions);
 
-    /* test trials */
+    /* define trial stimuli array for timeline variables */
     var test_stimuli = [
       { stimulus: "img/blue.png",  correct_response: 'f'},
       { stimulus: "img/orange.png",  correct_response: 'j'}
     ];
 
+    /* define fixation and test trials */
     var fixation = {
-      type: 'html-keyboard-response',
+      type: jsPsychHtmlKeyboardResponse,
       stimulus: '<div style="font-size:60px;">+</div>',
-      choices: jsPsych.NO_KEYS,
+      choices: "NO_KEYS",
       trial_duration: function(){
         return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000, 1250, 1500, 1750, 2000], 1)[0];
       },
       data: {
         task: 'fixation'
       }
-    }
+    };
 
     var test = {
-      type: "image-keyboard-response",
+      type: jsPsychImageKeyboardResponse,
       stimulus: jsPsych.timelineVariable('stimulus'),
       choices: ['f', 'j'],
       data: {
@@ -1299,20 +1343,20 @@ timeline.push(debrief_block);
       on_finish: function(data){
         data.correct = jsPsych.pluginAPI.compareKeys(data.response, data.correct_response);
       }
-    }
+    };
 
+    /* define test procedure */
     var test_procedure = {
       timeline: [fixation, test],
       timeline_variables: test_stimuli,
       repetitions: 5,
       randomize_order: true
-    }
+    };
     timeline.push(test_procedure);
 
     /* define debrief */
-
     var debrief_block = {
-      type: "html-keyboard-response",
+      type: jsPsychHtmlKeyboardResponse,
       stimulus: function() {
 
         var trials = jsPsych.data.get().filter({task: 'response'});
@@ -1329,12 +1373,8 @@ timeline.push(debrief_block);
     timeline.push(debrief_block);
 
     /* start the experiment */
-    jsPsych.init({
-      timeline: timeline,
-      on_finish: function() {
-        jsPsych.data.displayData();
-      }
-    });
+    jsPsych.run(timeline);
+    
   </script>
 </html>
 ```

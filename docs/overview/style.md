@@ -12,16 +12,16 @@
 
 ```javascript
 var trial = {
-	type: 'html-keyboard-response',
+	type: jsPsychHtmlKeyboardResponse,
 	stimulus: '<p style="font-size:30px;color:red;">hello world!</p>'
 }
 ```
 
-我们也可以使用[动态参数](/overview/dynamic-parameters.html)将CSS和根据试次变化的量结合起来。这样，我们就可以很轻松地给多个试次添加相同的内联CSS语句。下面的例子中，我们就是用动态参数和[时间线变量](/overview/timeline.html#_5):
+我们也可以使用[动态参数](./dynamic-parameters.md)将CSS和根据试次变化的量结合起来。这样，我们就可以很轻松地给多个试次添加相同的内联CSS语句。下面的例子中，我们就是用动态参数和[时间线变量](./timeline.md#_5):
 
 ```javascript
 var trial = {
-	type: 'html-keyboard-response',
+	type: jsPsychHtmlKeyboardResponse,
 	stimulus: function() {
         var stim = '<p style="font-size:30px;font-weight:bold;">'+jsPsych.timelineVariable('text')+'</p>';
         return stim;
@@ -86,9 +86,9 @@ p#correct {
 
 ```html
 <head>
-  <script src="jsPsych/jspsych.js"></script>
-  <script src="jsPsych/plugins/jspsych-html-keyboard-response.js"></script>
-  <link rel="stylesheet" href="jsPsych/css/jspsych.css">
+  <script src="https://unpkg.com/jspsych@7.1.2"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
+  <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
   <style> 
     .jspsych-display-element {
       font-size: 25px;
@@ -101,18 +101,18 @@ p#correct {
 
 我们可以通过外部CSS文件引入CSS样式表。我们就是这样引入jspsych.css文件的。这些样式对整个实验生效。如果我们想在多个实验（多个HTML文件）中都使用这一套样式的话，可以选择将其写在CSS文件中。
 
-下面的示例是关于引入自定义的CSS文件和jspsych.css。
+下面的示例是关于引入自定义的CSS文件和jspsych.css。其中，我们自定义的CSS文件的名称是"my_experiment_style.css"，和HTML在同一目录下。
 
 ```html
 <head>
-  <script src="jsPsych/jspsych.js"></script>
-  <script src="jsPsych/plugins/jspsych-image-keyboard-response.js"></script>
-  <link rel="stylesheet" href="jsPsych/css/jspsych.css">
+  <script src="https://unpkg.com/jspsych@7.1.2"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
+  <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
   <link rel="stylesheet" href="my_experiment_style.css">
 </head>
 ```
 
-下面的示例中为外部CSS文件中的内容，比如说上面的"my_experiment_style.css"文件。这一部分的CSS文件会 (1) 将页面背景色变为黑色, (2) 将默认字体改为25px、白色, 以及 (3) 让页面内容宽度最多只能占到80%。 
+下面为一些外部CSS文件中的示例，比如说上面的"my_experiment_style.css"文件。这一部分的CSS文件会 (1) 将页面背景色变为黑色, (2) 将默认字体改为25px、白色, 以及 (3) 让页面内容宽度最多只能占到80%。 
 
 ```css
 body {
@@ -138,18 +138,18 @@ CSS规则也可以使用`css_classes`参数设定，从而只对特定试次作�
 
 ```html
  <head>
-  <script src="jsPsych/jspsych.js"></script>
-  <script src="jsPsych/plugins/jspsych-html-keyboard-response.js"></script>
-  <link rel="stylesheet" href="jsPsych/css/jspsych.css">
+  <script src="https://unpkg.com/jspsych@7.1.2"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
+  <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
   <style> 
     .fixation {font-size: 90px; font-weight: bold; color: gray;}
   </style>
 </head>
 <script>
 var fixation = {
-    type: 'html-keyboard-response',
+    type: jsPsychHtmlKeyboardResponse,
     stimulus: '+',
-    choices: jsPsych.NO_KEYS,
+    choices: "NO_KEYS",
     trial_duration: 500,
     css_classes: ['fixation']
 }
@@ -157,7 +157,7 @@ var fixation = {
 </script>
 ```
 
-不过有时候，我们有可能需要`css_classes`参数在不同试次中有所不同。这个时候我们就可以改用[动态参数](/overview/dynamic-parameters.html)或[时间线变量](/overview/timeline.html#_5) (详见下面的示例)。
+不过有时候，我们有可能需要`css_classes`参数在不同试次中有所不同。这个时候我们就可以改用[动态参数](./dynamic-parameters.md)或[时间线变量](./timeline.md#_5) (详见下面的示例)。
 
 还有一点需要注意的是，`css_classes`参数只会对div#jspsych-content添加class名，该元素为实验内容中所有元素的父元素。有些时候我们需要对这些子元素的样式进行调整。一些情况下，子元素会继承CSS样式。例如，上面`fixation`的例子中，该部分的CSS样式会通过继承对内部所有的文字的字体、粗细和颜色进行调整。
 
@@ -172,13 +172,13 @@ var fixation = {
 !!! tip "小贴士"
     如果需要知道如何选择某个元素，可以（在网页中）右键点击该元素并选择“检查”，在弹出的窗口中右键点击该元素对应的属性并将选择器复制下来。如果时间不够，可以增加`trial_duration`。详见下面[使用CSS的建议](#css_3)部分。
 
-In the example below, the CSS selector `.left-align #stimulus` selects the element with the ID "stimulus" that is _inside_ of an element with the class "left-align".
+下面的例子中，CSS选择器`.left-align #stimulus`选中了类名为"left-align"的元素内、ID为"stimulus"的元素。
 
 ```html
 <head>
-  <script src="jsPsych/jspsych.js"></script>
-  <script src="jsPsych/plugins/jspsych-html-keyboard-response.js"></script>
-  <link rel="stylesheet" href="jsPsych/css/jspsych.css">
+  <script src="https://unpkg.com/jspsych@7.1.2"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
+  <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
   <style> 
     .left-align #stimulus {text-align: left; width: 600px;}
     .right-align #stimulus {text-align: right; width: 600px;}
@@ -187,7 +187,7 @@ In the example below, the CSS selector `.left-align #stimulus` selects the eleme
 <script>
 var trial_procedure = {
     timeline: [{
-        type: 'html-keyboard-response',
+        type: jsPsychHtmlKeyboardResponse,
         stimulus: '<p id="stimulus">This is the stimulus.</p>',
         prompt: '<p>This text will not be affected by the CSS classes '+
             'because it does not have the "stimulus" ID.</p>',
@@ -206,9 +206,9 @@ var trial_procedure = {
 
 ```html
 <head>
-  <script src="jsPsych/jspsych.js"></script>
-  <script src="jsPsych/plugins/jspsych-html-keyboard-response.js"></script>
-  <link rel="stylesheet" href="jsPsych/css/jspsych.css">
+  <script src="https://unpkg.com/jspsych@7.1.2"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
+  <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
   <style> 
     .left-align #stimulus {text-align: left; width: 600px;}
     .right-align #stimulus {text-align: right; width: 600px;}
@@ -219,7 +219,7 @@ var trial_procedure = {
 <script>
 var trial_procedure = {
     timeline: [{
-        type: 'html-keyboard-response',
+        type: jsPsychHtmlKeyboardResponse,
         stimulus: '<p id="stimulus">This is the stimulus.</p>',
         prompt: '<p>This text will not be affected by the CSS classes '+
             'because it does not have the "stimulus" ID.</p>',
@@ -262,7 +262,7 @@ var trial_procedure = {
 }
 ```
 
-再举一个例子。jsPsych中多数按钮的类名都包含"jspsych-btn"，我们可以通过这个类名改变磨人的按钮样式：
+再举一个例子。jsPsych中多数按钮的类名都包含"jspsych-btn"，我们可以通过这个类名改变默认的按钮样式：
 
 ```css
 .jspsych-btn {

@@ -1,10 +1,10 @@
 # 接入Mechanical Turk
 
-我们可以用jsPsych创建在线实验并通过[Mechanical Turk](http://www.mturk.com/)招被试。只要实验可以通过服务器运行，且可以[在服务器上记录数据](data.html)，接下来将实验接入Mechanical Turk就很简单了。jsPsych有一些内置的与此相关的功能。
+我们可以用jsPsych创建在线实验并通过[Mechanical Turk](http://www.mturk.com/)招被试。只要实验可以通过服务器运行，且可以[在服务器上记录数据](./data.md)，接下来将实验接入Mechanical Turk就很简单了。jsPsych有一些内置的与此相关的功能。
 
 ## jsPsych.turk模块
 
-[jsPsych.turk](../core_library/jspsych-turk.html)模块包含了在Mechanical Turk上运行实验的一些函数。
+[jsPsych.turk](../reference/jspsych-turk.md)模块包含了在Mechanical Turk上运行实验的一些函数。
 
 ## 创建广告页
 

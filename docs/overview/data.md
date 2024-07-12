@@ -2,9 +2,9 @@
 
 ## jsPsych中的数据：永久和暂时的数据
 
-有两种数据存储方式：将数据存储在内存中和将数据永久保存。永久保存的数据在浏览器关闭后仍然存在，一般是保存在数据库或者是文件中。保存在内存中的数据只在运行jsPsych的浏览器窗口没有关闭时存在。
+有两种数据存储方式：将数据存储在**内存**中和将数据**永久保存**。永久保存的数据在浏览器关闭后仍然存在，一般是保存在数据库或者是文件中。保存在内存中的数据只在运行jsPsych的浏览器窗口没有关闭时存在。
 
-jsPsych有很多和内存中数据交互的功能，但和永久存储的数据的交互功能很少。事实上，我们就是这样设计的，因为永久存储数据的方式多种多样，我们不能限制你使用其中某一种。不过，永久存储数据显然是实验很重要的一部分，因此本页的第二部分会就永久存储数据给出一些建议。
+jsPsych有很多和内存中数据交互的功能，但和永久存储的数据的交互功能很少。事实上，这是因为永久存储数据的方式多种多样，jsPsych没法限制你使用其中某一种。不过，永久存储数据显然是实验很重要的一部分，因此本页的第二部分会就永久存储数据给出一些建议。
 
 ## 在jsPsych的数据结构中存储数据
 
@@ -37,7 +37,7 @@ jsPsych.data.addProperties({
 
 ```js
 var trial = {
-  type: 'image-keyboard-response',
+  type: jsPsychImageKeyboardResponse,
   stimulus: 'imgA.jpg',
   data: { image_type: 'A' }
 }
@@ -47,7 +47,7 @@ var trial = {
 
 ```js
 var block = {
-  type: 'image-keyboard-response',
+  type: jsPsychImageKeyboardResponse,
   data: { image_type: 'A' },
   timeline: [
     {stimulus: 'imgA1.jpg'},
@@ -56,11 +56,11 @@ var block = {
 }
 ```
 
-试次的数据对象也可以在`on_finish`中进行更新。我们可以覆盖数据中的属性值。如果需要记录的数据与试次的进行情况有关，可以使用这种方式。
+试次的数据对象也可以在`on_finish`中进行更新。我们可以覆盖数据中的属性值或添加新的属性。如果需要记录的数据与试次的进行情况有关，可以使用这种方式。
 
 ```js
 var trial = {
-  type: 'image-keyboard-response',
+  type: jsPsychImageKeyboardResponse,
   stimulus: 'imgA.jpg',
   on_finish: function(data){
     if(jsPsych.pluginAPI.compareKeys(data.response, 'j')){
@@ -74,7 +74,7 @@ var trial = {
 
 ## 汇总、操作jsPsych记录的数据
 
-我们使用`jsPsych.data.get()`访问数据时，会返回一个数据集对象，包含了一系列汇总、操作数据的方法。完整的方法参见 [数据模块的文档](../core_library/jspsych-data.html)。
+我们使用`jsPsych.data.get()`访问数据时，会返回一个数据集对象，包含了一系列汇总、操作数据的方法。完整的方法参见 [数据部分的文档](../reference/jspsych-data.md)。
 
 下面是对数据集对象进行操作的一些示例。
 
@@ -88,7 +88,7 @@ var data = jsPsych.data.get().filter({trial_type: 'image-keyboard-response'});
 var data = jsPsych.data.get().filter({trial_type: 'categorize-image', correct: true});
 ```
 
-所有反应时范围在100 - 500ms之间的数据：
+所有反应时在100 - 500ms范围之内的数据：
 ```js
 var data = jsPsych.data.get().filterCustom(function(x){ return x.rt >= 100 && x.rt <=500 });
 ```
@@ -147,10 +147,13 @@ jsPsych.data.get().select('rt').count();
 
 ```php
 <?php
-$post_data = json_decode(file_get_contents('php://input'), true); 
-// the directory "data" must be writable by the server
-$name = "data/".$post_data['filename'].".csv"; 
+// get the data from the POST message
+$post_data = json_decode(file_get_contents('php://input'), true);
 $data = $post_data['filedata'];
+// generate a unique ID for the file, e.g., session-6feu833950202 
+$file = uniqid("session-");
+// the directory "data" must be writable by the server
+$name = "data/{$file}.csv"; 
 // write the file to disk
 file_put_contents($name, $data);
 ?>
@@ -165,19 +168,23 @@ function saveData(name, data){
   var xhr = new XMLHttpRequest();
   xhr.open('POST', 'write_data.php'); // 'write_data.php' is the path to the php file described above.
   xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.send(JSON.stringify({filename: name, filedata: data}));
+  xhr.send(JSON.stringify({filedata: data}));
 }
 
 // call the saveData function after the experiment is over
-jsPsych.init({
-   // code to define the experiment structure would go here...
-   on_finish: function(){ saveData("experiment_data", jsPsych.data.get().csv()); }
+initJsPsych({
+   on_finish: function(){ saveData(jsPsych.data.get().csv()); }
 });
 ```
 
-在真正做实验时，我们需要把文件名和被试编号这种独特的标识符联系起来，否则新的数据可能会覆盖之前存储的文件。
+!!!danger "危险"
+    上面的示例中的代码并不安全，应该在有相应防护措施的情况下才这样做。其不安全之处在于随便谁都可以使用`saveData()`函数往你的服务器上写入任意的数据。如果被猜到了PHP文件生成的文件名称或者是获取存放文件名的目录列表的访问权限，就可以随之在你的服务器上写入可执行文件并运行它们。
 
-注意，根据文件的权限，这样保存CSV文件可能所有人都能访问。一种解决方案是把CSV文件存储在web路径以外的路径下。此时，我们需要把上面的PHP代码中的路径从`/data`改为无法通过网络直接访问的文件夹。只有在我们有web路径以外路径的访问权限时才可以采用这种方式。
+    一种修复的方法是把CSV文件存放在服务器上的web目录之外。此时，我们就需要把上面PHP代码中的路径从`/data`改为一个不能直接从web端访问的路径。切记，只有在有服务器上web路径以外路径的访问权限的时候才能这么做。
+    
+    我们也可以[配置服务器，禁止访问存储数据的路径](https://stackoverflow.com/q/5046100/3726673)。
+
+    下面所说的使用MySQL是更安全的一种选择。
 
 ## 将数据存储在MySQL数据库中
 
@@ -267,17 +274,24 @@ function saveData() {
 }
 ```
 
-我们可以在`on_finish`中或`call-function`插件中调用上面定义的`saveData()`函数。
+很重要的一点是，`XMLHttpRequest`需要在实验关闭前完成。如果我们在实验的最后调用`saveData()`，而被试又在数据完成传输前关掉了窗口，数据就丢失了。为了防止这种事情的发生，我们应该使用`call-function`插件中的`async`参数，在数据完成传输后再让实验继续。
 
 ```javascript
-// with on_finish handler
-jsPsych.init({
-  on_finish: saveData
-});
-
-// with call-function plugin
-timeline.push({
-  type: 'call-function',
-  func: saveData
-});
+var trial = {
+  type: jsPsychCallFunction,
+  async: true,
+  func: function(done){
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'write_data.php');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function() {
+      if(xhr.status == 200){
+        var response = JSON.parse(xhr.responseText);
+        console.log(response.success);
+      }
+      done(); // invoking done() causes experiment to progress to next trial.
+    };
+    xhr.send(jsPsych.data.get().json());
+  }
+}
 ```

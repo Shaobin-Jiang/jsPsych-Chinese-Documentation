@@ -1,33 +1,8 @@
 # 根据浏览器类型排除被试
+*7.1版本有变动*
 
-在线实验的被试可能会使用不同类型的浏览器。根据实验内容的不同，我们可能需要对允许使用的浏览器进行限制。在jsPsych中，这一功能的实现很简单，我们只需要在`jsPsych.init`方法中设置特定的排除被试的标准即可。如果被试的浏览器达不到标准，则不会开始实验，此时被试会看到关于这个问题的消息。如果是被试浏览器窗口大小达不到标准，则被试会看到一条消息，记录其浏览器窗口尺寸以及满足要求的最小尺寸，从而让被试可以放大窗口，继续实验。
+线上实验中，被试可能会使用各种浏览器，而有的实验则要求被试的浏览器至少要满足一些特定要求。
 
-现在排除被试的标准包括：
+在jsPsych 7.1版本中，我们推荐使用[browser-check插件](../plugins/browser-check.md)。该插件会记录被试浏览器的信息，并排除不满足标准的被试。详见[browser-check插件的文档页](../plugins/browser-check.md)。
 
-* 浏览器窗口的最小宽&高
-* 是否支持WebAudio API
-
-## 示例
-
-#### 如果浏览器不满足800x600像素的最小尺寸要求则剔除
-
-```javascript
-jsPsych.init({
-  timeline: exp,
-  exclusions: {
-    min_width: 800,
-    min_height: 600
-  }
-});
-```
-
-#### 如果浏览器不能使用WebAudio API则剔除
-
-```javascript
-jsPsych.init({
-  timeline: exp,
-  exclusions: {
-    audio: true
-  }
-});
-```
+此前，在`initJsPsych()`中指定`exclusions`参数的方法会在`8.0`版本中被移除，该部分的文档可以在[7.0版本的文档](https://www.jspsych.org/7.0/overview/exclude-browser)中找到。

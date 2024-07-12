@@ -1,5 +1,8 @@
 # 视频教程
 
+!!!warning "警告"
+    这些视频中大多数用的是`6.x`版本的jsPsych，在使用`7.x` 版本的时候需要改变一些地方，但这些视频并没有对此有所提及。如果要使用`7.x`版本，还是推荐先看完这个网站上的内容，再去看这些视频去了解更多的内容。这些视频中大部分内容对于`7.x`版本仍然适用，但是至少要对`7.x`版本有一定的了解才能将视频中的用例迁移过来。
+
 ## YouTube
 
 [Josh de Leeuw的YouTube](https://www.youtube.com/playlist?list=PLnfo1lBY1P2Mf_o6rV5wiqqn92Mw3UTGh)上有很多视频教程。一些教程带我们完整走了一遍创建实验的基本流程，如[双耳分听实验](https://www.youtube.com/playlist?list=PLnfo1lBY1P2Mf_o6rV5wiqqn92Mw3UTGh)就是面向新手的。还有一些视频教程则更关注jsPsych某些更具体的特性，如在创建实验中怎样[把函数作为参数](https://www.youtube.com/watch?v=8-j2aAZ_iOk&list=PLnfo1lBY1P2Mf_o6rV5wiqqn92Mw3UTGh&index=5)、从而使得参数值随着被试输入而改变，或者是如何[开发新插件](https://www.youtube.com/watch?v=XQcsFwAmbiw&list=PLnfo1lBY1P2Mf_o6rV5wiqqn92Mw3UTGh&index=4)。

@@ -4,11 +4,10 @@ jsPsych可以在实验页面顶端呈现进度条，以显示当前实验进度�
 
 ![Progressbar Screenshot](/img/progress_bar.png)
 
-如果要显示进度条，可以在`jsPsych.init`中将`show_progress_bar`选项设置为true：
+如果要显示进度条，可以在`initJsPsych`中将`show_progress_bar`选项设置为`true`：
 
 ```javascript
-jsPsych.init({
-	timeline: exp,
+var jsPsych = initJsPsych({
 	show_progress_bar: true
 });
 ```
@@ -21,7 +20,7 @@ jsPsych.init({
 
 ```js
 var trial = {
-	type: 'html-keyboard-response',
+	type: jsPsychHtmlKeyboardResponse,
 	stimulus: 'Almost done...',
 	on_finish: function(){
 		jsPsych.setProgressBar(0.85); // set progress bar to 85% full.
@@ -35,11 +34,10 @@ var trial = {
 var proportion_complete = jsPsych.getProgressBarCompleted();
 ```
 
-如果需要手动控制，则应该禁用进度条的自动更新，即，在`jsPsych.init()`中将`auto_update_progress_bar`属性设置为false。 
+如果需要手动控制，则应该禁用进度条的自动更新，即，在`initJsPsych()`中将`auto_update_progress_bar`属性设置为`false`。 
 
 ```js
-jsPsych.init({
-	timeline: exp,
+var jsPsych = initJsPsych({
 	show_progress_bar: true,
 	auto_update_progress_bar: false
 });
@@ -48,10 +46,15 @@ jsPsych.init({
 下面的示例中展示了如何手动更新进度条：
 
 ```js
+var jsPsych = initJsPsych({
+    show_progress_bar: true,
+    auto_update_progress_bar: false
+});
+
 var n_trials = 5;
 
 var start = {
-    type: 'html-keyboard-response',
+    type: jsPsychHtmlKeyboardResponse,
     stimulus: 'Press any key to start!',
     on_start: function() {
         // set progress bar to 0 at the start of experiment
@@ -60,7 +63,7 @@ var start = {
 };
 
 var trial = {
-    type: 'html-keyboard-response',
+    type: jsPsychHtmlKeyboardResponse,
     stimulus: 'This is a trial!',
     on_finish: function() {
         // at the end of each trial, update the progress bar
@@ -76,25 +79,20 @@ var trials = {
 };
 
 var done = {
-    type: 'html-keyboard-response',
+    type: jsPsychHtmlKeyboardResponse,
     stimulus: 'Done!'
 };
 
-jsPsych.init({
-    timeline: [start, trials, done],
-    show_progress_bar: true,
-    auto_update_progress_bar: false
-});
+jsPsych.run([start, trials, done]);
 ```
 
 ## 自定义文字
 
-默认情况下，jsPsych在进度条左侧添加"Completion Progress"的字样，但我们也可以在`jsPsych.init`中使用`message_progress_bar`参数进行设置。
+默认情况下，jsPsych在进度条左侧添加"Completion Progress"的字样，但我们也可以在`initJsPsych`中使用`message_progress_bar`参数进行设置。
 
 ```js
 // support for different spoken languages
-jsPsych.init({
-    timeline: [...],
+var jsPsych = initJsPsych({
     show_progress_bar: true,
     message_progress_bar: 'Porcentaje completo'
 });
@@ -102,8 +100,7 @@ jsPsych.init({
 
 ```js
 // no message
-jsPsych.init({
-    timeline: [...],
+var jsPsych = initJsPsych({
     show_progress_bar: true,
     message_progress_bar: ''
 });

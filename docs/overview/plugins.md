@@ -1,27 +1,33 @@
 # 插件
 
-jsPsych中，插件定义了实验中的试次或事件。一些插件定义的是比较宽泛的事件，比如呈现指导语，呈现图片并记录按键，或播放音频并记录点击按钮的行为。其他的插件内容则更具体一些，如呈现特定类型刺激的插件（如，随机运动点阵，视觉搜索任务），或运行特定实验任务的插件（如，内隐联想测验）。使用jsPsych创建实验时，我们需要弄清楚具体使用哪些插件来添加需要被试完成的任务。
+jsPsych中，插件定义了实验中的试次或事件。一些插件定义的是比较宽泛的事件，比如[呈现指导语](../plugins/instructions/)，[呈现图片并记录按键](../plugins/image-keyboard-response/)，或播[放音频并记录点击按钮的行为](../plugins/audio-button-response/)。其他的插件内容则更具体一些，如呈现特定类型刺激的插件（如，[视觉搜索任务](../plugins/visual-search-circle/)），或运行特定实验任务的插件 (如，[内隐联想测验](../plugins/iat-image/))。使用jsPsych创建实验时，我们需要弄清楚具体使用哪些插件来添加需要被试完成的任务。
 
-插件提供的是试次或任务的整体结构，允许我们灵活地进行自定义。例如，`image-keyboard-response`插件的功能是呈现图片并记录按键，但是我们可以定义刺激内容是什么，被试可以按哪些键，刺激呈现多久，被试反应的时间限制，等等。这些选项中很多都有默认值，虽然该插件有很多参数，但你只需要指定其中几个就可以进行使用。每个插件都有自己的文档，描述了插件的功能、可选参数以及收集的数据。
+插件提供的是试次或任务的整体结构，允许我们灵活地进行自定义。例如，[image-keyboard-response插件](../plugins/image-keyboard-response/)的功能是呈现图片并记录按键，但是我们可以定义刺激内容是什么，被试可以按哪些键，刺激呈现多久，被试反应的时间限制，等等。这些选项中很多都有默认值，虽然该插件有很多参数，但你只需要指定其中几个就可以进行使用。每个插件都有自己的文档，描述了插件的功能、可选参数以及收集的数据。
 
 ## 使用插件
 
-使用插件时，我们需要将插件对应的JavaScript文件加载到实验的HTML文件内。jsPsych的实验文件都需要加载jsPsych.js文件。
+使用插件时，我们需要将插件对应的JavaScript文件加载到实验的HTML文件内。此外，使用jsPsych编写实验还需要加载jsPsych.js文件。
 
 ```html
 <head>
-  <script src="jsPsych/jspsych.js" type="text/javascript"></script>
-  <script src="jsPsych/plugins/jspsych-image-keyboard-response.js" type="text/javascript"></script>
+  <script src="https://unpkg.com/jspsych@7.1.2" type="text/javascript"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0" type="text/javascript"></script>
 </head>
 ```
 
-加载好插件后，我们可以添加使用JavaScript定义使用该插件的试次。所有的jsPsych试次都有`type`属性，会告诉jsPsych当前试次使用哪个插件。试次的`type`值就是插件的名字，通常是将插件的文件名同名，但会删除前缀部分中的"jspsych-"。
+加载好插件后，就可以定义一个试次去使用这个插件。所有的jsPsych试次都有`type`属性，会告诉jsPsych当前试次使用哪个插件。试次的`type`和插件名很像，不过它以"jsPsych"开头，并且按照 _驼峰法_ 命名，而非使用短线连接单词。试次的`type`参数不是字符串 (即，`type`参数值两侧不用引号包裹)。下面是一些插件名称和`type`的示例：
+
+| 插件名                  | `type`                         |
+| ---------------------------- | ---------------------------- |
+| image-keyboard-response      | jsPsychImageKeyboardResponse |
+| fullscreen                   | jsPsychFullscreen            |
+| webgazer-init-camera         | jsPsychWebgazerInitCamera    |
 
 下面的JavaScript代码定义了一个使用`image-keyboard-response`插件呈现图片的试次。该试次中有效按键、刺激持续时间、试次持续时间以及其他参数都使用了默认值。
 
 ```javascript
 var image_trial = {
-	type: 'image-keyboard-response', 
+	type: jsPsychImageKeyboardResponse, 
 	stimulus: 'images/happy_face.jpg'
 }
 ```
@@ -30,7 +36,7 @@ var image_trial = {
 
 ```javascript
 var image_trial = {
-  type: 'image-keyboard-response',
+  type: jsPsychImageKeyboardResponse,
   stimulus: 'images/happy_face.jpg',
   trial_duration: 3000,
   post_trial_gap: 2000
@@ -45,12 +51,12 @@ var image_trial = {
 
 | 参数      | 类型     | 默认值                  | 描述                              |
 | -------------- | -------- | ----------------------- | ---------------------------------------- |
-| data           | 对象   | *undefined*             | 包含了需要额外记录的数据的对象，详见[数据存储、汇总和操作部分](../overview/data.html) 。 |
+| data           | 对象   | *undefined*             | 包含了需要额外记录的数据的对象，详见[数据存储、汇总和操作部分](../overview/data.md) 。 |
 | post_trial_gap | 数值  | null                    | 设置当前试次和下一个试次之间间隔的毫秒数。如果为null则没有间隔。 |
-| on_start       | 函数 | `function(){ return; }` | 试次开始时、加载开始前执行的回调函数。详见[事件相关回调函数](../overview/callbacks.html)。 |
-| on_finish      | 函数 | `function(){ return; }` | 试次结束时、下一个试次开始前执行的回调函数。详见[事件相关回调函数](../overview/callbacks.html)。 |
-| on_load        | 函数 | `function(){ return; }` | 试次加载完成时执行的回调函数，一般是呈现内容刚刚完成加载的时候。详见[事件相关回调函数](../overview/callbacks.html)。 |
-| css_classes    | 字符串   | null                    | 给当前试次中呈现实验内容的元素添加的class名。这样，我们就可以添加只在当前试次生效的CSS样式。详见[控制呈现样式部分](../overview/style.html)及jsPsych的examples文件夹下的"css-classes-parameter.html"文件。 |
+| on_start       | 函数 | `function(){ return; }` | 试次开始时、加载开始前执行的回调函数。详见[事件相关回调函数](../overview/events.md)。 |
+| on_finish      | 函数 | `function(){ return; }` | 试次结束时、下一个试次开始前执行的回调函数。详见[事件相关回调函数](../overview/events.md)。 |
+| on_load        | 函数 | `function(){ return; }` | 试次加载完成时执行的回调函数，一般是呈现内容刚刚完成加载的时候。详见[事件相关回调函数](../overview/events.md)。 |
+| css_classes    | 字符串   | null                    | 给当前试次中呈现实验内容的元素添加的class名。这样，我们就可以添加只在当前试次生效的CSS样式。详见[控制呈现样式部分](../overview/style.md)及jsPsych的examples文件夹下的"css-classes-parameter.html"文件。 |
 | save_trial_parameters | 对象 | `{}` | 包含了应该或不应该记录到数据中的当前试次的参数。其中，每个属性名和试次参数同名，其值根据是否需要记录到数据中为true或false。如果某个参数值是通过函数返回的，则数据中记录的该参数值为相应函数的返回值。如果某个参数值就是一个函数（如，回调函数），则会将函数本身保存为字符串。详见jsPsych的examples文件夹下的"save-trial-parameters.html"文件。 |
 
 ### data参数
@@ -63,7 +69,7 @@ var image_trial = {
 
 ```javascript
 var trial = {
-  type: 'html-keyboard-response',
+  type: jsPsychHtmlKeyboardResponse,
   stimulus: '<<<<<',
   choices: ['f','j'],
   data: {
@@ -77,13 +83,13 @@ var trial = {
 
 ### post_trial_gap (ITI)参数
 
-jsPsych默认的试次间间隔 (ITI)为0ms。我们可以在`jsPsych.init()`中通过改变`default_iti`参数对全局的ITI进行设置。
+jsPsych默认的试次间间隔 (ITI)为0ms。我们可以在`initJsPsych()`中通过改变`default_iti`参数对全局的ITI进行设置。
 
-不过，我们也可以通过`post_trial_gap`参数改变某一个试次的ITI。如果将该参数设为整数x，则当前试次结束后会呈现x毫秒的空屏。该参数会覆盖`jsPsych.init`中的`default_iti`参数。
+不过，我们也可以通过`post_trial_gap`参数改变某一个试次的ITI。如果将该参数设为整数*x*，则当前试次结束后会呈现*x*毫秒的空屏。该参数会覆盖`initJsPsych`中设置的`default_iti`参数。
 
 ```javascript
 var trial = {
-  type: 'html-keyboard-response',
+  type: jsPsychHtmlKeyboardResponse,
   stimulus: 'There will be a 1.5 second blank screen after this trial.',
   post_trial_gap: 1500
 }
@@ -91,13 +97,13 @@ var trial = {
 
 ### on_start参数
 
-我们可以在试次开始前运行自己定义的函数，这是通过`on_start`实现的。该函数只接受一个传入参数，是当前的试次对象，其参数可以编辑。因此，我们可以利用这个函数，根据实验的状态，调整接下来的试次。
+我们可以在试次开始前运行自己定义的函数，这是通过`on_start`实现的。该函数只接受一个传入参数，是当前的试次对象，其参数 *可以编辑*。因此，我们可以利用这个函数，根据实验的状态，调整接下来的试次。
 
 ```javascript
 // when this trial runs, the on_start function will change the trial's stimulus and data parameters,
 // so the trial will display an incongruent Flanker stimulus with a right-facing central arrow
 var trial = {
-  type: 'html-keyboard-response',
+  type: jsPsychHtmlKeyboardResponse,
   stimulus: '<<<<<',
   choices: ['f','j'],
   data: {
@@ -116,7 +122,7 @@ var trial = {
 
 我们可以在试次结束后运行自己定义的函数，这是通过`on_finish`实现的。该函数只接受一个传入参数，是当前的试次记录的数据，其参数可以编辑。因此，我们可以利用这个函数，根据数据更新实验的状态或者修改数据本身。
 
-`on_finish`函数对于计算试次开始时无从知晓的数据很有用。例如，在上面的Flanker任务中，我们可以使用`on_finish`函数检查被试反应是否正确，并在data中添加一个`correct`属性，其值可以是true或false。
+`on_finish`函数对于计算试次开始时无从知晓的数据很有用。例如，在上面的Flanker任务中，我们可以使用`on_finish`函数检查被试反应是否正确，并在data中添加一个`correct`属性，其值可以是`true`或`false`。
 
 ```javascript
 // in addition to all of the standard data collected for this trial, 
@@ -124,7 +130,7 @@ var trial = {
 // which is either 'true' or 'false'
 // depending on the response that was made
 var trial = {
-  type: 'html-keyboard-response',
+  type: jsPsychHtmlKeyboardResponse,
   stimulus: '<<<<<',
   choices: ['f','j'],
   data: {
@@ -148,7 +154,7 @@ var trial = {
 
 ```javascript
 var trial = {
-  type: 'image-keyboard-response',
+  type: jsPsychImageKeyboardResponse,
   stimulus: 'imgA.png',
   on_load: function() {
     // this will change the src attribute of the image after 500ms
@@ -161,7 +167,7 @@ var trial = {
 
 ### css_classes参数
 
-`css_classes`参数可以给jsPsych呈现内容的元素添加一系列class名，且只对当前试次生效。这样，我们就可以添加一些这在当前试次生效的CSS样式。如果需要将CSS样式添加到页面上的其他元素，则可以在类名的基础上添加其他选择器。
+`css_classes`会给当前试次中呈现实验内容的元素添加class名。这样，我们就可以添加一些只在当前试次生效的CSS样式。如果需要将CSS样式添加到页面上的其他元素，则可以在类名的基础上添加其他选择器。
 
 ```html
 <style>
@@ -177,13 +183,13 @@ var trial = {
 </style>
 <script>
   var fixation_trial = {
-    type: 'html-keyboard-response',
-    choices: jsPsych.NO_KEYS,
+    type: jsPsychHtmlKeyboardResponse,
+    choices: "NO_KEYS",
     stimulus: '+',
     css_classes: ['fixation']
   };
   var flanker_trial = {
-    type: 'html-keyboard-response',
+    type: jsPsychHtmlKeyboardResponse,
     choices: ["ArrowLeft", "ArrowRight"],
     stimulus: '>>>>>',
     prompt: '<span id="prompt">Press the left or right arrow key.</span>',
@@ -198,7 +204,7 @@ var trial = {
 
 ```javascript
 var trial = {
-  type: 'html-button-response',
+  type: jsPsychHtmlButtonResponse,
   stimulus: '<p style="color: orange; font-size: 48px; font-weight: bold;">BLUE</p>',
   choices: function() {
     return jsPsych.randomization.shuffle(['Yes','No']);
@@ -216,7 +222,7 @@ var trial = {
 }
 ```
 
-!!! note "注意" 
+!!!note "注意"`
     不能删除`internal_node_id`和`trial_index`值，因为jsPsych会用到这些值。
 
 ## 所有插件都收集的数据
@@ -232,89 +238,6 @@ var trial = {
 | time_elapsed     | 数值   | 从实验开始到当前试次结束经过的毫秒数。 |
 | internal_node_id | 字符串 | 定义当前时间线节点的字符串。           |
 
-## 开发插件
+## 创建新插件
 
-如果需要使用jsPsych执行库中不包含的任务，可以自己开发新的插件或对现有插件进行修改。所执行的任务种类不限。只要是能够使用JavaScript执行的，基本就可以转化为jsPsych插件的形式。
-
-### 插件文件中有什么？
-
-插件文件有一个固定的模板。只有按照模板编写插件，jsPsych才能正常运行插件。而插件之所以非常灵活，是因为模板对代码的限制很少。模板如下：
-
-```js
-jsPsych.plugins['plugin-name'] = (function(){
-
-  var plugin = {};
-
-  plugin.info = {
-    name: 'plugin-name',
-    parameters: {
-    }
-  }
-
-  plugin.trial = function(display_element, trial){
-    jsPsych.finishTrial();
-  }
-
-  return plugin;
-
-})();
-```
-
-现在这个插件就已经可以使用了。它定义了一个名为'plugin-name'的插件，但什么功能也没有。不过，这个插件不会破坏实验进程，jsPsych会将其视为有效的插件。
-
-我们来仔细看看这个插件。
-
-插件的整体结构是按照模块化的设计模式来的。该模式使用了JavaScript的匿名闭包，代码的第一行是`(function(){`，最后一行是`})();`。这些细节不重要，不过如果你想详细了解也可以看[这里](http://www.adequatelygood.com/JavaScript-Module-Pattern-In-Depth.html)。使用这种模式的原因是可以控制状态恒定，并使用私有的变量作用域。换言之，该插件是独立的，不受其他插件影响。
-
-该模块包含了一个名为`plugin`的对象，它有两个属性：`info`和`trial`。模块的末尾会返回`plugin`对象，从而定义了`jsPsych['plugin-name']`的`plugin`属性。
-
-#### plugin.info
-
-插件的`info`属性是一个包含了所有可选参数的对象。该对象的每个属性名对应了插件的参数名，其值是包含了该参数的描述、类型（字符串、整数等）和默认值的对象。详见jsPsych的plugins文件夹的插件文件。
-
-jsPsych允许[在插件中使用动态参数](dynamic-parameters.html)，即参数值可以是函数，该函数在试次开始时执行。不过，如果你希望插件值是函数但不希望该函数在试次开始时执行，则应该将参数类型设置为`'FUNCTION'`，以便让jsPsych知道不要像对其他动态参数一样执行这个函数。详见`canvas-*`系列插件。
-
-#### plugin.trial
-
-插件的`trial`属性是运行试次的函数。该方法有两个传入参数，第一个是`display_element`，即渲染jsPsych内容的DOM元素，该参数为一个HTML元素。通常情况下，我们不需要管这个参数形式是否正确，只需要假定它就是一个HTML元素，并使用相应的方法即可。第二个参数是`trial`，这是一个包含了当前试次所有参数值的对象。如果我们在`plugin.info`中添加了参数和默认值，则`trial`对象会自动将默认值赋给试次定义阶段没有赋值的参数。
-
-`trial`方法中唯一的硬性要求是在试次结束时调用`jsPsych.finishTrial()`，以便告诉jsPsych进入下一个试次（或者，如果这已经是最后一个试次了，则结束实验）。在此之前，插件可以执行自己的功能。
-
-当然，除了结束试次，你肯定还需要`plugin.trial`函数内执行其他功能。下面是一些示例：
-
-### 改变页面内容
-
-改变页面内容有若干方法。`display_element`参数对应着呈现内容的DOM元素，所以我们可以通过JavaScript中和DOM元素交互的方法改变页面内容。其中常见的方法之一是改变`innerHTML`。
-
-```javascript
-var html_content = '<p>This is the first paragraph</p>';
-html_content += '<p>This is the second paragraph</p>';
-
-display_element.innerHTML = html_content;
-```
-
-jsPsych在试次开始前或结束后不会清空页面内容，所以我们需要在试次结束时通过`innerHTML`清空呈现内容的DOM元素的内容：
-
-```javascript
-// clear the display
-display_element.innerHTML = '';
-```
-
-### 写入数据
-
-插件的作用包括收集数据，所以很显然我们需要添加保存数据的功能。我们可以给`jsPsych.finishTrial()`传入一个数据对象：
-
-```javascript
-var data = {
-  correct: true,
-  rt: 350
-}
-
-jsPsych.finishTrial(data);
-```
-
-这样，记录的数据中，`correct`为true，`rt`为350。jsPsych还会自动记录一些其他的数据。
-
-### 插件模板
-
-空白插件模板在`plugins/template`文件夹下。
+详见[开发插件部分](../developers/plugin-development.md)。

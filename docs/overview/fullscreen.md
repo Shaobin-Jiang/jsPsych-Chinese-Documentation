@@ -3,32 +3,32 @@
 我们可以使用jspsych-fullscreen插件在全屏模式下运行实验。
 
 ```javascript
+var jsPsych = initJsPsych();
+
 var timeline = [];
 
 timeline.push({
-  type: 'fullscreen',
+  type: jsPsychFullscreen,
   fullscreen_mode: true
 });
 
 timeline.push({
-  type: 'html-keyboard-response',
+  type: jsPsychHtmlKeyboardResponse,
   stimulus: 'This trial will be in fullscreen mode.'
 });
 
 // exit fullscreen mode
 timeline.push({
-  type: 'fullscreen',
+  type: jsPsychFullscreen,
   fullscreen_mode: false
 });
 
 timeline.push({
-  type: 'html-keyboard-response',
+  type: jsPsychHtmlKeyboardResponse,
   stimulus: 'This trial will NOT be in fullscreen mode.'
 });
 
-jsPsych.init({
-  timeline: timeline
-});
+jsPsych.run(timeline);
 ```
 
 出于安全方面的考虑，浏览器要求被试先和浏览器进行交互才能进入全屏。所以，fullscreen插件会呈现一个按钮，被试通过点击该按钮进入全屏。
