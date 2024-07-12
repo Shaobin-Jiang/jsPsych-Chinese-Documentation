@@ -1,0 +1,2721 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../fullscreen/">
+      
+      
+        <link rel="next" href="../exclude-browser/">
+      
+      
+      <link rel="icon" href="../../img/jspsych-favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
+    
+    
+      
+        <title>眼动 - jsPsych中文文档</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="jsPsych中文文档" class="md-header__button md-logo" aria-label="jsPsych中文文档" data-md-component="logo">
+      
+  <img src="../../img/jspsych-logo-no-text-mono.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            jsPsych中文文档
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              眼动
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Shaobin-Jiang/jsPsych-Chinese-Documentation" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Shaobin-Jiang/jsPsych-Chinese-Documentation
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="jsPsych中文文档" class="md-nav__button md-logo" aria-label="jsPsych中文文档" data-md-component="logo">
+      
+  <img src="../../img/jspsych-logo-no-text-mono.svg" alt="logo">
+
+    </a>
+    jsPsych中文文档
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Shaobin-Jiang/jsPsych-Chinese-Documentation" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Shaobin-Jiang/jsPsych-Chinese-Documentation
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    简介
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    新手教程
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            新手教程
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/hello-world/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基础的Hello World
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/rt-task/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    演示实验：简单反应时实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/video-tutorials/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    视频教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    概述
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            概述
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../timeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    创建实验：时间线
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugins/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    插件
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dynamic-parameters/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    动态参数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../style/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    控制呈现样式
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    数据存储、汇总和操作
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../running-experiments/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    运行实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../experiment-options/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    实验设置
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../callbacks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    事件相关回调函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../record-browser-interactions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    记录浏览器交互
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../media-preloading/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    多媒体文件预加载
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fullscreen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    全屏实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    眼动
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    眼动
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      开始
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="开始">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#webgazerjs" class="md-nav__link">
+    <span class="md-ellipsis">
+      加载webgazer.js
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jspsychwebgazer" class="md-nav__link">
+    <span class="md-ellipsis">
+      加载jsPsych的webgazer扩展
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      初始化摄像头
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      校准
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      验证
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      在试次中加入眼动
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      提高数据质量的几点建议
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exclude-browser/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    根据浏览器类型排除被试
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../progress-bar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    进度条
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prolific/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    接入Prolific
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mturk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    接入Mechanical Turk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-device-support/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    支持的浏览器和设备
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    参考
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            参考
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core_library/jspsych-core/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jsPsych
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core_library/jspsych-data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jsPsych.data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core_library/jspsych-randomization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jsPsych.randomization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core_library/jspsych-turk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jsPsych.turk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core_library/jspsych-pluginAPI/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jsPsych.pluginAPI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    插件
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            插件
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/list-of-plugins/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    插件列表
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-animation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-animation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-audio-button-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-audio-button-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-audio-keyboard-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-audio-keyboard-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-audio-slider-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-audio-slider-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-canvas-button-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-canvas-button-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-canvas-keyboard-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-canvas-keyboard-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-canvas-slider-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-canvas-slider-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-call-function/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-call-function
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-categorize-animation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-categorize-animation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-categorize-html/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-categorize-html
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-categorize-image/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-categorize-image
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-cloze/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-cloze
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-external-html/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-external-html
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-free-sort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-free-sort
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-fullscreen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-fullscreen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-html-button-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-html-button-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-html-keyboard-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-html-keyboard-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-html-slider-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-html-slider-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-iat-html/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-iat-html
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-iat-image/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-iat-image
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-image-button-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-image-button-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-image-keyboard-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-image-keyboard-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-image-slider-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-image-slider-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-instructions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-instructions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-maxdiff/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-maxdiff
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-preload/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-preload
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-rdk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-rdk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-reconstruction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-reconstruction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-resize/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-resize
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-same-different-html/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-same-different-html
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-same-different-image/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-same-different-image
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-serial-reaction-time/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-serial-reaction-time
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-serial-reaction-time-mouse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-serial-reaction-time-mouse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-survey-html-form/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-survey-html-form
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-survey-likert/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-survey-likert
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-survey-multi-choice/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-survey-multi-choice
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-survey-multi-select/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-survey-multi-select
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-survey-text/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-survey-text
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-video-button-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-video-button-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-video-keyboard-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-video-keyboard-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-video-slider-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-video-slider-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-virtual-chinrest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-virtual-chinrest
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-visual-search-circle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-visual-search-circle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-vsl-animate-occlusion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-vsl-animate-occlusion
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-vsl-grid-scene/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-vsl-grid-scene
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-webgazer-calibrate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-webgazer-calibrate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-webgazer-init-camera/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-webgazer-init-camera
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-webgazer-validate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-webgazer-validate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    扩展
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            扩展
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extensions/extensions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    扩展
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extensions/jspsych-ext-webgazer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-ext-webgazer.js
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    关于
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            关于
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    关于jsPsych
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/support/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    寻求帮助
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/contributing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    贡献代码
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/license/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    许可证
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      开始
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="开始">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#webgazerjs" class="md-nav__link">
+    <span class="md-ellipsis">
+      加载webgazer.js
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jspsychwebgazer" class="md-nav__link">
+    <span class="md-ellipsis">
+      加载jsPsych的webgazer扩展
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      初始化摄像头
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      校准
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      验证
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      在试次中加入眼动
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      提高数据质量的几点建议
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      示例
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="_1">眼动<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>jsPsych通过<a href="https://webgazer.cs.brown.edu/">WebGazer</a>库支持眼动功能。WebGazer通过计算机视觉技术，使用webcam识别被试的眼睛，并预测注视点。该系统通过被试点击或注视屏幕上特定位置的方式进行校准。这些位置和眼部特征有关。注视点通过回归进行预测。</p>
+<h2 id="_2">开始<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="webgazerjs">加载webgazer.js<a class="headerlink" href="#webgazerjs" title="Permanent link">&para;</a></h3>
+<p>jsPsych目前不支持<a href="https://webgazer.cs.brown.edu/#download">官方版本的WebGazer</a>。我们在<a href="https://github.com/jspsych/WebGazer">fork的版本</a>中做了一些微调，从而更适用于jsPsych的一般使用场景，如需要更精确地计时的时候。</p>
+<p>我们fork的版本也在jsPsych的发行版当中，可以在<code>/examples/js/webgazer</code>文件夹下找到。你需要把这个文件夹复制到你的项目文件夹下。当前的教程假定该路径为<code>/js/webgazer</code>，但你也可以根据自己的喜好进行修改。 </p>
+<p>通过<code>&lt;script&gt;</code>标签引入<code>webgazer.js</code>。</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;jspsych/jspsych.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;js/webgazer/webgazer.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+</code></pre></div>
+<h3 id="jspsychwebgazer">加载jsPsych的webgazer扩展<a class="headerlink" href="#jspsychwebgazer" title="Permanent link">&para;</a></h3>
+<p><a href="/extensions/jspsych-ext-webgazer.html">webgazer扩展</a>可以增强jsPsych和webgazer的交互，我们像加载插件一样加载该扩展。</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;jspsych/jspsych.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;webgazer.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;jspsych/extensions/jspsych-ext-webgazer.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>在实验中使用WebGazer扩展时需要在<code>jsPsych.init()</code>中的<code>extensions</code>属性下进行指定。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">timeline</span><span class="o">:</span><span class="w"> </span><span class="p">[...],</span>
+<span class="w">  </span><span class="nx">extensions</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;webgazer&#39;</span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">})</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">小贴士</p>
+<p>使用WebGazer的实验示例可以在<strong>/examples</strong>文件夹下找到。详见<code>webgazer.html</code>, <code>webgazer_image.html</code>, 和 <code>webgazer_audio.html</code>。</p>
+</div>
+<h3 id="_3">初始化摄像头<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>眼动实验中，我们可以使用<a href="/plugins/jspsych-webgazer-init-camera.html">jspsych-webgazer-init-camera插件</a>来帮助被试调整脸的摆放位置。这个插件会把摄像头看到的呈现给被试，包括面部特征点，且会在被试面部位置合适后才继续实验。如果没有获得权限，这个插件还会请求访问webcam的权限。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">init_camera_trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;webgazer-init-camera&#39;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="_4">校准<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>我们可以使用<a href="/plugins/jspsych-webgazer-calibrate.html">jspsych-webgazer-calibrate插件</a>校准WebGazer。这个插件会呈现一系列校准点，并允许我们选择校准的方式——点击或注视，我们通过百分比的方式制定校准点的位置，如，<code>[25,50]</code>会在距屏幕左侧25%屏幕宽度、距屏幕上方50%屏幕高度位置呈现校准点。<a href="/plugins/jspsych-webgazer-calibrate.html">这个插件的文档</a>对校准进行了详尽的说明。</p>
+<p>注意，calibration插件中不包含指导语，所以你需要使用别的插件（如，<code>html-button-response</code>）在校准前呈现指导语。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">calibration_trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;webgazer-calibrate&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">calibration_points</span><span class="o">:</span><span class="w"> </span><span class="p">[[</span><span class="mf">25</span><span class="p">,</span><span class="mf">50</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">50</span><span class="p">,</span><span class="mf">50</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">75</span><span class="p">,</span><span class="mf">50</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">50</span><span class="p">,</span><span class="mf">25</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">50</span><span class="p">,</span><span class="mf">75</span><span class="p">]],</span>
+<span class="w">  </span><span class="nx">calibration_mode</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;click&#39;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="_5">验证<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>我们可以使用<a href="/plugins/jspsych-webgazer-validate.html">jspsych-webgazer-vaidate插件</a>验证校准的准确性。和calibration插件一样，我们可以设置一系列验证点。这里，.我们可以按照百分比或距离屏幕中心的像素值进行设置，这取决于你在实验过程是怎么定义的你的刺激的。你还可以设置每个验证点周围可接受范围的半径，插件会自动计算落在该范围内的注视点的比例。这有助于我们确定是否需要重新校准。<a href="/plugins/jspsych-webgazer-validate.html">这个插件的文档</a>对验证进行了详尽的说明。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">validation_trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;webgazer-validate&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">validation_points</span><span class="o">:</span><span class="w"> </span><span class="p">[[</span><span class="o">-</span><span class="mf">200</span><span class="p">,</span><span class="mf">200</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">200</span><span class="p">,</span><span class="mf">200</span><span class="p">],[</span><span class="o">-</span><span class="mf">200</span><span class="p">,</span><span class="o">-</span><span class="mf">200</span><span class="p">],[</span><span class="mf">200</span><span class="p">,</span><span class="o">-</span><span class="mf">200</span><span class="p">]],</span>
+<span class="w">  </span><span class="nx">validation_point_coordinates</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;center-offset-pixels&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">roi_radius</span><span class="o">:</span><span class="w"> </span><span class="mf">100</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>验证阶段会将被试对每个验证点的注视的原始数据存储起来，还会记录被试注视点的平均、对于每个验证点落在<code>roi_radius</code>内的注视点的百分比以及每秒采样的数量。</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nx">raw_gaze</span><span class="o">:</span><span class="w"> </span><span class="p">[...],</span>
+<span class="w">  </span><span class="nx">percent_in_roi</span><span class="o">:</span><span class="w"> </span><span class="p">[...],</span>
+<span class="w">  </span><span class="nx">average_offset</span><span class="o">:</span><span class="w"> </span><span class="p">[...],</span>
+<span class="w">  </span><span class="nx">samples_per_sec</span><span class="o">:</span><span class="w"> </span><span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>我们推荐在实验中周期性进行校准和验证。</p>
+<h3 id="_6">在试次中加入眼动<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>如果需要在实验中使用眼动，可以在试次中加入扩展。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;html-keyboard-response&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">stimulus</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&lt;img id=&quot;scene&quot; src=&quot;my-scene.png&quot;&gt;&lt;/img&gt;&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">extensions</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;webgazer&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">      </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="nx">targets</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;#scene&#39;</span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>这样，就会在试次开始时启动WebGazer。</p>
+<p>我们可以向<code>extensions</code>中的<code>params</code>属性中传入一系列<a href="https://www.w3schools.com/cssref/css_selectors.asp">CSS选择器</a>。试次会记录每个被选中的DOM元素的<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect">边界矩形</a>。这样就方便我们将注视数据和屏幕上的内容联系起来。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">webgazer_targets</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="s1">&#39;selector&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="nx">y</span><span class="o">:</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="nx">height</span><span class="o">:</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="nx">width</span><span class="o">:</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="nx">top</span><span class="o">:</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="nx">left</span><span class="o">:</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="nx">right</span><span class="o">:</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="nx">bottom</span><span class="o">:</span><span class="p">...}</span>
+<span class="w">  </span><span class="s1">&#39;selector&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="nx">y</span><span class="o">:</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="nx">height</span><span class="o">:</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="nx">width</span><span class="o">:</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="nx">top</span><span class="o">:</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="nx">left</span><span class="o">:</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="nx">right</span><span class="o">:</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="nx">bottom</span><span class="o">:</span><span class="p">...}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>注视数据会被添加到试次数据的<code>webgazer_data</code>属性下。注视数据是一个对象数组，每个对象包含了<code>x</code>、<code>y</code>和<code>t</code>属性。<code>x</code>、<code>y</code>属性以像素为单位描述被试的注视位置，<code>t</code>则记录了当前距离实验开始经过的毫秒数。注意，我们很难对不同浏览器、系统下测量的精确性进行控制。比如说，不同浏览器可能会导致<code>t</code>的精确度有所不同。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">webgazer_data</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="nx">y</span><span class="o">:</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="nx">t</span><span class="o">:</span><span class="w"> </span><span class="p">...},</span>
+<span class="w">  </span><span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="nx">y</span><span class="o">:</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="nx">t</span><span class="o">:</span><span class="w"> </span><span class="p">...},</span>
+<span class="w">  </span><span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="nx">y</span><span class="o">:</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="nx">t</span><span class="o">:</span><span class="w"> </span><span class="p">...},</span>
+<span class="w">  </span><span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="nx">y</span><span class="o">:</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="nx">t</span><span class="o">:</span><span class="w"> </span><span class="p">...}</span>
+<span class="p">]</span>
+</code></pre></div>
+<h2 id="_7">提高数据质量的几点建议<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>下面这些因素有助于提高数据质量。</p>
+<ol>
+<li>摄像机输入质量很重要。好的光照条件会起到重要的作用，所以应要求被试在采光良好的屋子里进行眼动实验。</li>
+<li>被试需要在校准期间和之后保持头部相对的静止。校准对于头动的鲁棒性不是很好。</li>
+<li>WebGazer基于点击的校准可以在整个实验过程中使用。你可以通过在实验任意阶段调用<code>jsPsych.extensions.webgazer.startMouseCalibration()</code>启动这一功能。如果你使用一个“继续”按钮让被试进入下一个试次，然后每次移动按钮的位置，就可以在实验全程对校准进行小的调整。</li>
+<li>相比于jsPsych其他功能，进行注视预测会消耗更多的计算资源。WebGazer可以达到的最大取样率取决于被试设备的算力，所以我们需要让被试在实验开始前关掉不必要的软件和浏览器窗口。我们在验证阶段也需要检查取样率是否够。</li>
+</ol>
+<p>如果你有一些基于自身经历的建议，可以在<a href="https://github.com/jspsych/jsPsych/discussions">GitHub discussion</a>上进行分享，我们会把它加到这个列表中。</p>
+<h2 id="_8">示例<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>下面的例子就是我们把上述内容整合起来的样子。</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;jspsych/jspsych.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;jspsych/plugins/jspsych-preload.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;jspsych/plugins/jspsych-image-keyboard-response.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;jspsych/plugins/jspsych-html-keyboard-response.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;jspsych/plugins/jspsych-webgazer-init-camera.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;jspsych/plugins/jspsych-webgazer-calibrate.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;jspsych/plugins/jspsych-webgazer-validation.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;js/webgazer/webgazer.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;jspsych/extensions/jspsych-ext-webgazer.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;jspsych/css/jspsych.css&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">preload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;preload&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">images</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;img/blue.png&#39;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">init_camera</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;webgazer-init-camera&#39;</span>
+<span class="p">}</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">calibration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;webgazer-calibrate&#39;</span>
+<span class="p">}</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">validation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;webgazer-validate&#39;</span>
+<span class="p">}</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;html-keyboard-response&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">stimulus</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Press any key to start.&#39;</span>
+<span class="p">}</span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;image-keyboard-response&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">stimulus</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;img/blue.png&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">choices</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">NO_KEYS</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">trial_duration</span><span class="o">:</span><span class="w"> </span><span class="mf">1000</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">extensions</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;webgazer&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">      </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="nx">targets</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;#jspsych-image-keyboard-response-stimulus&#39;</span><span class="p">]}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="nx">jsPsych</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">timeline</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">init_camera</span><span class="p">,</span><span class="w"> </span><span class="nx">calibration</span><span class="p">,</span><span class="w"> </span><span class="nx">validation</span><span class="p">,</span><span class="w"> </span><span class="nx">start</span><span class="p">,</span><span class="w"> </span><span class="nx">trial</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">preload_images</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;img/blue.png&#39;</span><span class="p">],</span>
+<span class="w">  </span><span class="nx">extensions</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;webgazer&#39;</span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>这下面是上面实验中使用image-keyboard-response的试次中的示例数据。除了这个插件自己收集的数据，我们还可以看到额外增加了<code>webgazer_data</code>和<code>webgazer_targets</code>数组。<code>webgazer_data</code>呈现了图片呈现的1秒期间所做的21个注视点的预测，而<code>webgazer_targets</code>数组则表明有一个目标，即image-keyboard-response的stimulus，并记录了目标（图片）矩形边界的x和y坐标。通过比较<code>webgazer_targets</code>中的边界和<code>webgazer_data</code>中的每一个x/y位置，我们可以确定注视点是否/什么时候落在了目标区域内。</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="s2">&quot;rt&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;stimulus&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;img/blue.png&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;response&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;trial_type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;image-keyboard-response&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;trial_index&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;time_elapsed&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">30701</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;internal_node_id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0.0-4.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;webgazer_data&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">1065</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">437</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;t&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">39</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">943</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">377</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;t&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">79</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">835</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">332</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;t&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">110</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">731</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">299</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;t&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">146</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">660</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">271</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;t&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">189</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">606</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">251</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;t&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">238</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">582</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">213</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;t&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">288</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">551</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">200</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;t&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">335</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">538</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">183</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;t&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">394</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">514</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">177</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;t&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">436</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">500</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">171</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;t&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">493</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">525</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">178</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;t&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">542</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">537</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">182</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;t&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">592</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">543</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">178</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;t&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">633</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">547</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">177</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;t&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">691</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">558</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">174</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;t&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">739</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">574</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">183</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;t&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">789</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">577</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">197</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;t&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">838</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">584</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">214</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;t&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">889</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">603</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">218</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;t&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">937</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;x&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">606</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;y&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">221</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;t&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">987</span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="s2">&quot;webgazer_targets&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;#jspsych-image-keyboard-response-stimulus&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="s2">&quot;x&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">490</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;y&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">135</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;height&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">300</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;width&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">300</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;top&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">135</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;bottom&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">435</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;left&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">490</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;right&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">790</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2021 Shaobin Jiang
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Shaobin-Jiang/jsPsych-Chinese-Documentation" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+        <script src="../../scripts/convert.js"></script>
+      
+    
+  </body>
+</html>

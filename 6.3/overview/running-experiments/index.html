@@ -1,0 +1,2540 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../data/">
+      
+      
+        <link rel="next" href="../experiment-options/">
+      
+      
+      <link rel="icon" href="../../img/jspsych-favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
+    
+    
+      
+        <title>运行实验 - jsPsych中文文档</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="jsPsych中文文档" class="md-header__button md-logo" aria-label="jsPsych中文文档" data-md-component="logo">
+      
+  <img src="../../img/jspsych-logo-no-text-mono.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            jsPsych中文文档
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              运行实验
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Shaobin-Jiang/jsPsych-Chinese-Documentation" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Shaobin-Jiang/jsPsych-Chinese-Documentation
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="jsPsych中文文档" class="md-nav__button md-logo" aria-label="jsPsych中文文档" data-md-component="logo">
+      
+  <img src="../../img/jspsych-logo-no-text-mono.svg" alt="logo">
+
+    </a>
+    jsPsych中文文档
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Shaobin-Jiang/jsPsych-Chinese-Documentation" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Shaobin-Jiang/jsPsych-Chinese-Documentation
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    简介
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    新手教程
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            新手教程
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/hello-world/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基础的Hello World
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/rt-task/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    演示实验：简单反应时实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorials/video-tutorials/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    视频教程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    概述
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            概述
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../timeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    创建实验：时间线
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugins/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    插件
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dynamic-parameters/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    动态参数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../style/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    控制呈现样式
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    数据存储、汇总和操作
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    运行实验
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    运行实验
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      离线运行
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="离线运行">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cross-origin-requests-cors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cross-origin requests (CORS) 和安全模式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      多媒体文件预加载
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      永久保存数据
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      在线运行
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="在线运行">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      托管实验和保存数据
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      招募被试
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../experiment-options/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    实验设置
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../callbacks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    事件相关回调函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../record-browser-interactions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    记录浏览器交互
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../media-preloading/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    多媒体文件预加载
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fullscreen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    全屏实验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eye-tracking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    眼动
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exclude-browser/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    根据浏览器类型排除被试
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../progress-bar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    进度条
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prolific/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    接入Prolific
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mturk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    接入Mechanical Turk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-device-support/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    支持的浏览器和设备
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    参考
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            参考
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core_library/jspsych-core/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jsPsych
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core_library/jspsych-data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jsPsych.data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core_library/jspsych-randomization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jsPsych.randomization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core_library/jspsych-turk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jsPsych.turk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core_library/jspsych-pluginAPI/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jsPsych.pluginAPI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    插件
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            插件
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/list-of-plugins/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    插件列表
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-animation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-animation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-audio-button-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-audio-button-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-audio-keyboard-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-audio-keyboard-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-audio-slider-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-audio-slider-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-canvas-button-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-canvas-button-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-canvas-keyboard-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-canvas-keyboard-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-canvas-slider-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-canvas-slider-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-call-function/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-call-function
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-categorize-animation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-categorize-animation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-categorize-html/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-categorize-html
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-categorize-image/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-categorize-image
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-cloze/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-cloze
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-external-html/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-external-html
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-free-sort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-free-sort
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-fullscreen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-fullscreen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-html-button-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-html-button-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-html-keyboard-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-html-keyboard-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-html-slider-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-html-slider-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-iat-html/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-iat-html
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-iat-image/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-iat-image
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-image-button-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-image-button-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-image-keyboard-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-image-keyboard-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-image-slider-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-image-slider-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-instructions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-instructions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-maxdiff/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-maxdiff
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-preload/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-preload
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-rdk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-rdk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-reconstruction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-reconstruction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-resize/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-resize
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-same-different-html/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-same-different-html
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-same-different-image/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-same-different-image
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-serial-reaction-time/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-serial-reaction-time
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-serial-reaction-time-mouse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-serial-reaction-time-mouse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-survey-html-form/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-survey-html-form
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-survey-likert/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-survey-likert
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-survey-multi-choice/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-survey-multi-choice
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-survey-multi-select/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-survey-multi-select
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-survey-text/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-survey-text
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-video-button-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-video-button-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-video-keyboard-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-video-keyboard-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-video-slider-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-video-slider-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-virtual-chinrest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-virtual-chinrest
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-visual-search-circle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-visual-search-circle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-vsl-animate-occlusion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-vsl-animate-occlusion
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-vsl-grid-scene/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-vsl-grid-scene
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-webgazer-calibrate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-webgazer-calibrate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-webgazer-init-camera/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-webgazer-init-camera
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/jspsych-webgazer-validate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-webgazer-validate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    扩展
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            扩展
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extensions/extensions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    扩展
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extensions/jspsych-ext-webgazer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jspsych-ext-webgazer.js
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    关于
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            关于
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    关于jsPsych
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/support/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    寻求帮助
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/contributing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    贡献代码
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/license/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    许可证
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      离线运行
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="离线运行">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cross-origin-requests-cors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cross-origin requests (CORS) 和安全模式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      多媒体文件预加载
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      永久保存数据
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      在线运行
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="在线运行">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      托管实验和保存数据
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      招募被试
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="_1">运行实验<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>我们可以选择如下方式运行实验：</p>
+<p><strong>离线</strong>, 直接在浏览器中使用 <code>file://</code> 协议打开HTML文件。</p>
+<p><strong>在线</strong>, 通过 <code>http://</code> 或 <code>https://</code> 协议将文件托管到服务器上。</p>
+<p>运行实验的方式不同会导致实验某些地方运行效果及可以执行的功能不同。当前文档会对此进行说明。</p>
+<h2 id="_2">离线运行<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>我们可以通过双击HTML文件等操作直接在浏览器中打开HTML文件。这样，我们会使用<code>file://</code>协议。通常情况下，这样运行实验是最快捷也是最方便的，在写代码和测试的时候很方便。</p>
+<p>不过，我们还是需要将实验放到服务器上并用数据库记录数据，因为需要这样来收数据（除非说我们使用自己的电脑做实验、收数据）。李先和在线运行实验有诸多不同。</p>
+<p>注意，除非特别说明，我们这里所说的“服务器”指的是本地服务器（在自己的电脑上运行，只能从自己的电脑上访问实验文件，通常在开发阶段使用）或远程服务器（不在自己的电脑上运行，可以通过互联网访问实验文件）。</p>
+<h3 id="cross-origin-requests-cors">Cross-origin requests (CORS) 和安全模式<a class="headerlink" href="#cross-origin-requests-cors" title="Permanent link">&para;</a></h3>
+<p>浏览器有一项名为<a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">cross-origin resource sharing (CORS)</a>的安全策略，规定了网页是否可以请求非同源（即，协议、域名、端口）的资源。在线运行试验时不需要考虑这个问题，因为所有实验文件都是同源的。但是，如果是离线运行实验，CORS会使得jsPsych的一些需要<a href="https://security.stackexchange.com/questions/190266/why-chrome-blocks-ajax-locally/190321#190321">加载本地文件</a>的功能被禁用。如果我们的实验用到了这些功能，则会出现<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors">CORS错误</a>，实验将无法进行。</p>
+<p>为了防止这些问题，jsPsych使用了安全模式，在检测到当前HTML文件是通过<code>file://</code>协议运行时，会自动禁用不能使用的功能。具体来说，当离线运行实验时：</p>
+<ul>
+<li><strong>禁用Web Audio</strong> (即使在<code>jsPsych.init</code>中将<code>use_webaudio</code>设置为true)。默认使用WebAudio API是因为这样即使更精确，但是WebAudio在离线环境下无法使用，所以此时我们会用HTML的audio播放音频。等价于在<code>jsPsych.init</code>中将<code>use_webaudio</code>设置为false。</li>
+<li><strong>禁用视频预加载</strong> (包括使用<code>preload</code>插件进行手动和自动预加载)。离线实验中还是会播放视频，但视频文件在实验期间进行加载，这会造成视频播放前出现延迟。</li>
+</ul>
+<p>安全模式通过<a href="../core_library/jspsych-core.html#jspsychinit"><code>jsPsych.init</code></a>中的<code>override_safe_mode</code>参数进行控制，还参数默认值为false。如果采用默认值，则离线运行时不需要考虑CORS错误，也不需要在实验上线的时候修改<code>jsPsych.init</code>中的设定。</p>
+<p>我们也可以将<code>override_safe_mode</code>参数设置为true，这样就可以禁用jsPsych的安全模式。这样做的前提是我们禁用了浏览器的一些安全功能 (关于Chrome中如何操作详见<a href="https://alfilatov.com/posts/run-chrome-without-cors/">这里</a>以及<a href="https://stackoverflow.com/questions/4819060/allow-google-chrome-to-use-xmlhttprequest-to-load-a-url-from-a-local-file">这里</a>），不过你需要明白这些操作是干什么的。如果你的实验不适用Web Audio也不需要预加载视频，则jsPsych的安全模式不会对实验产生影响。</p>
+<p><code>override_safe_mode</code>参数对于在线运行的实验不产生影响，因为页面使用了<code>http://</code>或<code>https://</code>协议。</p>
+<h3 id="_3">多媒体文件预加载<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>离线运行实验时，加载多媒体速度很快，因为它们就保存在电脑上，所以本地运行实验（离线或通过本地的服务器）时我们应该不会遇到文件加载延迟的问题。但是，如果是在远程服务器上运行实验，则需要通过网络获取文件，此时加载资源需要的时间更长，尤其是对于图片、音频和视频这些多媒体文件。我们在<a href="media-preloading.html">多媒体文件预加载</a>中提到，这些延迟会对刺激呈现、反应时记录造成影响。</p>
+<p>所以，我们需要确保实验中不需要重复加载成功预加载的文件。可以通过浏览器的开发者工具中的Network选项查看文件是什么时候完成加载的，也可以模拟网络连接较慢 (关于怎么在Chrome中操作详见<a href="https://developers.google.com/web/tools/chrome-devtools/network">这里</a>)。如果需要加载大量的或体积大的文件，如视频，我们可能需要在<a href="../plugins/jspsych-preload.html"><code>preload插件</code></a>中增加<code>max_load_time</code>设定的时间范围，这样即便被试的网络连接不好，也能正常进行实验。</p>
+<h3 id="_4">永久保存数据<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>我们在<a href="../data/#jspsych">数据存储、汇总和操作</a>部分提到，jsPsych会在浏览器中记录数据。离线实验时，我们无法用数据库记录数据，但还是可以把数据保存为本地文件 (使用<a href="../core_library/jspsych-data.html#localsave"><code>jsPsych.data.get().localSave</code></a>)、在实验结束后呈现在网页上 (使用<a href="../core_library/jspsych-data.html#jspsychdatadisplaydata"><code>jsPsych.data.displayData</code></a>)或把数据打印在控制台里 (使用<a href="https://www.w3schools.com/jsref/met_console_log.asp"><code>console.log</code></a>)。</p>
+<p>有时候，实验代码依赖于一些我们事先无从获取、且在数据收集过程中会改变的数据，此时我们同样需要将数据永久存储起来。例如，在一些认知行为实验中，我们需要进行<strong>版本的平衡</strong>，此时实验代码需要访问过去实验版本的分发情况并据此进行调整分发的版本，以及<strong>涉及多个阶段/训练的研究</strong>，因为我们需要根据被试当前的阶段或任务难度等对实验进行调整。</p>
+<p>如果要将这些流程自动化，就需要使用服务器。虽然我们是离线进行开发、测试后，但还是可以对上述内容进行模拟，等到上线后再换到真正的执行方式。例如，我们可以用<a href="../core_library/jspsych-randomization.html#jspsychrandomizationsamplewithoutreplacement">randomize</a>代替平衡：</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">versions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="mf">2</span><span class="p">];</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">random_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">randomization</span><span class="p">.</span><span class="nx">sampleWithoutReplacement</span><span class="p">(</span><span class="nx">versions</span><span class="p">,</span><span class="mf">1</span><span class="p">)[</span><span class="mf">0</span><span class="p">];</span>
+</code></pre></div>
+<p>或使用<a href="../core_library/jspsych-data.html#jspsychdatageturlvariable">URL query参数</a>来传入session编号或难度等数据：</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// add the variables onto the end of the URL that appears in the browser when you open the file </span>
+<span class="c1">// e.g., file:///C:/my_experiment.html?id=1&amp;sess=2&amp;diff=3</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">participant_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">getURLVariable</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">getURLVariable</span><span class="p">(</span><span class="s1">&#39;sess&#39;</span><span class="p">);</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">difficulty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">getURLVariable</span><span class="p">(</span><span class="s1">&#39;diff&#39;</span><span class="p">);</span>
+</code></pre></div>
+<h2 id="_5">在线运行<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="_6">托管实验和保存数据<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>jsPsych是一个前端的JavaScript库，在被试电脑上运行。如果要通过网络运行实验，则需要先将文件托管到公共的服务器上，然后让被试通过浏览器访问实验。被试完成实验后，数据会保存在被试电脑浏览器的存储中，如果要访问这些数据，就需要将它们发送到服务器上并存入数据库或保存为文件。</p>
+<p>出于灵活性的考虑，jsPsych没有提供单一内置的和服务器交互的功能，也正是因为这样，jsPsych兼容很多托管服务和工具，并允许研究中根据需要选择服务器。</p>
+<p>可供选择的在线运行jsPsych实验的方式包括：</p>
+<ul>
+<li><a href="https://www.cognition.run/">Cognition.run</a> - 免费且只能托管jsPsych实验的服务，其使用界面非常易用。</li>
+<li><a href="https://www.jatos.org/Whats-JATOS.html">JATOS</a> - 运行在服务器上的免费程序，提供了搭建实验、访问数据的GUI界面，且提供了创建较为复杂的实验及管理研究者的功能。</li>
+<li><a href="https://pavlovia.org/">Pavlovia</a> - 提供托管在线实验的付费服务，由PsychoPy团队运营。通过GitLab仓库管理实验文件。被试可以通过Pavlovia链接访问实验。</li>
+<li><a href="https://psiturk.org/">PsiTurk</a> - 基于Python的程序，可以在你自己的电脑上托管实验并从MTurk手机数据（详见下面招募被试部分）。相对容易使用。</li>
+<li><a href="https://languagelearninglab.gitbook.io/pushkin/">Pushkin</a> - 包含了一系列搭建在线实验的工具。和其他方式不同，当前方式可以搭建一个包含多个实验的网站，同时包括实验室信息、被试登录以及其他面向大规模数据收集的功能。</li>
+<li>完全自定义 - 我们也可以搭建自己的服务器和数据库，并自己处理通信问题。可以使用<a href="https://www.digitalocean.com/community/tutorial_collections/how-to-install-lamp">LAMP</a>/<a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-20-04">LEMP</a> (Linux操作系统 + Apache 或 Nginx + MySQL数据库 + PHP)这种传统的服务器套件，也可以使用其他常用的服务器框架如<a href="https://flask.palletsprojects.com/">Flask</a> (Python) 和 <a href="https://nodejs.org/">Node.js</a> (JavaScript)。</li>
+</ul>
+<h3 id="_7">招募被试<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>实验上线后，就可以和线下实验一样开始招募被试了。比如说，如果你所在的机构使用SONA，就可以把你的实验链接贴到SONA上。SONA允许我们将一个ID嵌入到实验的URL中，然后我们可以使用<a href="../core_library/jspsych-data.html#jspsychdatageturlvariable">jsPsych's URL query参数相关的函数</a>记录该内容。SONA还会生成一个用于在完成实验后让被试跳转的URL，这样在SONA就会将被试标记为已完成实验。</p>
+<p>为了充分发挥线上实验的优势，很多研究者会面向更多人宣传他们的实验。除了可以通过社交媒体和其他媒体招募被试外，我们还可以使用一些商业平台宣传实验并向匿名的被试支付被试费。这些平台的使用需要收费，其优势在于帮助我们管理被试费支付和筛选被试。常用的在线行为实验被试招募平台包括：</p>
+<ul>
+<li><a href="https://www.prolific.co/">Prolific</a>: 在线劳动市场，面向在线研究。</li>
+<li><a href="https://www.mturk.com/">Amazon Mechanical Turk (MTurk)</a>: 在线劳动市场，用于宣传有偿的“脑力劳动”。该服务本来面向商业应用，但多年来也被用于行为研究。</li>
+</ul>
+<p>和SONA一样，Prolific和MTurk也使用URL query参数获取被试信息并在实验结束后跳转到特定URL。jsPsych内置了<a href="../core_library/jspsych-turk.html">便于和MTurk上的被试交互的函数</a>。关于如何将jsPsych实验接入Prolific的信息可以在官网上找到。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2021 Shaobin Jiang
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Shaobin-Jiang/jsPsych-Chinese-Documentation" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+        <script src="../../scripts/convert.js"></script>
+      
+    
+  </body>
+</html>
