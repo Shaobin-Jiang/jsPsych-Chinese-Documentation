@@ -86,9 +86,9 @@ p#correct {
 
 ```html
 <head>
-  <script src="https://unpkg.com/jspsych@7.1.2"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
-  <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
+  <script src="https://unpkg.com/jspsych@latest"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@latest"></script>
+  <link rel="stylesheet" href="https://unpkg.com/jspsych@latest/css/jspsych.css">
   <style> 
     .jspsych-display-element {
       font-size: 25px;
@@ -105,9 +105,9 @@ p#correct {
 
 ```html
 <head>
-  <script src="https://unpkg.com/jspsych@7.1.2"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
-  <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
+  <script src="https://unpkg.com/jspsych@latest"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@latest"></script>
+  <link rel="stylesheet" href="https://unpkg.com/jspsych@latest/css/jspsych.css">
   <link rel="stylesheet" href="my_experiment_style.css">
 </head>
 ```
@@ -138,9 +138,9 @@ CSS规则也可以使用`css_classes`参数设定，从而只对特定试次作�
 
 ```html
  <head>
-  <script src="https://unpkg.com/jspsych@7.1.2"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
-  <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
+  <script src="https://unpkg.com/jspsych@latest"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@latest"></script>
+  <link rel="stylesheet" href="https://unpkg.com/jspsych@latest/css/jspsych.css">
   <style> 
     .fixation {font-size: 90px; font-weight: bold; color: gray;}
   </style>
@@ -176,9 +176,9 @@ var fixation = {
 
 ```html
 <head>
-  <script src="https://unpkg.com/jspsych@7.1.2"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
-  <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
+  <script src="https://unpkg.com/jspsych@latest"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@latest"></script>
+  <link rel="stylesheet" href="https://unpkg.com/jspsych@latest/css/jspsych.css">
   <style> 
     .left-align #stimulus {text-align: left; width: 600px;}
     .right-align #stimulus {text-align: right; width: 600px;}
@@ -206,9 +206,9 @@ var trial_procedure = {
 
 ```html
 <head>
-  <script src="https://unpkg.com/jspsych@7.1.2"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
-  <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
+  <script src="https://unpkg.com/jspsych@latest"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@latest"></script>
+  <link rel="stylesheet" href="https://unpkg.com/jspsych@latest/css/jspsych.css">
   <style> 
     .left-align #stimulus {text-align: left; width: 600px;}
     .right-align #stimulus {text-align: right; width: 600px;}

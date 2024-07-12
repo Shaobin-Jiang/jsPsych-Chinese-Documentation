@@ -8,12 +8,12 @@ jsPsych通过[WebGazer](https://webgazer.cs.brown.edu/)库支持眼动功能。W
 
 jsPsych目前不支持[官方版本的WebGazer](https://webgazer.cs.brown.edu/#download)。我们在[fork的版本](https://github.com/jspsych/WebGazer)中做了一些微调，从而更适用于jsPsych的一般使用场景，如需要更精确地计时的时候。
 
-使用时，需要将`webgazer.js`文件通过`<script>`标签引入。但是，`webgazer.js`文件并不在jsPsych的NPM包中，所以无法通过unpkg.com的CDN使用。不过，该文件可以通过jsdelivr.net的CDN使用："https://cdn.jsdelivr.net/gh/jspsych/jspsych@jspsych@7.1.2/examples/js/webgazer/webgazer.js"。
+使用时，需要将`webgazer.js`文件通过`<script>`标签引入。但是，`webgazer.js`文件并不在jsPsych的NPM包中，所以无法通过unpkg.com的CDN使用。不过，该文件可以通过jsdelivr.net的CDN使用："https://cdn.jsdelivr.net/gh/jspsych/jspsych@jspsych@latest/examples/js/webgazer/webgazer.js"。
 
 ```html
 <head>
-  <script src="https://unpkg.com/jspsych@7.1.2"></script>
-  <script src="https://cdn.jsdelivr.net/gh/jspsych/jspsych@7.1.2/examples/js/webgazer/webgazer.js"></script>
+  <script src="https://unpkg.com/jspsych@latest"></script>
+  <script src="https://cdn.jsdelivr.net/gh/jspsych/jspsych@latest/examples/js/webgazer/webgazer.js"></script>
 </head>
 ```
 
@@ -29,9 +29,9 @@ jsPsych目前不支持[官方版本的WebGazer](https://webgazer.cs.brown.edu/#d
 
 ```html
 <head>
-  <script src="https://unpkg.com/jspsych@7.1.2"></script>
-  <script src="https://cdn.jsdelivr.net/gh/jspsych/jspsych@7.1.2/examples/js/webgazer/webgazer.js"></script>
-  <script src="https://unpkg.com/@jspsych/extension-webgazer@1.0.0"></script>
+  <script src="https://unpkg.com/jspsych@latest"></script>
+  <script src="https://cdn.jsdelivr.net/gh/jspsych/jspsych@latest/examples/js/webgazer/webgazer.js"></script>
+  <script src="https://unpkg.com/@jspsych/extension-webgazer@latest"></script>
 </head>
 ```
 
@@ -157,25 +157,25 @@ webgazer_data: [
     我们还提供了一些使用WebGazer的实验样例，这些样例位于jsPsych的 **/examples** 文件夹中。详见`webgazer.html`, `webgazer_image.html`, 和 `webgazer_audio.html`。
 
 !!!example "示例"
-    下面的示例把上面的内容整合到了一起，并同时展示了如何根据验证阶段的数据判断是否需要重新校准。可以在<a href="/demos/eye-tracking-with-webgazer.html" target="_blank">去运行这个实验</a>。
+    下面的示例把上面的内容整合到了一起，并同时展示了如何根据验证阶段的数据判断是否需要重新校准。可以在<a href="../../demos/eye-tracking-with-webgazer.html" target="_blank">去运行这个实验</a>。
 
     ```html
     <!DOCTYPE html>
     <html>
       <head>
-        <script src="https://unpkg.com/jspsych@7.1.2"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.0"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.0"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-webgazer-init-camera@1.0.0"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-webgazer-calibrate@1.0.0"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-webgazer-validate@1.0.0"></script>
-        <script src="https://cdn.jsdelivr.net/gh/jspsych/jspsych@7.1.2/examples/js/webgazer/webgazer.js"></script>
-        <script src="https://unpkg.com/@jspsych/extension-webgazer@1.0.0"></script>
+        <script src="https://unpkg.com/jspsych@latest"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-preload@latest"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-button-response@latest"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@latest"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@latest"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-webgazer-init-camera@latest"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-webgazer-calibrate@latest"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-webgazer-validate@latest"></script>
+        <script src="https://cdn.jsdelivr.net/gh/jspsych/jspsych@latest/examples/js/webgazer/webgazer.js"></script>
+        <script src="https://unpkg.com/@jspsych/extension-webgazer@latest"></script>
         <link
           rel="stylesheet"
-          href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css"
+          href="https://unpkg.com/jspsych@latest/css/jspsych.css"
         />
         <style>
           .jspsych-btn {

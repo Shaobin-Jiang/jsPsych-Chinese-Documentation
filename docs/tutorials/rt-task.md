@@ -22,9 +22,9 @@
 <html>
   <head>
     <title>My experiment</title>
-    <script src="https://unpkg.com/jspsych@7.1.2"></script>
-    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
-    <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
+    <script src="https://unpkg.com/jspsych@latest"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@latest"></script>
+    <link href="https://unpkg.com/jspsych@latest/css/jspsych.css" rel="stylesheet" type="text/css" />
   </head>
   <body></body>
   <script>
@@ -78,9 +78,9 @@ jsPsych.run(timeline);
     <html>
       <head>
         <title>My experiment</title>
-        <script src="https://unpkg.com/jspsych@7.1.2"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
-        <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
+        <script src="https://unpkg.com/jspsych@latest"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@latest"></script>
+        <link href="https://unpkg.com/jspsych@latest/css/jspsych.css" rel="stylesheet" type="text/css" />
       </head>
       <body></body>
       <script>
@@ -153,9 +153,9 @@ timeline.push(instructions);
     <html>
       <head>
         <title>My experiment</title>
-        <script src="https://unpkg.com/jspsych@7.1.2"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
-        <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
+        <script src="https://unpkg.com/jspsych@latest"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@latest"></script>
+        <link href="https://unpkg.com/jspsych@latest/css/jspsych.css" rel="stylesheet" type="text/css" />
       </head>
       <body></body>
       <script>
@@ -208,10 +208,10 @@ timeline.push(instructions);
 ```html hl_lines="5"
 <head>
   <title>My experiment</title>
-  <script src="https://unpkg.com/jspsych@7.1.2"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
-  <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
+  <script src="https://unpkg.com/jspsych@latest"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@latest"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@latest"></script>
+  <link href="https://unpkg.com/jspsych@latest/css/jspsych.css" rel="stylesheet" type="text/css" />
 </head>
 ```
 
@@ -244,10 +244,10 @@ timeline.push(blue_trial, orange_trial);
     <html>
       <head>
         <title>My experiment</title>
-        <script src="https://unpkg.com/jspsych@7.1.2"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
-        <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
+        <script src="https://unpkg.com/jspsych@latest"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@latest"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@latest"></script>
+        <link href="https://unpkg.com/jspsych@latest/css/jspsych.css" rel="stylesheet" type="text/css" />
       </head>
       <body></body>
       <script>
@@ -319,11 +319,11 @@ timeline.push(blue_trial, orange_trial);
 ```html hl_lines="6"
 <head>
   <title>My experiment</title>
-  <script src="https://unpkg.com/jspsych@7.1.2"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.0"></script>
-  <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
+  <script src="https://unpkg.com/jspsych@latest"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@latest"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@latest"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-preload@latest"></script>
+  <link href="https://unpkg.com/jspsych@latest/css/jspsych.css" rel="stylesheet" type="text/css" />
 </head>
 ```
 
@@ -349,11 +349,11 @@ timeline.push(preload);
     <html>
       <head>
         <title>My experiment</title>
-        <script src="https://unpkg.com/jspsych@7.1.2"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.0"></script>
-        <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
+        <script src="https://unpkg.com/jspsych@latest"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@latest"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@latest"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-preload@latest"></script>
+        <link href="https://unpkg.com/jspsych@latest/css/jspsych.css" rel="stylesheet" type="text/css" />
       </head>
       <body></body>
       <script>
@@ -480,11 +480,11 @@ timeline.push(test_procedure);
     <html>
       <head>
         <title>My experiment</title>
-        <script src="https://unpkg.com/jspsych@7.1.2"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.0"></script>
-        <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
+        <script src="https://unpkg.com/jspsych@latest"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@latest"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@latest"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-preload@latest"></script>
+        <link href="https://unpkg.com/jspsych@latest/css/jspsych.css" rel="stylesheet" type="text/css" />
       </head>
       <body></body>
       <script>
@@ -586,6 +586,15 @@ var test_procedure = {
   repetitions: 5
 };
 ```
+
+??? info "补充：时间线变量的随机"
+    在子时间线中，当`randomize_order`为`true`且`repetitions`大于1时，每次循环的时候会对试次顺序重新随机。这意味着子时间线中所有试次的随机是有不足的。
+
+    例如，如果`timeline_variables`中一个试次对应一个刺激，那么同一刺激可能连续出现两次（前一次循环的结尾和下一次循环的开始），但不会连续出现超过两次，无论`repetitions`是多少。
+
+    如果你想要在所有试次中重复`timeline_variables`，可以将`sample`设置为`fixed-repetitions`，此时jsPsych会将几次`timeline_variables`的循环全部放到一个大的数组中，然后整个进行随机。你可以在[时间线变量部分的文档](../overview/timeline.md#_5)了解更多关于随机、重复、取样的内容。
+
+
 ??? example "完整代码"
 
     ```html
@@ -593,11 +602,11 @@ var test_procedure = {
     <html>
       <head>
         <title>My experiment</title>
-        <script src="https://unpkg.com/jspsych@7.1.2"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.0"></script>
-        <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
+        <script src="https://unpkg.com/jspsych@latest"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@latest"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@latest"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-preload@latest"></script>
+        <link href="https://unpkg.com/jspsych@latest/css/jspsych.css" rel="stylesheet" type="text/css" />
       </head>
       <body></body>
       <script>
@@ -814,11 +823,11 @@ var jsPsych = initJsPsych({
     <html>
       <head>
         <title>My experiment</title>
-        <script src="https://unpkg.com/jspsych@7.1.2"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.0"></script>
-        <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
+        <script src="https://unpkg.com/jspsych@latest"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@latest"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@latest"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-preload@latest"></script>
+        <link href="https://unpkg.com/jspsych@latest/css/jspsych.css" rel="stylesheet" type="text/css" />
       </head>
       <body></body>
       <script>
@@ -971,11 +980,11 @@ var fixation = {
     <html>
       <head>
         <title>My experiment</title>
-        <script src="https://unpkg.com/jspsych@7.1.2"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.0"></script>
-        <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
+        <script src="https://unpkg.com/jspsych@latest"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@latest"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@latest"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-preload@latest"></script>
+        <link href="https://unpkg.com/jspsych@latest/css/jspsych.css" rel="stylesheet" type="text/css" />
       </head>
       <body></body>
       <script>
@@ -1110,11 +1119,11 @@ var test = {
     <html>
       <head>
         <title>My experiment</title>
-        <script src="https://unpkg.com/jspsych@7.1.2"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.0"></script>
-        <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
+        <script src="https://unpkg.com/jspsych@latest"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@latest"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@latest"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-preload@latest"></script>
+        <link href="https://unpkg.com/jspsych@latest/css/jspsych.css" rel="stylesheet" type="text/css" />
       </head>
       <body></body>
       <script>
@@ -1259,11 +1268,11 @@ timeline.push(debrief_block);
 <html>
   <head>
     <title>My experiment</title>
-    <script src="https://unpkg.com/jspsych@7.1.2"></script>
-    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
-    <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
-    <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.0"></script>
-    <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
+    <script src="https://unpkg.com/jspsych@latest"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@latest"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@latest"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-preload@latest"></script>
+    <link href="https://unpkg.com/jspsych@latest/css/jspsych.css" rel="stylesheet" type="text/css" />
   </head>
   <body></body>
   <script>

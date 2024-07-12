@@ -21,7 +21,7 @@ var trial = {
     target_direction: 'left'
   },
   on_finish: function(data){
-    // Score the response as correct or incorrect.
+    // Score the keyboard response as correct or incorrect.
     if(jsPsych.pluginAPI.compareKeys(data.response, "f")){
       data.correct = true;
     } else {
@@ -32,6 +32,7 @@ var trial = {
 
 var feedback = {
   type: jsPsychHtmlKeyboardResponse,
+  trial_duration: 1000,
   stimulus: function(){
     // The feedback stimulus is a dynamic parameter because we can't know in advance whether
     // the stimulus should be 'correct' or 'incorrect'.

@@ -11,14 +11,6 @@
 
 **第2阶段**. 我们使用[盲点](<https://en.wikipedia.org/wiki/Blind_spot_(vision)>)任务测量被试到显示器的距离。被试需要闭上右眼，然后注释屏幕上的一个黑色正方形，与此同时一个红色点会不断地从右向左移动。 在红色点从视野消失时，被试需要按空格键。这样，当前插件可以利用红色点在消失时和黑色方块的距离估计被试到显示器的距离。这个估计过程假定被试的盲点位于13.5°。
 
-## 依赖
-
-当前插件需要SVG.js库，可以在[https://svgjs.com](https://svgjs.com/docs/3.0/)上找到。你需要在实验代码文件的`<head>`部分引入该库。
-
-```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/2.6.3/svg.min.js"></script>
-```
-
 ## 参数
 
 如果不需要则不用对默认值进行修改。

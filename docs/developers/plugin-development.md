@@ -31,7 +31,7 @@ constructor(jsPsych){
 trial方法接受以下三个参数：
 
 * `display_element`是用于渲染jsPsych的实验内容的DOM元素。该参数需要是一个`HTMLElement`，我们可以用这个参数控制将jsPsych呈现在文档额哪个部分。
-* `trial`是相应的[时间线节点](../overview/timeline)中设定的参数。
+* `trial`是相应的[时间线节点](../overview/timeline.md)中设定的参数。
 * `on_load`是一个可选参数，包含了一个回调函数，会在`trial()`完成加载后触发。详见[处理on_load事件](#asynchronous-loading)。
 
 对于`trial`方法的唯一要求是在试次完成后调用`jsPsych.finishTrial()`，这样jsPsych才能知道什么时候进入下一个试次（如果是最后一个试次，则结束实验）。在那之前，插件爱干啥干啥。
@@ -135,9 +135,9 @@ trial(display_element, trial){
 
 ### 处理键盘事件
 
-插件允许我们监听很多事件，包括`keyup`和`keydown`。`jsPsych.pluginAPI`模块包含了[`getKeyboardResponse`函数](../reference/jspsych-pluginAPI.md#jspsychpluginapigetkeyboardresponse)，该函数可以很方便地处理实验中的按键。
+插件允许我们监听很多事件，包括`keyup`和`keydown`。`jsPsych.pluginAPI`模块包含了[`getKeyboardResponse`函数](../reference/jspsych-pluginAPI.md#getkeyboardresponse)，该函数可以很方便地处理实验中的按键。
 
-下面是一个简单的例子。更多示例详见[`getKeyboardResponse`处文档](../reference/jspsych-pluginAPI.md#jspsychpluginapigetkeyboardresponse)。
+下面是一个简单的例子。更多示例详见[`getKeyboardResponse`处文档](../reference/jspsych-pluginAPI.md#getkeyboardresponse)。
 
 ```js
 trial(display_element, trial){
@@ -168,7 +168,7 @@ trial(display_element, trial){
 
 ### 异步加载
 
-[试次事件](../overview/events)中包括了`on_load`，该事件通常在`.trial()`方法完成后自动触发。在大多数情况下，这一事件发生在DOM元素的初始化（例如，渲染图片，创建事件监听器和定时器，等等）之后。但是，在某些情况下，插件可能会执行一个异步操作，该操作需要在插件的初始加载完成之前执行。例如`audio-keyboard-response`插件中，检查音频文件是否加载完成是异步操作，`.trial()`方法在音频文件初始化、DOM元素更新前就完成执行了。
+[试次事件](../overview/events.md)中包括了`on_load`，该事件通常在`.trial()`方法完成后自动触发。在大多数情况下，这一事件发生在DOM元素的初始化（例如，渲染图片，创建事件监听器和定时器，等等）之后。但是，在某些情况下，插件可能会执行一个异步操作，该操作需要在插件的初始加载完成之前执行。例如`audio-keyboard-response`插件中，检查音频文件是否加载完成是异步操作，`.trial()`方法在音频文件初始化、DOM元素更新前就完成执行了。
 
 如果您想手动触发插件的`on_load`事件，可以使用`.trial()`方法可选的第三个传入参数，该参数是加载完成时调用的回调函数。
 

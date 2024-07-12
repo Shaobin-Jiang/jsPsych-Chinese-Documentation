@@ -90,7 +90,9 @@ exclusion_message | 函数 | `() => { return <p>Your browser does not meet the r
           inclusion_function: (data) => {
             return ['chrome', 'firefox'].contains(data.browser);
           },
-          exclusion_message: `<p>You must use Chrome or Firefox to complete this experiment.</p>`
+          exclusion_message: (data) => {
+            return `<p>You must use Chrome or Firefox to complete this experiment.</p>`
+          },
         };
         ``` 
 

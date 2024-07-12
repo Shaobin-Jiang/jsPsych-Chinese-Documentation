@@ -17,6 +17,7 @@ stimulus_duration | 数值 | null | 呈现刺激的毫秒数。在超过这个�
 margin_vertical | 字符串 | '0px' | 按钮的垂直方向外边距。 
 margin_horizontal | 字符串 | '8px' | 按钮的水平方向外边距。 
 response_ends_trial | 布尔 | true | 如果为true，则当前试次会在被试做出反应时结束（假定被试是在`trial_duration`指定的时间范围内做出的反应）如果为false，则当前试次会持续到`trial_duration`指定的时间才结束。你可以把当前参数设置为`false`以让被试即便提前做了反应，看当前刺激的时间也要达到固定的时长。 
+enable_button_after            | 数值       | 0                                                 | 延迟多少毫秒后才允许被试点击按钮。|
 
 ## 数据
 

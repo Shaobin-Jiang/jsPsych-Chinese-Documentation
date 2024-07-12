@@ -3,6 +3,11 @@
 
 模拟模式可以很方便地自动运行实验并生成数据。
 
+!!! info "补充"
+    关于我们为什么要引入模拟模式以及其使用场景，见[de Leeuw, J.R., Gilbert, R.A., Petrov, N.B., & Luchterhandt, B. (2022). Simulation behavior to help researchers build experiments. *Behavior Research Methods*, https://doi.org/10.3758/s13428-022-01899-0](https://doi.org/10.3758/s13428-022-01899-0)。
+
+    pre-print版本[可以通过PsyArXiv访问](https://psyarxiv.com/mq345).
+
 ## 开始
 
 如果要使用模拟模式，需要将`jsPsych.run()`替换为`jsPsych.simulate()`。

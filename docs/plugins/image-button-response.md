@@ -23,6 +23,7 @@ margin_vertical | 字符串 | '0px' | 按钮的垂直方向外边距。
 margin_horizontal | 字符串 | '8px' | 按钮的水平方向外边距。 
 response_ends_trial | 布尔 | true | 如果为true，则当前试次会在被试做出反应时结束（假定被试是在`trial_duration`指定的时间范围内做出的反应）如果为false，则当前试次会持续到`trial_duration`指定的时间才结束。你可以把当前参数设置为`false`以让被试即便提前做了反应，看当前刺激的时间也要达到固定的时长。 
 render_on_canvas | boolean | true | 如果为true，图片会在canvas元素上进行渲染，从而避免在某些浏览器（如Firefox和Edge）中连续呈现的图片中间出现白屏的情况。如果为false，则图片会和此前版本的jsPsych一样在img元素上进行渲染。如果要呈现的是**动态图**，则当前参数必须为false，因为使用canvas渲染的方法仅支持静态图片。 
+enable_button_after            | 数值       | 0                                                 | 延迟多少毫秒后才允许被试点击按钮。|
 
 ## 数据
 

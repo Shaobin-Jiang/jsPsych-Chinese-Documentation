@@ -7,7 +7,7 @@ Node.js自带一个名为NPM (Node Package Manager)的包管理器，可以安�
 
 ### 安装Node.js
 
-jsPsych开发环境需要安装v14以上的Node.js。我们推荐[安装 v16](https://nodejs.org/en/)，因为它使用v7的NPM （这对于jsPsych仓库使用的工作空间是必需的条件）。如果一定要使用v14版本，则需要手动安装v7版本的NPM  (通过 `npm install -g npm@7`)。
+jsPsych开发环境需要[Node.js LTS](https://nodejs.org/en/download/)。
 
 ### 将仓库clone下来并安装依赖
 
@@ -27,6 +27,8 @@ git clone https://github.com/jspsych/jspsych-contrib.git && cd jspsych-contrib
 
 !!!attention "注意"
     请只在仓库的根目录下运行`npm install` (这是由NPM工作空间特性决定的)。如果不小心在别的地方运行了`npm install`，把那个路径下的`node_modules`文件夹和生成的`package-lock.json`文件删掉，然后再根目录重新运行`npm install`。
+!!! info "注意"
+    jsPsych (-contrib)仓库需要用到`canvas`包，这个包有一些预构建的二进制文件。有一些系统上找不到这些二进制文件，此时`npm install`会尝试从零构建，这样有时候会失败，报错信息中会提到`canvas`包。如果你遇到了这种问题，请参照`canvas`包的[安装指南](https://github.com/Automattic/node-canvas/wiki#installation-guides)操作，然后再运行`npm install`。
 
 !!!info "补充"
     如果在jsPsych仓库中运行`npm install`，会为仓库中所有的包进行构建，可能会花上劫难中。如果想要在这段时间内找些事情做，不妨继续读下面的部分
@@ -62,7 +64,7 @@ JsPsych用到了一套构建工具链 (见`@jspsych/config`)，可以通过`npm 
 
 jsPsych使用[Jest](https://jestjs.io/)进行自动化测试。
 
-运行测试需要Node和npm。在 jsPsych 根目录中运行 `npm install`。然后运行`npm test`。我们也可以在想测试的包目录中运行`npm test`。例如，如果测试 `html-keyboard-response` 插件，则可以在 `/packages/plugin-html-keyboard-response` 中运行 `npm test`。
+运行测试需要Node和npm。在 jsPsych 根目录中运行 `npm install`。然后运行`npm test`。我们也可以在想测试的包目录中运行`npm test`。例如，如果测试 `html-keyboard-response` 插件，则可以在 `/packages/plugin-html-keyboard-response` 中运行 `npm test`。如果想运行根目录中的某一个文件，还是以前面的例子为例，可以运行`npm test -- /packages/plugin-html-keyboard-response/src/index.spec.ts`。
 
 jsPsych库核心部分的测试位于`/packages/jspsych/tests`。
 

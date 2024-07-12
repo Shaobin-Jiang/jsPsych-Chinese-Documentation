@@ -362,6 +362,15 @@ filter方法会返回一个数据集对象，所以我们也可以对筛选后�
 var block_1_correct = jsPsych.data.get().filter({block:1, correct:true}).count();
 ```
 
+#### .filterColumns()
+
+选中数组中的多列数据；与`.ignore()`方法相反。
+
+```javascript
+// Get only the subject, rt, and condition entries for each trial.
+const subset_of_data = jsPsych.data.get().filterColumns(['subject', 'rt', 'condition'])
+```
+
 #### .filterCustom()
 
 该方法类似于`.filter()`方法，但是筛选器是一个函数。函数只有一个传入参数，是当前试次的数据。如果函数返回`true`，则该试次会保留在返回的子数据集中。

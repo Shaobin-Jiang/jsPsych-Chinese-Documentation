@@ -8,7 +8,7 @@
 
 ```html
 <head>
-  <script src="https://unpkg.com/jspsych@7.1.2"></script>
+  <script src="https://unpkg.com/jspsych@latest"></script>
   <script src="https://unpkg.com/@jspsych/extension-example@1.0.0"></script>
 </head>
 ```

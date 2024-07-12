@@ -1,8 +1,8 @@
 # 插件
 
-jsPsych中，插件定义了实验中的试次或事件。一些插件定义的是比较宽泛的事件，比如[呈现指导语](../plugins/instructions/)，[呈现图片并记录按键](../plugins/image-keyboard-response/)，或播[放音频并记录点击按钮的行为](../plugins/audio-button-response/)。其他的插件内容则更具体一些，如呈现特定类型刺激的插件（如，[视觉搜索任务](../plugins/visual-search-circle/)），或运行特定实验任务的插件 (如，[内隐联想测验](../plugins/iat-image/))。使用jsPsych创建实验时，我们需要弄清楚具体使用哪些插件来添加需要被试完成的任务。
+jsPsych中，插件定义了实验中的试次或事件。一些插件定义的是比较宽泛的事件，比如[呈现指导语](../plugins/instructions.md)，[呈现图片并记录按键](../plugins/image-keyboard-response.md)，或播[放音频并记录点击按钮的行为](../plugins/audio-button-response.md)。其他的插件内容则更具体一些，如呈现特定类型刺激的插件（如，[视觉搜索任务](../plugins/visual-search-circle.md)），或运行特定实验任务的插件 (如，[内隐联想测验](../plugins/iat-image.md))。使用jsPsych创建实验时，我们需要弄清楚具体使用哪些插件来添加需要被试完成的任务。
 
-插件提供的是试次或任务的整体结构，允许我们灵活地进行自定义。例如，[image-keyboard-response插件](../plugins/image-keyboard-response/)的功能是呈现图片并记录按键，但是我们可以定义刺激内容是什么，被试可以按哪些键，刺激呈现多久，被试反应的时间限制，等等。这些选项中很多都有默认值，虽然该插件有很多参数，但你只需要指定其中几个就可以进行使用。每个插件都有自己的文档，描述了插件的功能、可选参数以及收集的数据。
+插件提供的是试次或任务的整体结构，允许我们灵活地进行自定义。例如，[image-keyboard-response插件](../plugins/image-keyboard-response.md)的功能是呈现图片并记录按键，但是我们可以定义刺激内容是什么，被试可以按哪些键，刺激呈现多久，被试反应的时间限制，等等。这些选项中很多都有默认值，虽然该插件有很多参数，但你只需要指定其中几个就可以进行使用。每个插件都有自己的文档，描述了插件的功能、可选参数以及收集的数据。
 
 ## 使用插件
 
@@ -10,8 +10,8 @@ jsPsych中，插件定义了实验中的试次或事件。一些插件定义的�
 
 ```html
 <head>
-  <script src="https://unpkg.com/jspsych@7.1.2" type="text/javascript"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0" type="text/javascript"></script>
+  <script src="https://unpkg.com/jspsych@latest" type="text/javascript"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@latest" type="text/javascript"></script>
 </head>
 ```
 

@@ -24,6 +24,7 @@
 | response_ends_trial            | 布尔       | true                                              | 如果为true，则当前试次会在被试做出反应时结束（假定被试是在`trial_duration`指定的时间范围内做出的反应）如果为false，则当前试次会持续到`trial_duration`指定的时间才结束。你可以把当前参数设置为`false`以让被试即便提前做了反应也要听完前音频材料。 |
 | trial_ends_after_audio         | 布尔       | false                                             | 如果为true，则当前试次会在音频播放完后立刻结束。             |
 | response_allowed_while_playing | 布尔       | true                                              | 如果为true，则允许被试在音频播放期间做反应。如果为false，则被试只能在音频播放完后才能点击按钮。音频播放完后，才会启用按钮并接受被试反应（包括回放的时候） |
+| enable_button_after            | 数值       | 0                                                 | 延迟多少毫秒后才允许被试点击按钮。如果`response_allowed_while_playing`为真，则试次一开始就会启动计时；否则，会在音频播放完毕后开始计时。|
 
 ## 数据
 

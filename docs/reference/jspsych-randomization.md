@@ -468,6 +468,47 @@ var sample = jsPsych.randomization.sampleWithoutReplacement(myArray, 2);
 
 ---
 
+## jsPsych.randomization.setSeed
+
+```javascript
+jsPsych.randomization.setSeed(seed)
+```
+
+### 参数
+
+| 参数 | 类型  | 描述                    |
+| --------- | ----- | ------------------------------ |
+| seed      | 字符串 | 随机数种子 |
+
+### 返回值
+
+Returns the seed value.
+
+### 描述
+
+覆盖`Math.random()`的默认行为，创建一个可以指定种子的伪随机数生成器。它使用了[seedrandom包](https://www.npmjs.com/package/seedrandom)。注意，调用`setSeed()`会修改整个文档中`Math.random()`的行为。如果当前页面上有使用到`Math.random()`的非jsPsych元素，这些元素也会被影响。
+
+使用`setSeed()`时如果不指定种子，会产生一个随机得到32位种子。该值会作为返回值，因此可以将其保存到数据中。
+
+### 示例
+
+#### 使用32位随机种子并保存到数据
+
+```javascript
+const seed = jsPsych.randomization.setSeed();
+jsPsych.data.addProperties({
+	rng_seed: seed
+});
+```
+
+#### 使用自定义种子
+
+```javascript
+jsPsych.randomization.setSeed("jspsych");
+```
+
+---
+
 ## jsPsych.randomization.shuffle
 
 ```javascript

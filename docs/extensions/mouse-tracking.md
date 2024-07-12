@@ -1,6 +1,6 @@
 # mouse-tracking
 
-这个扩展的作用是追踪光标。特别地，它可以记录[mousemove事件](https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event)、[mousedown事件](https://developer.mozilla.org/en-US/docs/Web/API/Element/mousedown_event)和[mouseup事件](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseup_event)的`x` `y`坐标以及时间。它还会记录屏幕上的元素的[边界矩形](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect)，从而方便我们计算光标相对于屏幕上元素的活动。
+这个扩展的作用是追踪光标。特别地，它可以记录[mousemove事件](https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event)、[mousedown事件](https://developer.mozilla.org/en-US/docs/Web/API/Element/mousedown_event)和[mouseup事件](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseup_event)的`x`和`y`坐标以及时间。它还会记录屏幕上的元素的[边界矩形](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect)，从而方便我们计算光标相对于屏幕上元素的活动。
 
 ## 参数
 

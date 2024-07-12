@@ -146,7 +146,7 @@ var procedure = {
 
 ## on_trial_finish
 
-`on_trial_finish`回调可以在`initJsPsych`方法中进行声明，在实验中每一个试次结束时触发。如果你只想在特定试次结束后触发该回调，可以在试次中指定[`on_finish`](#onfinishtrial)。当前回调函数只接受一个传入参数，为对应试次中的数据对象。
+`on_trial_finish`回调可以在`initJsPsych`方法中进行声明，在实验中每一个试次结束时、试次对象的[`on_finish`](#on_finish)结束后触发。当前回调函数只接受一个传入参数，为对应试次中的数据对象。如果你只想在特定试次结束后触发该回调，可以在试次中指定[`on_finish`](#on_finish)。
 
 ```javascript
 initJsPsych({
@@ -161,7 +161,7 @@ initJsPsych({
 
 ## on_trial_start
 
-`on_trial_start`回调可以在`initJsPsych`方法中进行声明，在实验中每一个试次开始时触发。该回调函数只接受一个传入参数，为接下来要运行的试次对象，可以通过修改该对对象来对接下来的试次进行调整。
+`on_trial_start`回调可以在`initJsPsych`方法中进行声明，在实验中每一个试次开始时、试次的`on_start`开始前触发。该回调函数只接受一个传入参数，为接下来要运行的试次对象，可以通过修改该对对象来对接下来的试次进行调整。
 
 ```javascript
 var current_score = 0; // a variable that is updated throughout the experiment to keep track of the current score.

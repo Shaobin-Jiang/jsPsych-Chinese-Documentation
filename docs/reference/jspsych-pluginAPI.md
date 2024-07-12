@@ -322,6 +322,32 @@ jsPsych.pluginAPI.getAutoPreloadList(timeline);
 
 ---
 
+### getCameraRecorder
+
+```javascript
+jsPsych.pluginAPI.getCameraRecorder()
+```
+
+#### 参数
+
+无
+
+#### 返回值
+
+连接到当前摄像头的`MediaStream`的`MediaRecorder`对象。
+
+#### 描述
+
+允许访问由[initializeCameraRecorder()](#initializecamerarecorder)创建的`MediaRecorder`。如果没有摄像头，返回`null`。
+
+#### 示例
+
+```javascript
+const recorder = jsPsych.pluginAPI.getCameraRecorder();
+```
+
+---
+
 ### getMicrophoneRecorder
 
 ```javascript
@@ -344,6 +370,40 @@ jsPsych.pluginAPI.getMicrophoneRecorder()
 
 ```javascript
 const recorder = jsPsych.pluginAPI.getMicrophoneRecorder();
+```
+
+---
+
+### initializeCameraRecorder
+
+```javascript
+jsPsych.pluginAPI.initializeCameraRecorder(stream)
+```
+
+#### 参数
+
+参数 | 类型 | 描述
+----------|------|------------
+stream | `MediaStream` | 当前摄像头的`MediaStream`对象。
+opts | `MediaRecorderOptions` | 摄像头的`MediaRecorderOptions`。见[MDN](https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/MediaRecorder)。
+
+#### 返回值
+
+无
+
+#### 描述
+
+通过提供的`MediaStream`生成`MediaRecorder`并通过[getCameraRecorder()](#getcamerarecorder)存储。
+
+#### 示例
+
+```javascript
+const stream = await navigator.mediaDevices.getUserMedia({
+  audio: true,
+  video: { width: 1280, height: 720 }, // request a certain resolution
+});
+
+jsPsych.pluginAPI.initializeCameraRecorder(stream);
 ```
 
 ---

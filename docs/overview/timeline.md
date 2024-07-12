@@ -4,7 +4,7 @@
 
 ## 单个试次
 
-我们通过创建对象来定义一个试次。试次中最重要的属性是`type`参数，该参数告诉试次使用哪个插件。例如，如果要使用[html-keyboard-response插件](../plugins/html-keyboard-response)呈现一条消息，试次对象应该是这个样子：
+我们通过创建对象来定义一个试次。试次中最重要的属性是`type`参数，该参数告诉试次使用哪个插件。例如，如果要使用[html-keyboard-response插件](../plugins/html-keyboard-response.md)呈现一条消息，试次对象应该是这个样子：
 
 ```javascript
 var trial = {

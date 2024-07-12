@@ -116,7 +116,7 @@ var n = 3;
 var data = jsPsych.data.get().first(n);
 ```
 
-对数据集中的试次进行计数：
+对数据集中正确的试次进行计数：
 ```js
 var count = jsPsych.data.get().filter({correct: true}).count();
 ```

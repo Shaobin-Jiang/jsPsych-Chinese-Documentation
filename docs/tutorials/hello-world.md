@@ -44,7 +44,7 @@ jsPsych框架是通过`<script>`标签引入的。我们这里使用的jsPsych�
 <html>
   <head>
     <title>My experiment</title>
-    <script src="https://unpkg.com/jspsych@7.1.2"></script>
+    <script src="https://unpkg.com/jspsych@latest"></script>
   </head>
   <body></body>
 </html>
@@ -59,8 +59,8 @@ jsPsych框架是通过`<script>`标签引入的。我们这里使用的jsPsych�
 <html>
   <head>
     <title>My experiment</title>
-    <script src="https://unpkg.com/jspsych@7.1.2"></script>
-    <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
+    <script src="https://unpkg.com/jspsych@latest"></script>
+    <link href="https://unpkg.com/jspsych@latest/css/jspsych.css" rel="stylesheet" type="text/css" />
   </head>
   <body></body>
 </html>
@@ -75,8 +75,8 @@ jsPsych框架是通过`<script>`标签引入的。我们这里使用的jsPsych�
 <html>
   <head>
     <title>My experiment</title>
-    <script src="https://unpkg.com/jspsych@7.1.2"></script>
-    <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
+    <script src="https://unpkg.com/jspsych@latest"></script>
+    <link href="https://unpkg.com/jspsych@latest/css/jspsych.css" rel="stylesheet" type="text/css" />
   </head>
   <body></body>
   <script>
@@ -91,8 +91,8 @@ jsPsych框架是通过`<script>`标签引入的。我们这里使用的jsPsych�
 <html>
   <head>
     <title>My experiment</title>
-    <script src="https://unpkg.com/jspsych@7.1.2"></script>
-    <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
+    <script src="https://unpkg.com/jspsych@latest"></script>
+    <link href="https://unpkg.com/jspsych@latest/css/jspsych.css" rel="stylesheet" type="text/css" />
   </head>
   <body></body>
   <script>
@@ -110,9 +110,9 @@ jsPsych框架是通过`<script>`标签引入的。我们这里使用的jsPsych�
 <html>
   <head>
     <title>My experiment</title>
-    <script src="https://unpkg.com/jspsych@7.1.2"></script>
-    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.0.0"></script>
-    <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
+    <script src="https://unpkg.com/jspsych@latest"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@latest"></script>
+    <link href="https://unpkg.com/jspsych@latest/css/jspsych.css" rel="stylesheet" type="text/css" />
   </head>
   <body></body>
   <script>
@@ -128,9 +128,9 @@ jsPsych框架是通过`<script>`标签引入的。我们这里使用的jsPsych�
 <html>
   <head>
     <title>My experiment</title>
-    <script src="https://unpkg.com/jspsych@7.1.2"></script>
-    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.0.0"></script>
-    <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
+    <script src="https://unpkg.com/jspsych@latest"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@latest"></script>
+    <link href="https://unpkg.com/jspsych@latest/css/jspsych.css" rel="stylesheet" type="text/css" />
   </head>
   <body></body>
   <script>
@@ -153,9 +153,9 @@ jsPsych框架是通过`<script>`标签引入的。我们这里使用的jsPsych�
 <html>
   <head>
     <title>My experiment</title>
-    <script src="https://unpkg.com/jspsych@7.1.2"></script>
-    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.0.0"></script>
-    <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
+    <script src="https://unpkg.com/jspsych@latest"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@latest"></script>
+    <link href="https://unpkg.com/jspsych@latest/css/jspsych.css" rel="stylesheet" type="text/css" />
   </head>
   <body></body>
   <script>

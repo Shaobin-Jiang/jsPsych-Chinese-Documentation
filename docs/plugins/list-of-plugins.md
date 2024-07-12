@@ -28,14 +28,17 @@
 [html&#8209;button&#8209;response](html-button-response.md) | 呈现HTML内容的刺激并记录被试点击按钮的行为。按钮可以自定义，例如使用图片代替标准的按钮。 
 [html&#8209;keyboard&#8209;response](html-keyboard-response.md) | 呈现HTML内容的刺激并记录被试按键。
 [html&#8209;slider&#8209;response](html-slider-response.md) | 呈现HTML内容的刺激并记录被试拖动滑动条的行为。
+[html&#8209;video&#8209;response](html-video-response.md) | 呈现HTMl内容的刺激并对被试进行录像。
 [iat&#8209;html](iat-html.md) | 使用HTML刺激的内隐联想测验。
 [iat&#8209;image](iat-image.md) | 使用图片刺激的内隐联想测验。
 [image&#8209;button&#8209;response](image-button-response.md) | 呈现图片刺激并记录被试点击按钮的行为。按钮可以自定义，例如使用图片代替标准的按钮。
 [image&#8209;keyboard&#8209;response](image-keyboard-response.md) | 呈现图片刺激并记录被试按键。
 [image&#8209;slider&#8209;response](image-slider-response.md) | 呈现图片刺激并记录被试拖动滑动条的行为。
+[initialize&#8209;camera](initialize-camera.md) | 请求摄像头权限；如果多个摄像头可用，则会要求被试选择。允许设置录制视频的mime类型。
 [initialize&#8209;microphone](initialize-microphone.md) | 请求麦克风录制权限，如果有多个可用设备，会让被试选择使用哪个。
 [instructions](instructions.md) | 向被试呈现指导语，并允许被试通过按键或鼠标点击前后翻页。
 [maxdiff](maxdiff.md) | 呈现一系列备选项，被试要从这些备选项中选出两个归入两个互斥的类别中（例如：最重要和最不重要，最喜欢和最不喜欢，最像和最不像，等）。被试通过点击备选项两侧的单选框对其进行归类。
+[mirror&#8209;camera](mirror-camera.md) | 在屏幕上实时显示被试摄像头的内容。
 [preload](preload.md) | 加载图片、音频和视频文件，用于在实验中使用这些文件前将它们加载完成，从而提升计时的精确性，并防止干扰实验的正常进行。
 [reconstruction](reconstruction.md) | 呈现一个可以交互的刺激，被试可以改变其某个参数并观看实时的变化。
 [resize](resize.md) | 对呈现内容进行校正，使得其呈现大小和一个已知的物理尺寸相同。
