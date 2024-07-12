@@ -12,7 +12,7 @@
         <link rel="prev" href="../../extensions/webgazer/">
       
       
-        <link rel="next" href="../contributing/">
+        <link rel="next" href="../documentation/">
       
       
       <link rel="icon" href="../../img/jspsych-favicon.png">
@@ -663,6 +663,27 @@
   
   <span class="md-ellipsis">
     眼动
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/building-surveys/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    调查研究
   </span>
   
 
@@ -1435,6 +1456,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../plugins/html-video-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    html-video-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../plugins/iat-html/" class="md-nav__link">
         
   
@@ -1540,6 +1582,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../plugins/initialize-camera/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    initialize-camera
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../plugins/initialize-microphone/" class="md-nav__link">
         
   
@@ -1587,6 +1650,27 @@
   
   <span class="md-ellipsis">
     maxdiff
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/mirror-camera/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mirror-camera
   </span>
   
 
@@ -2149,11 +2233,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../../extensions/record-video/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    录像
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../extensions/webgazer/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    webgazer
+    眼动
   </span>
   
 
@@ -2323,6 +2428,27 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    构建文档
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -2675,7 +2801,7 @@
 <p>JsPsych使用<a href="https://www.typescriptlang.org/">TypeScript</a>编写，该语言是JavaScript的超集，引入了静态类型，在经过编译后会生成JavaScript代码。TypeScript编译器自身是由JavaScript编写的，可以使用<a href="https://nodejs.org/en/">Node.js</a>（不适用浏览器运行JavaScript的运行时）。
 Node.js自带一个名为NPM (Node Package Manager)的包管理器，可以安装JavaScript包，例如TypeScript和jsPsych的一些构建工具。如果要使用jsPsych或jspsych-contrib仓库中的代码，最后按照下面的步骤搭建开发环境。</p>
 <h3 id="nodejs">安装Node.js<a class="headerlink" href="#nodejs" title="Permanent link">&para;</a></h3>
-<p>jsPsych开发环境需要安装v14以上的Node.js。我们推荐<a href="https://nodejs.org/en/">安装 v16</a>，因为它使用v7的NPM （这对于jsPsych仓库使用的工作空间是必需的条件）。如果一定要使用v14版本，则需要手动安装v7版本的NPM  (通过 <code>npm install -g npm@7</code>)。</p>
+<p>jsPsych开发环境需要<a href="https://nodejs.org/en/download/">Node.js LTS</a>。</p>
 <h3 id="clone">将仓库clone下来并安装依赖<a class="headerlink" href="#clone" title="Permanent link">&para;</a></h3>
 <p>在终端中运行下面的命令clone jsPsych或jspsych-contrib仓库。</p>
 <div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/jspsych/jsPsych.git<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>jsPsych
@@ -2687,6 +2813,10 @@ Node.js自带一个名为NPM (Node Package Manager)的包管理器，可以安�
 <div class="admonition attention">
 <p class="admonition-title">注意</p>
 <p>请只在仓库的根目录下运行<code>npm install</code> (这是由NPM工作空间特性决定的)。如果不小心在别的地方运行了<code>npm install</code>，把那个路径下的<code>node_modules</code>文件夹和生成的<code>package-lock.json</code>文件删掉，然后再根目录重新运行<code>npm install</code>。</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">注意</p>
+<p>jsPsych (-contrib)仓库需要用到<code>canvas</code>包，这个包有一些预构建的二进制文件。有一些系统上找不到这些二进制文件，此时<code>npm install</code>会尝试从零构建，这样有时候会失败，报错信息中会提到<code>canvas</code>包。如果你遇到了这种问题，请参照<code>canvas</code>包的<a href="https://github.com/Automattic/node-canvas/wiki#installation-guides">安装指南</a>操作，然后再运行<code>npm install</code>。</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">补充</p>
@@ -2724,7 +2854,7 @@ Node.js自带一个名为NPM (Node Package Manager)的包管理器，可以安�
 </ul>
 <h2 id="_4">测试<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>jsPsych使用<a href="https://jestjs.io/">Jest</a>进行自动化测试。</p>
-<p>运行测试需要Node和npm。在 jsPsych 根目录中运行 <code>npm install</code>。然后运行<code>npm test</code>。我们也可以在想测试的包目录中运行<code>npm test</code>。例如，如果测试 <code>html-keyboard-response</code> 插件，则可以在 <code>/packages/plugin-html-keyboard-response</code> 中运行 <code>npm test</code>。</p>
+<p>运行测试需要Node和npm。在 jsPsych 根目录中运行 <code>npm install</code>。然后运行<code>npm test</code>。我们也可以在想测试的包目录中运行<code>npm test</code>。例如，如果测试 <code>html-keyboard-response</code> 插件，则可以在 <code>/packages/plugin-html-keyboard-response</code> 中运行 <code>npm test</code>。如果想运行根目录中的某一个文件，还是以前面的例子为例，可以运行<code>npm test -- /packages/plugin-html-keyboard-response/src/index.spec.ts</code>。</p>
 <p>jsPsych库核心部分的测试位于<code>/packages/jspsych/tests</code>。</p>
 <p>插件和扩展的测试位于相应包的 <code>/src</code> 文件夹中。插件和扩展的测试文件名为 <code>index.spec.ts</code>。</p>
 <p><code>/packages/jspsych/tests/utils.ts</code> 中有用于帮助测试的函数。我们推荐去看一些测试文件，以更多了解测试中的一些常见的习惯。</p>

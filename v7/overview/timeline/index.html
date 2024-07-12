@@ -826,6 +826,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../building-surveys/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    调查研究
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../exclude-browser/" class="md-nav__link">
         
   
@@ -1582,6 +1603,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../plugins/html-video-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    html-video-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../plugins/iat-html/" class="md-nav__link">
         
   
@@ -1687,6 +1729,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../plugins/initialize-camera/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    initialize-camera
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../plugins/initialize-microphone/" class="md-nav__link">
         
   
@@ -1734,6 +1797,27 @@
   
   <span class="md-ellipsis">
     maxdiff
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/mirror-camera/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mirror-camera
   </span>
   
 
@@ -2296,11 +2380,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../../extensions/record-video/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    录像
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../extensions/webgazer/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    webgazer
+    眼动
   </span>
   
 
@@ -2364,6 +2469,27 @@
   
   <span class="md-ellipsis">
     配置
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developers/documentation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    构建文档
   </span>
   
 
@@ -2763,7 +2889,7 @@
 <h1 id="_1">创建实验：时间线<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>使用jsPsych创建实验时需要通过时间线说明实验的整体结构。时间线包含了实验中的试次。实验开始前必须创建时间线。实验中大部分代码都是用来创建时间线的。本页会对时间线的创建进行讲解，并展示一些基本的示例和高级的特性。</p>
 <h2 id="_2">单个试次<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>我们通过创建对象来定义一个试次。试次中最重要的属性是<code>type</code>参数，该参数告诉试次使用哪个插件。例如，如果要使用<a href="../plugins/html-keyboard-response">html-keyboard-response插件</a>呈现一条消息，试次对象应该是这个样子：</p>
+<p>我们通过创建对象来定义一个试次。试次中最重要的属性是<code>type</code>参数，该参数告诉试次使用哪个插件。例如，如果要使用<a href="../../plugins/html-keyboard-response/">html-keyboard-response插件</a>呈现一条消息，试次对象应该是这个样子：</p>
 <div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychHtmlKeyboardResponse</span><span class="p">,</span>
 <span class="w">    </span><span class="nx">stimulus</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Welcome to the experiment.&#39;</span>

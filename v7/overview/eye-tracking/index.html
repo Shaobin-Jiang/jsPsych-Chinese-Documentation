@@ -12,7 +12,7 @@
         <link rel="prev" href="../fullscreen/">
       
       
-        <link rel="next" href="../exclude-browser/">
+        <link rel="next" href="../building-surveys/">
       
       
       <link rel="icon" href="../../img/jspsych-favicon.png">
@@ -808,6 +808,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../building-surveys/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    调查研究
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../exclude-browser/" class="md-nav__link">
         
   
@@ -1564,6 +1585,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../plugins/html-video-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    html-video-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../plugins/iat-html/" class="md-nav__link">
         
   
@@ -1669,6 +1711,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../plugins/initialize-camera/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    initialize-camera
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../plugins/initialize-microphone/" class="md-nav__link">
         
   
@@ -1716,6 +1779,27 @@
   
   <span class="md-ellipsis">
     maxdiff
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/mirror-camera/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mirror-camera
   </span>
   
 
@@ -2278,11 +2362,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../../extensions/record-video/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    录像
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../extensions/webgazer/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    webgazer
+    眼动
   </span>
   
 
@@ -2346,6 +2451,27 @@
   
   <span class="md-ellipsis">
     配置
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developers/documentation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    构建文档
   </span>
   
 
@@ -2729,10 +2855,10 @@
 <h2 id="_2">开始<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <h3 id="webgazerjs">加载webgazer.js<a class="headerlink" href="#webgazerjs" title="Permanent link">&para;</a></h3>
 <p>jsPsych目前不支持<a href="https://webgazer.cs.brown.edu/#download">官方版本的WebGazer</a>。我们在<a href="https://github.com/jspsych/WebGazer">fork的版本</a>中做了一些微调，从而更适用于jsPsych的一般使用场景，如需要更精确地计时的时候。</p>
-<p>使用时，需要将<code>webgazer.js</code>文件通过<code>&lt;script&gt;</code>标签引入。但是，<code>webgazer.js</code>文件并不在jsPsych的NPM包中，所以无法通过unpkg.com的CDN使用。不过，该文件可以通过jsdelivr.net的CDN使用："https://cdn.jsdelivr.net/gh/jspsych/jspsych@jspsych@7.1.2/examples/js/webgazer/webgazer.js"。</p>
+<p>使用时，需要将<code>webgazer.js</code>文件通过<code>&lt;script&gt;</code>标签引入。但是，<code>webgazer.js</code>文件并不在jsPsych的NPM包中，所以无法通过unpkg.com的CDN使用。不过，该文件可以通过jsdelivr.net的CDN使用："https://cdn.jsdelivr.net/gh/jspsych/jspsych@jspsych@latest/examples/js/webgazer/webgazer.js"。</p>
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/jspsych@7.1.2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/gh/jspsych/jspsych@7.1.2/examples/js/webgazer/webgazer.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/jspsych@latest&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/gh/jspsych/jspsych@latest/examples/js/webgazer/webgazer.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
 </code></pre></div>
 <div class="admonition note">
@@ -2744,9 +2870,9 @@
 <h3 id="jspsychwebgazer">加载jsPsych的webgazer扩展<a class="headerlink" href="#jspsychwebgazer" title="Permanent link">&para;</a></h3>
 <p><a href="../../extensions/webgazer/">webgazer扩展</a>可以很方便地让jsPsych和webgazer交互，其加载方式和插件一样。</p>
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/jspsych@7.1.2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/gh/jspsych/jspsych@7.1.2/examples/js/webgazer/webgazer.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/@jspsych/extension-webgazer@1.0.0&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/jspsych@latest&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/gh/jspsych/jspsych@latest/examples/js/webgazer/webgazer.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/@jspsych/extension-webgazer@latest&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
 </code></pre></div>
 <p>在实验中使用WebGazer扩展时需要添加到<code>initJsPsych()</code>的扩展列表中。</p>
@@ -2835,23 +2961,23 @@
 </div>
 <div class="admonition example">
 <p class="admonition-title">示例</p>
-<p>下面的示例把上面的内容整合到了一起，并同时展示了如何根据验证阶段的数据判断是否需要重新校准。可以在<a href="/demos/eye-tracking-with-webgazer.html" target="_blank">去运行这个实验</a>。</p>
+<p>下面的示例把上面的内容整合到了一起，并同时展示了如何根据验证阶段的数据判断是否需要重新校准。可以在<a href="../../demos/eye-tracking-with-webgazer.html" target="_blank">去运行这个实验</a>。</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/jspsych@7.1.2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/@jspsych/plugin-preload@1.1.0&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/@jspsych/plugin-html-button-response@1.1.0&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/@jspsych/plugin-webgazer-init-camera@1.0.0&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/@jspsych/plugin-webgazer-calibrate@1.0.0&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/@jspsych/plugin-webgazer-validate@1.0.0&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/gh/jspsych/jspsych@7.1.2/examples/js/webgazer/webgazer.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/@jspsych/extension-webgazer@1.0.0&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/jspsych@latest&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/@jspsych/plugin-preload@latest&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/@jspsych/plugin-html-button-response@latest&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/@jspsych/plugin-html-keyboard-response@latest&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/@jspsych/plugin-image-keyboard-response@latest&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/@jspsych/plugin-webgazer-init-camera@latest&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/@jspsych/plugin-webgazer-calibrate@latest&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/@jspsych/plugin-webgazer-validate@latest&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/gh/jspsych/jspsych@latest/examples/js/webgazer/webgazer.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/@jspsych/extension-webgazer@latest&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">link</span>
       <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span>
-      <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/jspsych@7.1.2/css/jspsych.css&quot;</span>
+      <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/jspsych@latest/css/jspsych.css&quot;</span>
     <span class="p">/&gt;</span>
     <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
 <span class="w">      </span><span class="p">.</span><span class="nc">jspsych-btn</span><span class="w"> </span><span class="p">{</span>

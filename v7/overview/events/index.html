@@ -811,6 +811,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../building-surveys/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    调查研究
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../exclude-browser/" class="md-nav__link">
         
   
@@ -1567,6 +1588,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../plugins/html-video-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    html-video-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../plugins/iat-html/" class="md-nav__link">
         
   
@@ -1672,6 +1714,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../plugins/initialize-camera/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    initialize-camera
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../plugins/initialize-microphone/" class="md-nav__link">
         
   
@@ -1719,6 +1782,27 @@
   
   <span class="md-ellipsis">
     maxdiff
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/mirror-camera/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mirror-camera
   </span>
   
 
@@ -2281,11 +2365,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../../extensions/record-video/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    录像
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../extensions/webgazer/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    webgazer
+    眼动
   </span>
   
 
@@ -2349,6 +2454,27 @@
   
   <span class="md-ellipsis">
     配置
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developers/documentation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    构建文档
   </span>
   
 
@@ -2834,7 +2960,7 @@
 </code></pre></div>
 <hr />
 <h2 id="on_trial_finish">on_trial_finish<a class="headerlink" href="#on_trial_finish" title="Permanent link">&para;</a></h2>
-<p><code>on_trial_finish</code>回调可以在<code>initJsPsych</code>方法中进行声明，在实验中每一个试次结束时触发。如果你只想在特定试次结束后触发该回调，可以在试次中指定<a href="#onfinishtrial"><code>on_finish</code></a>。当前回调函数只接受一个传入参数，为对应试次中的数据对象。</p>
+<p><code>on_trial_finish</code>回调可以在<code>initJsPsych</code>方法中进行声明，在实验中每一个试次结束时、试次对象的<a href="#on_finish"><code>on_finish</code></a>结束后触发。当前回调函数只接受一个传入参数，为对应试次中的数据对象。如果你只想在特定试次结束后触发该回调，可以在试次中指定<a href="#on_finish"><code>on_finish</code></a>。</p>
 <div class="highlight"><pre><span></span><code><span class="nx">initJsPsych</span><span class="p">({</span>
 <span class="w">  </span><span class="nx">on_trial_finish</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;A trial just ended.&#39;</span><span class="p">);</span>
@@ -2844,7 +2970,7 @@
 </code></pre></div>
 <hr />
 <h2 id="on_trial_start">on_trial_start<a class="headerlink" href="#on_trial_start" title="Permanent link">&para;</a></h2>
-<p><code>on_trial_start</code>回调可以在<code>initJsPsych</code>方法中进行声明，在实验中每一个试次开始时触发。该回调函数只接受一个传入参数，为接下来要运行的试次对象，可以通过修改该对对象来对接下来的试次进行调整。</p>
+<p><code>on_trial_start</code>回调可以在<code>initJsPsych</code>方法中进行声明，在实验中每一个试次开始时、试次的<code>on_start</code>开始前触发。该回调函数只接受一个传入参数，为接下来要运行的试次对象，可以通过修改该对对象来对接下来的试次进行调整。</p>
 <div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">current_score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// a variable that is updated throughout the experiment to keep track of the current score.</span>
 
 <span class="nx">initJsPsych</span><span class="p">({</span>

@@ -679,6 +679,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../overview/building-surveys/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    调查研究
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../overview/exclude-browser/" class="md-nav__link">
         
   
@@ -1484,6 +1505,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#filtercolumns" class="md-nav__link">
+    <span class="md-ellipsis">
+      .filterColumns()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#filtercustom" class="md-nav__link">
     <span class="md-ellipsis">
       .filterCustom()
@@ -2263,6 +2293,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../plugins/html-video-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    html-video-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../plugins/iat-html/" class="md-nav__link">
         
   
@@ -2368,6 +2419,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../plugins/initialize-camera/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    initialize-camera
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../plugins/initialize-microphone/" class="md-nav__link">
         
   
@@ -2415,6 +2487,27 @@
   
   <span class="md-ellipsis">
     maxdiff
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/mirror-camera/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mirror-camera
   </span>
   
 
@@ -2977,11 +3070,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../../extensions/record-video/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    录像
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../extensions/webgazer/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    webgazer
+    眼动
   </span>
   
 
@@ -3045,6 +3159,27 @@
   
   <span class="md-ellipsis">
     配置
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developers/documentation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    构建文档
   </span>
   
 
@@ -3887,6 +4022,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#filtercolumns" class="md-nav__link">
+    <span class="md-ellipsis">
+      .filterColumns()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#filtercustom" class="md-nav__link">
     <span class="md-ellipsis">
       .filterCustom()
@@ -4388,6 +4532,11 @@
 <p>filter方法会返回一个数据集对象，所以我们也可以对筛选后的结果使用适用于数据集对象的方法。</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// count the number of correct trials in block 1</span>
 <span class="kd">var</span><span class="w"> </span><span class="nx">block_1_correct</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">get</span><span class="p">().</span><span class="nx">filter</span><span class="p">({</span><span class="nx">block</span><span class="o">:</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="nx">correct</span><span class="o">:</span><span class="kc">true</span><span class="p">}).</span><span class="nx">count</span><span class="p">();</span>
+</code></pre></div>
+<h4 id="filtercolumns">.filterColumns()<a class="headerlink" href="#filtercolumns" title="Permanent link">&para;</a></h4>
+<p>选中数组中的多列数据；与<code>.ignore()</code>方法相反。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Get only the subject, rt, and condition entries for each trial.</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">subset_of_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">get</span><span class="p">().</span><span class="nx">filterColumns</span><span class="p">([</span><span class="s1">&#39;subject&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;rt&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;condition&#39;</span><span class="p">])</span>
 </code></pre></div>
 <h4 id="filtercustom">.filterCustom()<a class="headerlink" href="#filtercustom" title="Permanent link">&para;</a></h4>
 <p>该方法类似于<code>.filter()</code>方法，但是筛选器是一个函数。函数只有一个传入参数，是当前试次的数据。如果函数返回<code>true</code>，则该试次会保留在返回的子数据集中。</p>

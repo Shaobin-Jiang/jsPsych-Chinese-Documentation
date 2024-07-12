@@ -679,6 +679,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../overview/building-surveys/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    调查研究
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../overview/exclude-browser/" class="md-nav__link">
         
   
@@ -1504,6 +1525,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../html-video-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    html-video-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../iat-html/" class="md-nav__link">
         
   
@@ -1609,6 +1651,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../initialize-camera/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    initialize-camera
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../initialize-microphone/" class="md-nav__link">
         
   
@@ -1656,6 +1719,27 @@
   
   <span class="md-ellipsis">
     maxdiff
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mirror-camera/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mirror-camera
   </span>
   
 
@@ -2218,11 +2302,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../../extensions/record-video/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    录像
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../extensions/webgazer/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    webgazer
+    眼动
   </span>
   
 
@@ -2286,6 +2391,27 @@
   
   <span class="md-ellipsis">
     配置
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../developers/documentation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    构建文档
   </span>
   
 
@@ -2635,6 +2761,12 @@
 <td>布尔</td>
 <td>false</td>
 <td>被试点击按钮后是否检查被试作答是否正确。如果为true，则会检查被试作答，如果作答错误则会调用<code>mistake_fn</code>。这种情况下，试次不会自动结束。如果为false，则试次在被试点击按钮后自动结束。</td>
+</tr>
+<tr>
+<td>allow_blanks</td>
+<td>布尔</td>
+<td>true</td>
+<td>被试点击完成按钮后是否检查被试答案。如果为真，则不会检查被试是否真的完成作答或者答案为空，试次也会随之结束。如果为假，则会检查被试作答，如果有未答的部分则会调用<code>mistake_fn</code>。此时，试次不会自动结束。</td>
 </tr>
 <tr>
 <td>mistake_fn</td>

@@ -679,6 +679,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../overview/building-surveys/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    调查研究
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../overview/exclude-browser/" class="md-nav__link">
         
   
@@ -1435,6 +1456,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../plugins/html-video-response/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    html-video-response
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../plugins/iat-html/" class="md-nav__link">
         
   
@@ -1540,6 +1582,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../plugins/initialize-camera/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    initialize-camera
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../plugins/initialize-microphone/" class="md-nav__link">
         
   
@@ -1587,6 +1650,27 @@
   
   <span class="md-ellipsis">
     maxdiff
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plugins/mirror-camera/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mirror-camera
   </span>
   
 
@@ -2149,11 +2233,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../../extensions/record-video/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    录像
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../extensions/webgazer/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    webgazer
+    眼动
   </span>
   
 
@@ -2219,6 +2324,27 @@
   
   <span class="md-ellipsis">
     配置
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    构建文档
   </span>
   
 
@@ -2860,7 +2986,7 @@
 <p>trial方法接受以下三个参数：</p>
 <ul>
 <li><code>display_element</code>是用于渲染jsPsych的实验内容的DOM元素。该参数需要是一个<code>HTMLElement</code>，我们可以用这个参数控制将jsPsych呈现在文档额哪个部分。</li>
-<li><code>trial</code>是相应的<a href="../overview/timeline">时间线节点</a>中设定的参数。</li>
+<li><code>trial</code>是相应的<a href="../../overview/timeline/">时间线节点</a>中设定的参数。</li>
 <li><code>on_load</code>是一个可选参数，包含了一个回调函数，会在<code>trial()</code>完成加载后触发。详见<a href="#asynchronous-loading">处理on_load事件</a>。</li>
 </ul>
 <p>对于<code>trial</code>方法的唯一要求是在试次完成后调用<code>jsPsych.finishTrial()</code>，这样jsPsych才能知道什么时候进入下一个试次（如果是最后一个试次，则结束实验）。在那之前，插件爱干啥干啥。</p>
@@ -2937,8 +3063,8 @@
 <span class="p">}</span>
 </code></pre></div>
 <h3 id="_8">处理键盘事件<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
-<p>插件允许我们监听很多事件，包括<code>keyup</code>和<code>keydown</code>。<code>jsPsych.pluginAPI</code>模块包含了<a href="../../reference/jspsych-pluginAPI/#jspsychpluginapigetkeyboardresponse"><code>getKeyboardResponse</code>函数</a>，该函数可以很方便地处理实验中的按键。</p>
-<p>下面是一个简单的例子。更多示例详见<a href="../../reference/jspsych-pluginAPI/#jspsychpluginapigetkeyboardresponse"><code>getKeyboardResponse</code>处文档</a>。</p>
+<p>插件允许我们监听很多事件，包括<code>keyup</code>和<code>keydown</code>。<code>jsPsych.pluginAPI</code>模块包含了<a href="../../reference/jspsych-pluginAPI/#getkeyboardresponse"><code>getKeyboardResponse</code>函数</a>，该函数可以很方便地处理实验中的按键。</p>
+<p>下面是一个简单的例子。更多示例详见<a href="../../reference/jspsych-pluginAPI/#getkeyboardresponse"><code>getKeyboardResponse</code>处文档</a>。</p>
 <div class="highlight"><pre><span></span><code><span class="nx">trial</span><span class="p">(</span><span class="nx">display_element</span><span class="p">,</span><span class="w"> </span><span class="nx">trial</span><span class="p">){</span>
 <span class="w">  </span><span class="c1">// show image</span>
 <span class="w">  </span><span class="nx">display_element</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`&lt;img src=&quot;</span><span class="si">${</span><span class="nx">trial</span><span class="p">.</span><span class="nx">image</span><span class="si">}</span><span class="sb">&quot;&gt;&lt;/img&gt;`</span><span class="p">;</span>
@@ -2965,7 +3091,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <h3 id="_9">异步加载<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
-<p><a href="../overview/events">试次事件</a>中包括了<code>on_load</code>，该事件通常在<code>.trial()</code>方法完成后自动触发。在大多数情况下，这一事件发生在DOM元素的初始化（例如，渲染图片，创建事件监听器和定时器，等等）之后。但是，在某些情况下，插件可能会执行一个异步操作，该操作需要在插件的初始加载完成之前执行。例如<code>audio-keyboard-response</code>插件中，检查音频文件是否加载完成是异步操作，<code>.trial()</code>方法在音频文件初始化、DOM元素更新前就完成执行了。</p>
+<p><a href="../../overview/events/">试次事件</a>中包括了<code>on_load</code>，该事件通常在<code>.trial()</code>方法完成后自动触发。在大多数情况下，这一事件发生在DOM元素的初始化（例如，渲染图片，创建事件监听器和定时器，等等）之后。但是，在某些情况下，插件可能会执行一个异步操作，该操作需要在插件的初始加载完成之前执行。例如<code>audio-keyboard-response</code>插件中，检查音频文件是否加载完成是异步操作，<code>.trial()</code>方法在音频文件初始化、DOM元素更新前就完成执行了。</p>
 <p>如果您想手动触发插件的<code>on_load</code>事件，可以使用<code>.trial()</code>方法可选的第三个传入参数，该参数是加载完成时调用的回调函数。</p>
 <p>为了告诉jsPsych在<code>.trial()</code>方法完成时 <em>不</em> 使用常规的回调，我们需要显式返回一个 <code>Promise</code>对象。从 <code>7.0</code> 版本开始，这个Promise对象仅用来告诉jsPsych不要触发<code>on_load</code>事件。在未来的版本中，我们可能会丰富这个<code>Promise</code>的功能，这样<code>trial</code>可以使用异步函数。</p>
 <p>下面的示例中展示了如何在插件中使用<code>on_load</code>事件。请注意，此示例省略了加载和完成试次之间发生的所有事情。完整示例参见<code>audio-keyboard-response</code>插件的源代码。</p>
