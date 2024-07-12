@@ -13,7 +13,7 @@ extra:
   social:
     - icon: 'fontawesome/brands/github'
       link: 'https://github.com/Shaobin-Jiang/jsPsych-Chinese-Documentation'
-copyright: 'Copyright &copy; 2021 Shaobin Jiang'
+copyright: 'Copyright &copy; 2021-2024 Shaobin Jiang'
 markdown_extensions:
   - admonition
   - codehilite:
