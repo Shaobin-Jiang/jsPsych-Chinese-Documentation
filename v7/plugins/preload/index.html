@@ -2887,7 +2887,9 @@
 <h2 id="_4">示例<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <details class="example" open="open">
 <summary>根据其余试次自动加载文件</summary>
-<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Code</label><div class="tabbed-content">
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Code</label><label for="__tabbed_1_2">Demo</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <p><div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">preload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychPreload</span><span class="p">,</span>
 <span class="w">    </span><span class="nx">auto_preload</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
@@ -2913,17 +2915,20 @@
 </code></pre></div>
 <code>image-button-response</code>的<code>stimulus</code>参数会自动被预加载。</p>
 </div>
-<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Demo</label><div class="tabbed-content">
+<div class="tabbed-block">
 <p><div style="text-align:center;">
   <iframe src="../../demos/jspsych-preload-demo1.html" width="90%;" height="500px;" frameBorder="0"></iframe>
 </div></p>
+</div>
 </div>
 </div>
 <p><a target="_blank" rel="noopener noreferrer" href="../../demos/jspsych-preload-demo1.html">在新标签页中打开</a></p>
 </details>
 <details class="example" open="open">
 <summary>手动预加载图片</summary>
-<div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Code</label><div class="tabbed-content">
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Code</label><label for="__tabbed_2_2">Demo</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <p><div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">preload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychPreload</span><span class="p">,</span>
 <span class="w">    </span><span class="nx">images</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;img/sad_face_1.jpg&#39;</span><span class="p">]</span>
@@ -2940,17 +2945,20 @@
 </code></pre></div>
 因为图片是嵌套在<code>html-button-response</code>插件的HTML内的，所以不能被自动预加载。这个时候，我们就需要手动预加载这张图片。</p>
 </div>
-<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">Demo</label><div class="tabbed-content">
+<div class="tabbed-block">
 <p><div style="text-align:center;">
   <iframe src="../../demos/jspsych-preload-demo2.html" width="90%;" height="500px;" frameBorder="0"></iframe>
 </div></p>
+</div>
 </div>
 </div>
 <p><a target="_blank" rel="noopener noreferrer" href="../../demos/jspsych-preload-demo2.html">在新标签页中打开</a></p>
 </details>
 <details class="example" open="open">
 <summary>分批加载图片</summary>
-<div class="tabbed-set" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><label for="__tabbed_3_1">Code</label><div class="tabbed-content">
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Code</label><label for="__tabbed_3_2">Demo</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <p><div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">jsPsych</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">initJsPsych</span><span class="p">();</span>
 
 <span class="kd">var</span><span class="w"> </span><span class="nx">trial_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
@@ -3011,17 +3019,20 @@
 </code></pre></div>
 实验中的任何阶段都可以使用<code>preload</code>插件。上面的例子中，有2个block，每个block中使用的图片都是在block开始前预加载的。onding block.</p>
 </div>
-<input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><label for="__tabbed_3_2">Demo</label><div class="tabbed-content">
+<div class="tabbed-block">
 <p><div style="text-align:center;">
   <iframe src="../../demos/jspsych-preload-demo3.html" width="90%;" height="500px;" frameBorder="0"></iframe>
 </div></p>
+</div>
 </div>
 </div>
 <p><a target="_blank" rel="noopener noreferrer" href="../../demos/jspsych-preload-demo3.html">在新标签页中打开</a></p>
 </details>
 <details class="example" open="open">
 <summary>对于加载错误显示详细的保存信息</summary>
-<div class="tabbed-set" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><label for="__tabbed_4_1">Code</label><div class="tabbed-content">
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Code</label><label for="__tabbed_4_2">Demo</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">preload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychPreload</span><span class="p">,</span>
 <span class="w">    </span><span class="nx">images</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;img/bad_file_path.png&#39;</span><span class="p">],</span>
@@ -3029,10 +3040,11 @@
 <span class="p">}</span>
 </code></pre></div>
 </div>
-<input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><label for="__tabbed_4_2">Demo</label><div class="tabbed-content">
+<div class="tabbed-block">
 <p><div style="text-align:center;">
   <iframe src="../../demos/jspsych-preload-demo4.html" width="90%;" height="500px;" frameBorder="0"></iframe>
 </div></p>
+</div>
 </div>
 </div>
 <p><a target="_blank" rel="noopener noreferrer" href="../../demos/jspsych-preload-demo4.html">在新标签页中打开</a></p>

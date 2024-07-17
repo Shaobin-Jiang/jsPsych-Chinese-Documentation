@@ -3397,7 +3397,9 @@
 <h2 id="_5">示例<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <details class="example" open="open">
 <summary>在同一页面上呈现单选题和多选题</summary>
-<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Code</label><div class="tabbed-content">
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Code</label><label for="__tabbed_1_2">Demo</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychSurvey</span><span class="p">,</span>
 <span class="w">  </span><span class="nx">survey_json</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
@@ -3426,17 +3428,20 @@
 <span class="p">};</span>
 </code></pre></div>
 </div>
-<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Demo</label><div class="tabbed-content">
+<div class="tabbed-block">
 <p><div style="text-align:center;">
   <iframe src="../../demos/jspsych-survey-demo1.html" width="90%;" height="500px;" frameBorder="0"></iframe>
 </div></p>
+</div>
 </div>
 </div>
 <p><a target="_blank" rel="noopener noreferrer" href="../../demos/jspsych-survey-demo1.html">Open demo in new tab</a></p>
 </details>
 <details class="example">
 <summary>在多页上呈现文字输入、单选题，以及更多自定义</summary>
-<div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Code</label><div class="tabbed-content">
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Code</label><label for="__tabbed_2_2">Demo</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychSurvey</span><span class="p">,</span>
 <span class="w">  </span><span class="nx">survey_json</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
@@ -3496,10 +3501,11 @@
 <span class="p">};</span>
 </code></pre></div>
 </div>
-<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">Demo</label><div class="tabbed-content">
+<div class="tabbed-block">
 <p><div style="text-align:center;">
   <iframe src="../../demos/jspsych-survey-demo2.html" width="90%;" height="500px;" frameBorder="0"></iframe>
 </div></p>
+</div>
 </div>
 </div>
 <p><a target="_blank" rel="noopener noreferrer" href="../../demos/jspsych-survey-demo2.html">Open demo in new tab</a></p>
@@ -3508,7 +3514,9 @@
 <summary>使用rating和matrix题型编制里克特量表</summary>
 <p>当前示例使用多种不同选项呈现量表（按钮、星星、笑脸），并用表格形式在一个量表中呈现多个题目。
 <strong>注意:</strong> 内容需要足够的页面宽度，最好在新的标签页中呈现。</p>
-<div class="tabbed-set" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><label for="__tabbed_3_1">Code</label><div class="tabbed-content">
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Code</label><label for="__tabbed_3_2">Demo</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychSurvey</span><span class="p">,</span>
 <span class="w">  </span><span class="nx">survey_json</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
@@ -3587,10 +3595,11 @@
 <span class="p">};</span>
 </code></pre></div>
 </div>
-<input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><label for="__tabbed_3_2">Demo</label><div class="tabbed-content">
+<div class="tabbed-block">
 <p><div style="text-align:center;">
   <iframe src="../../demos/jspsych-survey-demo3.html" width="90%;" height="500px;" frameBorder="0"></iframe>
 </div></p>
+</div>
 </div>
 </div>
 <p><a target="_blank" rel="noopener noreferrer" href="../../demos/jspsych-survey-demo3.html">Open demo in new tab</a></p>
@@ -3598,7 +3607,9 @@
 <details class="example">
 <summary>根据被试作答控制题目是否可见</summary>
 <p>当前示例的功能是根据被试作答控制题目是否可见，以及控制浏览页面按钮是否可见、自动跳转到下一页。</p>
-<div class="tabbed-set" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><label for="__tabbed_4_1">Code</label><div class="tabbed-content">
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Code</label><label for="__tabbed_4_2">Demo</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">survey_function</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">survey</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// If it&#39;s the question page, then hide the buttons and move on automatically.</span>
 <span class="w">  </span><span class="c1">// If it&#39;s the feedback page, then show the navigation buttons.</span>
@@ -3653,10 +3664,11 @@
 <span class="p">};</span>
 </code></pre></div>
 </div>
-<input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><label for="__tabbed_4_2">Demo</label><div class="tabbed-content">
+<div class="tabbed-block">
 <p><div style="text-align:center;">
   <iframe src="../../demos/jspsych-survey-demo4.html" width="90%;" height="500px;" frameBorder="0"></iframe>
 </div></p>
+</div>
 </div>
 </div>
 <p><a target="_blank" rel="noopener noreferrer" href="../../demos/jspsych-survey-demo4.html">Open demo in new tab</a></p>
@@ -3664,7 +3676,9 @@
 <details class="example">
 <summary>使用不同变量重复调查问卷试次</summary>
 <p>survey插件不适用于jsPsych的时间线变量特性，所以替代方式是通过循环对其进行重复。当向survey试次中添加数据时，应该通过<code>data</code>参数在试次水平进行添加（而不是在问题对象中添加），即使这个数据只和一道题目有关系。</p>
-<div class="tabbed-set" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><label for="__tabbed_5_1">Code</label><div class="tabbed-content">
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Code</label><label for="__tabbed_5_2">Demo</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1">// values that change across survey trials - each object represents a single trial</span>
 <span class="kd">const</span><span class="w"> </span><span class="nx">question_variables</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
 <span class="w">  </span><span class="p">{</span>
@@ -3732,10 +3746,11 @@
 <span class="kd">const</span><span class="w"> </span><span class="nx">timeline</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">randomization</span><span class="p">.</span><span class="nx">shuffle</span><span class="p">(</span><span class="nx">survey_trials</span><span class="p">);</span>
 </code></pre></div>
 </div>
-<input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><label for="__tabbed_5_2">Demo</label><div class="tabbed-content">
+<div class="tabbed-block">
 <p><div style="text-align:center;">
   <iframe src="../../demos/jspsych-survey-demo5.html" width="90%;" height="500px;" frameBorder="0"></iframe>
 </div></p>
+</div>
 </div>
 </div>
 <p><a target="_blank" rel="noopener noreferrer" href="../../demos/jspsych-survey-demo5.html">Open demo in new tab</a></p>
@@ -3743,7 +3758,9 @@
 <details class="example">
 <summary>添加图片、音频、HMTL</summary>
 <p>当前示例展示了如何添加HTML内容、图片、音频并通过CSS进行自定义、对作答校验。</p>
-<div class="tabbed-set" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><label for="__tabbed_6_1">Code</label><div class="tabbed-content">
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Code</label><label for="__tabbed_6_2">Demo</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c">/* center the audio player and all image question types in the survey */</span>
 <span class="nt">div</span><span class="p">.</span><span class="nc">sd-question--image</span><span class="o">,</span><span class="w"> </span><span class="nt">div</span><span class="p">.</span><span class="nc">sd-question</span><span class="o">[</span><span class="nt">data-name</span><span class="o">=</span><span class="s2">&quot;audio-player&quot;</span><span class="o">]</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
@@ -3859,10 +3876,11 @@
 <span class="kd">const</span><span class="w"> </span><span class="nx">timeline</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="nx">image_video_html_trial</span><span class="p">,</span><span class="w"> </span><span class="nx">image_choice_trial</span><span class="p">,</span><span class="w"> </span><span class="nx">sound_trial</span><span class="p">];</span>
 </code></pre></div>
 </div>
-<input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><label for="__tabbed_6_2">Demo</label><div class="tabbed-content">
+<div class="tabbed-block">
 <p><div style="text-align:center;">
   <iframe src="../../demos/jspsych-survey-demo6.html" width="90%;" height="500px;" frameBorder="0"></iframe>
 </div></p>
+</div>
 </div>
 </div>
 <p><a target="_blank" rel="noopener noreferrer" href="../../demos/jspsych-survey-demo6.html">Open demo in new tab</a></p>
@@ -3870,7 +3888,9 @@
 <details class="example">
 <summary>自动对文本输入格式化</summary>
 <p>我们可以为文本输入题目添加自动的格式化。详见SurveyJS文档。</p>
-<div class="tabbed-set" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><label for="__tabbed_7_1">Code</label><div class="tabbed-content">
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Code</label><label for="__tabbed_7_2">Demo</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">timeline</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
 
 <span class="kd">const</span><span class="w"> </span><span class="nx">text_masking_json</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
@@ -3941,10 +3961,11 @@
 <span class="p">});</span>
 </code></pre></div>
 </div>
-<input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><label for="__tabbed_7_2">Demo</label><div class="tabbed-content">
+<div class="tabbed-block">
 <p><div style="text-align:center;">
   <iframe src="../../demos/jspsych-survey-demo7.html" width="90%;" height="500px;" frameBorder="0"></iframe>
 </div></p>
+</div>
 </div>
 </div>
 <p><a target="_blank" rel="noopener noreferrer" href="../../demos/jspsych-survey-demo7.html">Open demo in new tab</a></p>

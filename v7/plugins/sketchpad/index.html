@@ -2975,7 +2975,9 @@
 <h2 id="_4">示例<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <details class="example" open="open">
 <summary>简单的画板，呈现一段提示</summary>
-<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Code</label><div class="tabbed-content">
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Code</label><label for="__tabbed_1_2">Demo</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychSketchpad</span><span class="p">,</span>
 <span class="w">  </span><span class="nx">prompt</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&lt;p&gt;Draw an apple!&lt;/p&gt;&#39;</span><span class="p">,</span>
@@ -2986,17 +2988,20 @@
 <span class="p">}</span>
 </code></pre></div>
 </div>
-<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Demo</label><div class="tabbed-content">
+<div class="tabbed-block">
 <p><div style="text-align:center;">
   <iframe src="../../demos/jspsych-sketchpad-demo1.html" width="90%;" height="500px;" frameBorder="0"></iframe>
 </div></p>
+</div>
 </div>
 </div>
 <p><a target="_blank" rel="noopener noreferrer" href="../../demos/jspsych-sketchpad-demo1.html">在新标签页中打开</a></p>
 </details>
 <details class="example" open="open">
 <summary>使用不同颜色对图片进行分割</summary>
-<div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Code</label><div class="tabbed-content">
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Code</label><label for="__tabbed_2_2">Demo</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychSketchpad</span><span class="p">,</span>
 <span class="w">  </span><span class="nx">prompt</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&lt;p style=&quot;width:380px&quot;&gt;Circle the mouth using red. Circle the eyes using blue.&lt;/p&gt;&#39;</span><span class="p">,</span>
@@ -3009,17 +3014,20 @@
 <span class="p">}</span>
 </code></pre></div>
 </div>
-<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">Demo</label><div class="tabbed-content">
+<div class="tabbed-block">
 <p><div style="text-align:center;">
   <iframe src="../../demos/jspsych-sketchpad-demo2.html" width="90%;" height="500px;" frameBorder="0"></iframe>
 </div></p>
+</div>
 </div>
 </div>
 <p><a target="_blank" rel="noopener noreferrer" href="../../demos/jspsych-sketchpad-demo2.html">在新标签页中打开</a></p>
 </details>
 <details class="example" open="open">
 <summary>在指定时间内绘制，然后要求被试绘制的内容命名</summary>
-<div class="tabbed-set" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><label for="__tabbed_3_1">Code</label><div class="tabbed-content">
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Code</label><label for="__tabbed_3_2">Demo</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">draw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychSketchpad</span><span class="p">,</span>
 <span class="w">  </span><span class="nx">prompt</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&lt;p&gt;Draw the first animal that comes to mind. You have 30 seconds!&lt;/p&gt;&#39;</span><span class="p">,</span>
@@ -3040,10 +3048,11 @@
 <span class="p">}</span>
 </code></pre></div>
 </div>
-<input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><label for="__tabbed_3_2">Demo</label><div class="tabbed-content">
+<div class="tabbed-block">
 <p><div style="text-align:center;">
   <iframe src="../../demos/jspsych-sketchpad-demo3.html" width="90%;" height="500px;" frameBorder="0"></iframe>
 </div></p>
+</div>
 </div>
 </div>
 <p><a target="_blank" rel="noopener noreferrer" href="../../demos/jspsych-sketchpad-demo3.html">在新标签页中打开</a></p>

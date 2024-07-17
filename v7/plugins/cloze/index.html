@@ -2797,24 +2797,29 @@
 <h2 id="_3">示例<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <details class="example" open="open">
 <summary>使用默认设置（不检查作答情况，使用默认按钮文本）的简单填空</summary>
-<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Code</label><div class="tabbed-content">
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Code</label><label for="__tabbed_1_2">Demo</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">cloze_trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychCloze</span><span class="p">,</span>
 <span class="w">        </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;The %% is the largest terrestrial mammal. It lives in both %% and %%.&#39;</span>
 <span class="w">    </span><span class="p">};</span>
 </code></pre></div>
 </div>
-<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Demo</label><div class="tabbed-content">
+<div class="tabbed-block">
 <p><div style="text-align:center;">
     <iframe src="../../demos/jspsych-cloze-demo1.html" width="90%;" height="500px;" frameBorder="0"></iframe>
 </div></p>
+</div>
 </div>
 </div>
 <p><a target="_blank" rel="noopener noreferrer" href="../../demos/jspsych-cloze-demo1.html">在新标签页中打开</a></p>
 </details>
 <details class="example" open="open">
 <summary>更复杂的示例（检查作答情况，错误作答的处理，修改按钮文本）</summary>
-<div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Code</label><div class="tabbed-content">
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Code</label><label for="__tabbed_2_2">Demo</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">cloze_trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychCloze</span><span class="p">,</span>
 <span class="w">        </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;A rectangle has % 4 % corners and a triangle has % 3 %.&#39;</span><span class="p">,</span>
@@ -2824,10 +2829,11 @@
 <span class="w">    </span><span class="p">};</span>
 </code></pre></div>
 </div>
-<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">Demo</label><div class="tabbed-content">
+<div class="tabbed-block">
 <p><div style="text-align:center;">
     <iframe src="../../demos/jspsych-cloze-demo2.html" width="90%;" height="500px;" frameBorder="0"></iframe>
 </div></p>
+</div>
 </div>
 </div>
 <p><a target="_blank" rel="noopener noreferrer" href="../../demos/jspsych-cloze-demo2.html">在新标签页中打开</a></p>

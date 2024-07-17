@@ -2869,7 +2869,9 @@
 <h2 id="_4">示例<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <details class="example" open="open">
 <summary>呈现刺激，被试进行口头报告</summary>
-<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Code</label><div class="tabbed-content">
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Code</label><label for="__tabbed_1_2">Demo</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychHtmlAudioResponse</span><span class="p">,</span>
 <span class="w">    </span><span class="nx">stimulus</span><span class="o">:</span><span class="w"> </span><span class="sb">`</span>
@@ -2879,17 +2881,20 @@
 <span class="p">};</span>
 </code></pre></div>
 </div>
-<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Demo</label><div class="tabbed-content">
+<div class="tabbed-block">
 <p><div style="text-align:center;">
     <iframe src="../../demos/jspsych-html-audio-response-demo1.html" width="90%;" height="600px;" frameBorder="0"></iframe>
 </div></p>
+</div>
 </div>
 </div>
 <p><a target="_blank" rel="noopener noreferrer" href="../../demos/jspsych-html-audio-response-demo1.html">在新标签页中打开</a></p>
 </details>
 <details class="example" open="open">
 <summary>允许回放和重新录制；录制后立刻将数据保存到服务器</summary>
-<div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Code</label><div class="tabbed-content">
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Code</label><label for="__tabbed_2_2">Demo</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychHtmlAudioResponse</span><span class="p">,</span>
 <span class="w">    </span><span class="nx">stimulus</span><span class="o">:</span><span class="w"> </span><span class="sb">`</span>
@@ -2907,17 +2912,20 @@
 </code></pre></div>
 <p>这个示例假定服务器上有一个名为<code>save-my-data.php</code>的脚本用来接收数据，且这个脚本会为保存下的音频文件生成一个ID (<code>audio_id</code>)并返回。实例中，我们用这个只有几个字符串的ID替换了原本非常长的base64字符串，这样在数据分析时，就可以直接找到相应的音频文件，从而避免在实验过程中长时间将大量的音频数据保存在内存中。</p>
 </div>
-<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">Demo</label><div class="tabbed-content">
+<div class="tabbed-block">
 <p><div style="text-align:center;">
     <iframe src="../../demos/jspsych-html-audio-response-demo2.html" width="90%;" height="600px;" frameBorder="0"></iframe>
 </div></p>
+</div>
 </div>
 </div>
 <p><a target="_blank" rel="noopener noreferrer" href="../../demos/jspsych-html-audio-response-demo2.html">在新标签页中打开</a></p>
 </details>
 <details class="example" open="open">
 <summary>在后续的实验中使用录制的音频作为刺激</summary>
-<div class="tabbed-set" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><label for="__tabbed_3_1">Code</label><div class="tabbed-content">
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Code</label><label for="__tabbed_3_2">Demo</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">instruction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychHtmlButtonResponse</span><span class="p">,</span>
 <span class="w">    </span><span class="nx">stimulus</span><span class="o">:</span><span class="w"> </span><span class="sb">`</span>
@@ -2948,10 +2956,11 @@
 <span class="p">}</span>
 </code></pre></div>
 </div>
-<input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><label for="__tabbed_3_2">Demo</label><div class="tabbed-content">
+<div class="tabbed-block">
 <p><div style="text-align:center;">
     <iframe src="../../demos/jspsych-html-audio-response-demo3.html" width="90%;" height="600px;" frameBorder="0"></iframe>
 </div></p>
+</div>
 </div>
 </div>
 <p><a target="_blank" rel="noopener noreferrer" href="../../demos/jspsych-html-audio-response-demo3.html">在新标签页中打开</a></p>
