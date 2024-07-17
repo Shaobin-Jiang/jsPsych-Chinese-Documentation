@@ -1,17 +1,17 @@
 [
   {
     "version": "6.3",
-    "title": "6.3",
-    "aliases": []
-  },
-  {
-    "version": "v8",
-    "title": "v8",
+    "title": "v6",
     "aliases": []
   },
   {
     "version": "v7",
     "title": "v7",
+    "aliases": []
+  },
+  {
+    "version": "v8",
+    "title": "v8",
     "aliases": []
   }
 ]
