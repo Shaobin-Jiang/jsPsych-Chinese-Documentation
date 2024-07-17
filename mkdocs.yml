@@ -134,6 +134,7 @@ nav:
 - 支持:
   - '寻求帮助': 'support/support.md'
   - '从6.x版本到7.x版本': 'support/migration-v7.md'
+  - '从7.x版本到8.x版本': 'support/migration-v8.md'
 - 关于:
   - '关于jsPsych': 'about/about.md'
   - '许可证': 'about/license.md'

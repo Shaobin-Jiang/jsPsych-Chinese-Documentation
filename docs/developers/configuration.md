@@ -45,19 +45,19 @@ JsPsych用到了一套构建工具链 (见`@jspsych/config`)，可以通过`npm 
   该文件包含来自 `index.ts` 的所有内容，但是编译成了JavaScript并打包到了单个文件中（即不对同一包中的内容使用`import`）。它被 [webpack](https://webpack.js.org/) 等打包程序使用。
 
 * **`index.cjs`**
-  类似于 `index.js`，但使用旧的 CommonJS 标准来支持向后兼容的工具，例如 [Jest](https://jestjs.io/) 测试框架。
+  类似于 `index.js`，但使用旧的 CommonJS 标准来支持如 [Jest](https://jestjs.io/) 这样的测试框架。
 
 * **`index.browser.js`**
   这个文件和 `index.js` 一样，将整个包打包为JavaScript，但封装在一个函数中，以便浏览器可以使用 `<script>` 标签直接包含它。对于插件或扩展，模块的默认导出内容（即 `index.ts` 文件中 `export default` 之后的任何语句）被赋值给一个全局变量。这个全局变量的名称在包的 `rollup.config.mjs` 文件中指定，也是 `makeRollupConfig()` 函数的参数。比如说，如果在`plugin-html-keyboard-response` 包中加入 `index.browser.js` 文件，则会将 `HtmlKeyboardResponsePlugin` 类赋值给全局变量`jsPsychHtmlKeyboardResponse`。`index.browser.js` 中的代码看起来与 `index.ts` 代码非常相似，且浏览器完全支持，因此`examples`目录中的所有示例都使用了`index.browser.js`文件，这样用户就可以直接修改源代码，无需重新运行构建链。
 
 * **`index.browser.min.js`**
-  JavaScript 语言规范有不同版本，并非所有浏览器和浏览器版本都支持所有的特性。因此，jsPsych构建链使用[Babel](https://babeljs.io/)将源文件转换为兼容大多数浏览器的代码。这一操作会生成`index.browser.min.js`，其功能类似于 `index.browser.js`，但对于旧浏览器不支持的特性，会对该部分的JavaScript代码进行替换。此外，`index.browser.min.js` 中的代码也通过[Terser](https://terser.org/)压缩，以提高加载速度。
+  JavaScript 语言规范有不同版本，并非所有浏览器和浏览器版本都支持所有的特性。因此，jsPsych构建链使用[esbuild](https://esbuild.github.io/)将源文件转换为兼容大多数浏览器的代码。这一操作会生成`index.browser.min.js`，其功能类似于 `index.browser.js`，但对于旧浏览器不支持的特性，会对该部分的JavaScript代码进行替换。此外，`index.browser.min.js` 中的代码也通过[Terser](https://terser.org/)压缩，以提高加载速度。
 
 * **`*.js.map`**
-  在浏览器中调试代码时（尤其是 `index.browser.min.js`，因为使用了Terser和Babel导致其可读性很差），需要能看到源代码。对于构建后的文件，都对应了一个`.map`文件，将生成的代码映射到原始源代码。浏览器会自动读取这些 `.map` 文件并在其调试器中显示原始代码，而不是生成的代码。
+  在浏览器中调试代码时（尤其是 `index.browser.min.js`，因为被压缩了，导致其可读性很差），需要能看到源代码。对于构建后的文件，都对应了一个`.map`文件，将生成的代码映射到原始源代码。浏览器会自动读取这些 `.map` 文件并在其调试器中显示原始代码，而不是生成的代码。
 
-* **`*.d.ts`**
-  `.d.ts` 文件包含TypeScript的类型定义，否则这些定义会在编译为JavaScript期间丢失。当一个包被导入另一个TypeScript项目时，Typescript和编辑器会读取这些文件。
+* **`index.d.ts`**
+  该文件包含TypeScript的类型定义，否则这些定义会在编译为JavaScript期间丢失。当一个包被导入另一个TypeScript项目时，Typescript和编辑器会读取这些文件。
 
 
 ## 测试

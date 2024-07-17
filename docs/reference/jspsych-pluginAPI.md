@@ -218,6 +218,171 @@ var listener = jsPsych.pluginAPI.getKeyboardResponse({
 
 ## 多媒体
 
+## 音频
+
+所有音频相关的功能都由AudioPlayer类管理。
+
+### getAudioPlayer
+
+```javascript
+jsPsych.pluginAPI.getAudioPlayer(filepath)
+```
+
+#### 返回值
+
+返回一个Promise对象，resolve后得到一个AudioPlayer实例，含有当前音频文件的buffer。
+
+#### 描述
+
+获取AudioPlayer实例，该实例包含了用来播放/停止播放可以用WebAudio API或HTML5 Audio播放的音频的方法。
+
+我们强烈推荐在使用此方法前预加载音频，否则该方法会先加载响应文件，从而在实验中因为下载音频文件而带来延迟。
+
+#### 示例
+
+##### HTML 5 Audio 和 WebAudio API
+
+```javascript
+const audio = await jsPsych.pluginAPI.getAudioPlayer('my-sound.mp3')
+
+audio.play()
+
+```
+
+详见`audio-keyboard-response`。
+
+---
+
+### play
+
+```javascript
+const audio = jsPsych.pluginAPI.getAudioPlayer(filepath)
+
+audio.play()
+```
+
+#### 返回值
+
+无
+
+#### 描述
+
+AudioPlayer类的方法。播放已经加载到AudioPlayer实例缓冲区中的音频。如果音频是一个HTMl5 audio对象，则会播放该音频；如果是一个Webaudio API对象，则开始播放。
+
+#### 示例
+
+##### HTML 5 Audio 和 WebAudio API
+
+```javascript
+const audio = await jsPsych.pluginAPI.getAudioPlayer('my-sound.mp3');
+
+audio.play();
+
+```
+
+详见`audio-keyboard-response`。
+
+---
+
+### stop
+
+```javascript
+const audio = jsPsych.pluginAPI.getAudioPlayer(filepath);
+
+audio.play();
+```
+
+#### 返回值
+
+无
+
+#### 描述
+
+AudioPlayer类的方法。停止播放已经加载到AudioPlayer实例缓冲区中的音频。如果音频是一个HTMl5 audio对象，则会暂停该音频；如果是一个Webaudio API对象，则停止播放。
+
+#### 示例
+
+##### HTML 5 Audio 和 WebAudio API
+
+```javascript
+const audio = await jsPsych.pluginAPI.getAudioPlayer('my-sound.mp3');
+
+audio.play();
+
+audio.stop();
+
+```
+
+详见`audio-keyboard-response`。
+
+---
+
+### addEventListener
+
+```javascript
+const audio = jsPsych.pluginAPI.getAudioPlayer(filepath);
+
+audio.addEventListener(eventName, callback);
+```
+
+#### 返回值
+
+无
+
+#### 描述
+
+AudioPlayer类的方法。向AudioPlayer实例对应的媒体元素添加事件监听。
+
+#### 示例
+
+```javascript
+const audio = await jsPsych.pluginAPI.getAudioPlayer('my-sound.mp3');
+
+audio.play();
+
+audio.addEventListener('ended', end_trial());
+
+```
+
+详见`audio-keyboard-response`。
+
+---
+
+### removeEventListener
+
+```javascript
+const audio = jsPsych.pluginAPI.getAudioPlayer(filepath);
+
+audio.removeEventListener(eventName, callback);
+```
+
+#### 返回值
+
+无
+
+#### 描述
+
+AudioPlayer类的方法。移除AudioPlayer实例对应的媒体元素的事件监听。
+
+#### 示例
+
+```javascript
+const audio = await jsPsych.pluginAPI.getAudioPlayer('my-sound.mp3');
+
+audio.play();
+
+audio.addEventListener('ended', end_trial());
+
+audio.removeEventListener('ended', end_trial());
+
+```
+
+详见`audio-keyboard-response`。
+
+---
+
+## 其他媒体
+
 ### getAudioBuffer
 
 ```javascript

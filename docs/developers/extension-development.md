@@ -142,19 +142,32 @@ class MyAwesomeExtension {
 }
 ```
 
-### 静态的 .info
+### static .info
 
-`info`属性是一个对象，必须有`name`属性，作为扩展的唯一名称。
+`info`属性是一个对象，必须有`name`属性作为扩展的唯一名称、标记了版本的`version`属性以及包含了扩展生成的数据相关信息的`data`属性。
 
 ```js
+import { version } from '../package.json';
+
 class MyAwesomeExtension {
 
 }
 
 MyAwesomeExtension.info = {
-  name: 'awesome'
+  name: 'awesome',
+  version: version, // Should be hardcoded as `version: "1.0.1"` if not using build tools.
+  data: {
+    /** This will be scraped as metadata describing tracking_data and used to create the JsPsych docs */
+    tracking_data: {
+      type: ParameterType.STRING,
+    }
+  }
 }
 ```
+
+`version`属性标记了扩展的版本，且会被保存在数据中。其作用是产生相应的元数据且有助于维Psych-DS标准。它应该从package.json文件引入，做法是在index.ts文件顶部添加import语句。这样，`version`会在changeset中自动更新。如果你没有使用构建环境，而是直接编写JS文件，则可以手动写`version`。
+
+`data`属性是一个包含了插件产生的数据的对象。每一个数据对象都包含`type`和`default`属性。额外说一句，这个属性只应该用于你希望产生的数据。如果你选择生成元数据，jsdoc（/** */内的注释）都会作为元数据用来生成JsPsych文档。
 
 ### 可选方法
 

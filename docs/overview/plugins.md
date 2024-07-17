@@ -58,6 +58,8 @@ var image_trial = {
 | on_load        | 函数 | `function(){ return; }` | 试次加载完成时执行的回调函数，一般是呈现内容刚刚完成加载的时候。详见[事件相关回调函数](../overview/events.md)。 |
 | css_classes    | 字符串   | null                    | 给当前试次中呈现实验内容的元素添加的class名。这样，我们就可以添加只在当前试次生效的CSS样式。详见[控制呈现样式部分](../overview/style.md)及jsPsych的examples文件夹下的"css-classes-parameter.html"文件。 |
 | save_trial_parameters | 对象 | `{}` | 包含了应该或不应该记录到数据中的当前试次的参数。其中，每个属性名和试次参数同名，其值根据是否需要记录到数据中为true或false。如果某个参数值是通过函数返回的，则数据中记录的该参数值为相应函数的返回值。如果某个参数值就是一个函数（如，回调函数），则会将函数本身保存为字符串。详见jsPsych的examples文件夹下的"save-trial-parameters.html"文件。 |
+| save_timeline_variables | 布尔或数组 | `false` | 如果为`true`，则时间线变量会将当前一次循环的值保存到试次的数据中；如果为数组，则只保存数组中列出的变量。
+| record_data | 布尔 | `true` | 如果为`false`，则不记录当前试次的数据。 |
 
 ### data参数
 

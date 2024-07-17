@@ -13,6 +13,9 @@
 | stimulus               | 数组 | undefined                                         | 包含所呈现视频路径的数组。你可以为同一个视频添加多个格式（例如.mp4 / .ogg / .webm），以更好地[兼容不同浏览器](https://developer.mozilla.org/en-US/docs/Web/HTML/Supported_media_formats)。通常来说，.mp4可以兼容多种浏览请。当前插件不兼容.mov文件。视频播放器你会优先选择当前数组中第一个与所使用的浏览器兼容的视频，所以请将你希望优先使用的视频放到数组开头。 |
 | choices                | 字符串数组 | []                                                | 按钮的标签。数组中的每一个字符串都会对应一个按钮。           |
 | button_html            | HTML字符串 | `'<button class="jspsych-btn">%choice%</button>'` | 生成按钮的HTML模板。你可以通过修改这一参数来自定义不同种类的按钮。`%choice%`会根据`choices`数组中相应的元素值进行修改。如果对于不同按钮需要使用不同的HTML进行呈现，应该把当前的参数值设置为一个数组，这种情况下该数组的长度必须和`chocies`数组的长度一致。`button_html`数组的第一个元素对应`choices`数组中第一个元素，以此类推。 |
+| button_layout | 字符串 | 'grid' | 如果为`'grid'`，则会为包裹按钮的元素设置`display: grid`并启用`grid_rows`和`grid_columns`。如果为`'flex'`，则会为包裹按钮的元素设置`display: flex`。我们可以通过在`button_html`中添加行内CSS控制按钮的排布。|
+| grid_rows | 数值 | 1 | 按钮的行数，只有当`button_layout`为`'grid'`时生效。如果为null，则行数会根据按钮数量和列数自动计算。|
+| grid_columns | 数值 | null | 按钮的列数，只有当`button_layout`为`'grid'`时生效。如果为null，则列数会根据按钮数量和行数自动计算。|
 | margin_vertical        | 字符串     | '0px'                                             | 按钮的垂直方向外边距。                                       |
 | margin_horizontal      | 字符串     | '8px'                                             | 按钮的水平方向外边距。                                       |
 | prompt                 | 字符串     | null                                              | 可以包含HTML元素。该参数的内容会在`stimulus`下面进行呈现，从而起到提示被试该做什么的作用（例如：该按哪个/些键）。 |

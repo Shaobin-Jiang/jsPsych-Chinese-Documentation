@@ -16,11 +16,12 @@
 | ------------------------------ | ---------- | ------------------------------------------------- | ------------------------------------------------------------ |
 | stimulus                       | 字符串     | *undefined*                                       | 要播放的音频文件的路径。                                     |
 | choices                        | 字符串数组 | *undefined*                                       | 按钮的标签。数组中的每一个字符串都会对应一个按钮。           |
-| button_html                    | HTML字符串 | `'<button class="jspsych-btn">%choice%</button>'` | 生成按钮的HTML模板。你可以通过修改这一参数来自定义不同种类的按钮。`%choice%`会根据`choices`数组中相应的元素值进行修改。如果对于不同按钮需要使用不同的HTML进行呈现，应该把当前的参数值设置为一个数组，这种情况下该数组的长度必须和`chocies`数组的长度一致。`button_html`数组的第一个元素对应`choices`数组中第一个元素，以此类推。 |
+| button_html | 函数 | ``(choice: string, choice_index: number)=>`<button class="jspsych-btn">${choice}</button>``; | 为`choices`数组中的每个按钮生成相应的HTML。该函数接受按钮的文本和序号作为传入参数，并返回相应的HTML。如果你想要为不同的按钮使用不同的样式，可以根据文本内容或序号进行条件判断。该参数默认返回一个button元素。|
 | prompt                         | 字符串     | null                                              | 可以包含HTML元素。该参数的内容会在`stimulus`下面进行呈现，从而起到提示被试该做什么的作用（例如：该按哪个/些键）。 |
 | trial_duration                 | 数值       | null                                              | 允许被试做反应的时间限制。如果被试在设定的时间内没有做反应，那么其反应会被记为`null`，试次会在超出时间后结束。如果当前参数值为`null`，则试次会一直等待被试做反应。 |
-| margin_vertical                | 字符串     | '0px'                                             | 按钮的垂直方向外边距。                                       |
-| margin_horizontal              | 字符串     | '8px'                                             | 按钮的水平方向外边距。                                       |
+| button_layout | 字符串 | 'grid' | 如果为`'grid'`，则会为包裹按钮的元素设置`display: grid`并启用`grid_rows`和`grid_columns`。如果为`'flex'`，则会为包裹按钮的元素设置`display: flex`。我们可以通过在`button_html`中添加行内CSS控制按钮的排布。|
+| grid_rows | 数值 | 1 | 按钮的行数，只有当`button_layout`为`'grid'`时生效。如果为null，则行数会根据按钮数量和列数自动计算。|
+| grid_columns | 数值 | null | 按钮的列数，只有当`button_layout`为`'grid'`时生效。如果为null，则列数会根据按钮数量和行数自动计算。|
 | response_ends_trial            | 布尔       | true                                              | 如果为true，则当前试次会在被试做出反应时结束（假定被试是在`trial_duration`指定的时间范围内做出的反应）如果为false，则当前试次会持续到`trial_duration`指定的时间才结束。你可以把当前参数设置为`false`以让被试即便提前做了反应也要听完前音频材料。 |
 | trial_ends_after_audio         | 布尔       | false                                             | 如果为true，则当前试次会在音频播放完后立刻结束。             |
 | response_allowed_while_playing | 布尔       | true                                              | 如果为true，则允许被试在音频播放期间做反应。如果为false，则被试只能在音频播放完后才能点击按钮。音频播放完后，才会启用按钮并接受被试反应（包括回放的时候） |
@@ -63,13 +64,13 @@
 ???+ example "通过HTML，用图片作为按钮"
 	=== "Code"
 		```javascript
-		var trial = {
-			type: jsPsychAudioButtonResponse,
-			stimulus: 'sound/roar.mp3',
-			choices: ['lion.png', 'elephant.png', 'monkey.png'],
-			prompt: "<p>Which animal made the sound?</p>",
-			button_html: '<img src="%choice%" />'
-		};
+		const trial = {
+    	type: jsPsychAudioButtonResponse,
+    	stimulus: 'sound/roar.mp3',
+    	choices: images,
+    	prompt: "<p>Which animal made the sound?</p>",
+    	button_html: (choice)=>`<img style="cursor: pointer; margin: 10px;" src="${choice}" />`
+    };
 		```
 
 	=== "Demo"
@@ -79,7 +80,23 @@
 
 	<a target="_blank" rel="noopener noreferrer" href="../../demos/jspsych-audio-button-response-demo-2.html">在新标签页中打开</a>
 
-	**注意**: 如果想要使用图片作为按钮，且想让这些图片看起来更像按钮，即，添加边框且在hover / active / disabled状态下有不同样式，可以将图片嵌套在默认的`button_html`中:
-	```js
-	button_html: '<button class="jspsych-btn"><img src="%choice%" /></button>'
-	```
+???+ example "使用网格布局"
+	=== "Code"
+		```javascript
+		const trial = {
+    	type: jsPsychAudioButtonResponse,
+      stimulus: 'sound/telephone.mp3',
+      prompt: '<p>Which key was pressed first?</p>',
+      choices: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '0', '#'],
+      button_layout: 'grid',
+      grid_rows: 4,
+      grid_columns: 3
+    }
+		```
+
+	=== "Demo"
+		<div style="text-align:center;">
+			<iframe src="../../demos/jspsych-audio-button-response-demo-3.html" width="90%;" height="500px;" frameBorder="0"></iframe>
+		</div>
+
+	<a target="_blank" rel="noopener noreferrer" href="../../demos/jspsych-audio-button-response-demo-3.html">Open demo in new tab</a>

@@ -72,6 +72,18 @@ var trial = {
 }
 ```
 
+### 不记录某个试次的数据
+
+有时候我们想要不记录某个试次的数据，此时我们可以将`record_data`参数设置为`false`。有时候，我们只想要记录被试反应的试次，这时候这个功能就很有用。比如，我们可以去掉注视点试次的数据。
+
+```js
+var trial = {
+  type: jsPsychImageKeyboardResponse,
+  stimulus: 'imgA.jpg',
+  record_data: false
+}
+```
+
 ## 汇总、操作jsPsych记录的数据
 
 我们使用`jsPsych.data.get()`访问数据时，会返回一个数据集对象，包含了一系列汇总、操作数据的方法。完整的方法参见 [数据部分的文档](../reference/jspsych-data.md)。

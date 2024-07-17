@@ -24,9 +24,8 @@ var jsPsych = initJsPsych(settings);
 | on_data_update             | 函数   | 每次使用`jsPsych.data.write`方法存储数据时执行的函数。所有插件都是用这个方法存储数据（调用`jsPsych.finishTrial`），所以每次插件存储新的数据时当前函数都会执行。 |
 | on_interaction_data_update | 函数   | 每次出现新的交互行为时执行的函数。交互事件包括点开别的窗口（blur）、回到实验窗口（focus）、进入全屏模式（fullscreenenter）和退出全屏模式（fullscreenexit）。 |
 | on_close                   | 函数   | 被试离开页面时执行的函数。例如，如果要在被试关闭页面前保存数据，可以使用这个函数。 |
-| exclusions                 | 对象   | 对被试可以用来做实验的浏览器进行限制。详见下面的表格。 *这个特性会在8.0版本中移除。最好使用 [browser-check插件](../plugins/browser-check.md)来根据浏览器类型剔除被试。* |
 | show_progress_bar          | 布尔  | 如果为`true`，则会在页面顶端显示[进度条](../overview/progress-bar.md)。默认值为`false`。 |
-| message_progress_bar       | 字符串   | 进度条旁边显示的文字，默认为'Completion Progress'。 |
+| message_progress_bar       | 字符串或函数   | 进度条旁边显示的文字，默认为'Completion Progress'。如果为函数，则该函数接受当前进度为传入参数，取值范围为0 - 1。该函数在每次进度条更新时被调用。|
 | auto_update_progress_bar   | 布尔   | 如果为true，则页面顶端的进度条在主时间线中的试次结束后会自动更新。 |
 | use_webaudio               | 布尔   | 如果为`false`。则jsPsych不会使用WebAudio API播放音频，而是会使用HTML5的Audio对象。WebAudio API计时更精确，如果可以的话，还是应该使用它。默认值为`true`。 |
 | default_iti                | 数值  | 试次间间隔，单位为毫秒。默认值为0毫秒。 |
@@ -35,14 +34,6 @@ var jsPsych = initJsPsych(settings);
 直接在浏览器中运行实验（如，双击打开HTML文件）会使用 `file://` 协议，此时部分功能不可用。默认情况下，jsPsych在检测到当前HTML文件是通过`file://`协议运行时，会进入安全模式，自动禁用不能使用的功能。具体来说，禁用Web Audio（使用HTML5的audio，即使`use_webaudio`为true)和视频预加载。`override_safe_mode`参数默认为false，但我们也可以在使用`file://`协议时将其设置为true，以强制使用被禁用的功能。此时，我们需要禁用浏览器的安全 (CORS)功能——不过你需要明白你的这些操作是干什么的。注意，当前参数在在线运行实验时没有影响。因为使用了`http://`或`https://`协议。 |
 | case_sensitive_responses   | 布尔   | 如果为`true`，则jsPsych会在记录键盘反应时对大小写进行区分。例如，如果试次仅接受"a"按键，则"A"为无效按键。如果为false，则jsPsych不会对键盘反应区分大小写，即，在choices参数为"a"时，"a"和"A"都是有效的反应。如果我们不希望被试反应的记录被打开了大写锁定或按下了<kbd>Shift</kbd>这些因素影响，应该将当前参数设置为false。默认值为`false`。 |
 | extensions | 数组 | 包含了使用的扩展的数组。数组中的每个元素是一个对象，对应一个扩展。每个对象必须有`type`属性，即扩展的名称。可以给对象添加`params`参数，该参数是一个对象，会被传入扩展的`initialize`函数中。当前参数默认为空数组。 |
-
-上表中提到的exclusions参数的可选参数：
-
-| 参数  | 类型    | 描述                              |
-| ---------- | ------- | ---------------------------------------- |
-| min_width  | 数值 | 浏览器窗口宽度的最小值。如果宽度小于该值，则会给被试呈现一条消息，要求放大窗口。窗口足够大的时候才会开始实验。 |
-| min_height | 数值 | 同上，但规定的是最小高度。                                   |
-| audio      | 布尔 | 如果需要支持WebAudio API（播放音频的插件中使用）则设置为true。 |
 
 ### 返回值
 
@@ -67,46 +58,10 @@ var jsPsych = initJsPsych({
 更多示例详见GitHub仓库里[examples文件夹](https://github.com/jspsych/jsPsych/tree/main/examples)。
 
 ---
-## jsPsych.addNodeToEndOfTimeline
+## jsPsych.abortCurrentTimeline
 
 ```javascript
-jsPsych.addNodeToEndOfTimeline(node_parameters)
-```
-
-### 参数
-
-| 参数            | 类型 | 描述                                                         |
-| --------------- | ---- | ------------------------------------------------------------ |
-| node_parameters | 对象 | 定义时间线的对象，必须有`timeline` 参数，且该参数值必须是一个有效的时间线数组 。 |
-
-### 返回值
-
-无。
-
-### 描述
-
-在实验末尾添加时间线。
-
-### 示例
-
-```javascript
-var trial = {
-  type: jsPsychHtmlKeyboardResponse,
-  stimulus: 'This is a new trial.'
-}
-
-var new_timeline = {
-  timeline: [trial]
-}
-
-jsPsych.addNodeToEndOfTimeline(new_timeline)
-```
-
----
-## jsPsych.endCurrentTimeline
-
-```javascript
-jsPsych.endCurrentTimeline()
+jsPsych.abortCurrentTimeline()
 ```
 
 ### 参数
@@ -151,7 +106,7 @@ var block = {
   prompt: '<p>Press "y" to Continue. Press "n" to end this node of the experiment.</p>',
   on_finish: function(data) {
     if (jsPsych.pluginAPI.compareKeys(data.response, 'n')) {
-      jsPsych.endCurrentTimeline();
+      jsPsych.abortCurrentTimeline();
     }
   },
   timeline: trials
@@ -166,17 +121,17 @@ jsPsych.run([block, after_block]);
 ```
 
 ---
-## jsPsych.endExperiment
+## jsPsych.abortExperiment
 
 ```javascript
-jsPsych.endExperiment(end_message, data)
+jsPsych.abortExperiment(message, data)
 ```
 
 ### 参数
 
 | 参数        | 类型   | 描述                           |
 | ----------- | ------ | ------------------------------ |
-| end_message | 字符串 | 实验结束后呈现在屏幕上的消息。 |
+| message | 字符串 | 实验结束后呈现在屏幕上的消息。 |
 | data | 对象 | 可选，该对象会在实验的最后一个试次被保存到数据中。|
 
 ### 返回值
@@ -185,7 +140,7 @@ jsPsych.endExperiment(end_message, data)
 
 ### 描述
 
-跳过剩下的所有试次，结束实验。如果`jsPsych`的`on_finish`函数返回一个`Promise`对象，则会在该promise对象执行完成后才会显示`end_message`。
+跳过剩下的所有试次，结束实验。如果`jsPsych`的`on_finish`函数返回一个`Promise`对象，则会在该promise对象执行完成后才会显示`message`。
 
 ### 示例
 
@@ -199,9 +154,159 @@ var trial = {
   prompt: '<p>Press "y" to Continue. Press "n" to end the experiment</p>',
   on_finish: function(data){
     if(jsPsych.pluginAPI.compareKeys(data.response, "n")){
-      jsPsych.endExperiment('The experiment was ended by pressing "n".');
+      jsPsych.abortExperiment('The experiment was ended by pressing "n".');
     }
   }
+}
+```
+
+---
+
+## jsPsych.abortTimelineByName
+
+```javascript
+jsPsych.abortTimelineByName()
+```
+
+### 参数
+
+| 参数       | 类型     | 描述                              |
+| --------------- | -------- | ---------------------------------------- |
+| name | 字符串   | 中止的时间线的名称。 |
+
+### 返回值
+
+无。
+
+### 描述
+
+结束当前名为`name`的时间线。如果有很多层嵌套的时间线，可以控制具体哪一条时间线应该中止。
+
+### 示例
+
+#### Abort a procedure if an incorrect response is given.
+
+```javascript
+const fixation = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: '<p>+</p>',
+  choices: "NO_KEYS",
+  trial_duration: 1000
+}
+
+const test = {
+  type: jsPsychImageKeyboardResponse,
+  stimulus: jsPsych.timelineVariable('stimulus'),
+  choices: ['y', 'n'],
+  on_finish: function(data){
+    if(jsPsych.pluginAPI.compareKeys(data.response, "n")){
+      jsPsych.abortTimelineByName('memory_test');
+    }
+  }
+}
+
+const memoryResponseProcedure = {
+  timeline: [fixation, test]
+}
+
+// the variable `encode` is not shown, but imagine a trial that displays
+// some stimulus to remember.
+const memoryEncodeProcedure = {
+  timeline: [fixation, encode]
+}
+
+const memoryTestProcedure = {
+  timeline: [memoryEncodeProcedure, memoryResponseProcedure]
+  name: 'memory_test',
+  timeline_variables: [
+    {stimulus: 'image1.png'},
+    {stimulus: 'image2.png'},
+    {stimulus: 'image3.png'},
+    {stimulus: 'image4.png'}
+  ]
+}
+
+
+```
+
+---
+## jsPsych.addNodeToEndOfTimeline
+
+```javascript
+jsPsych.addNodeToEndOfTimeline(node_parameters)
+```
+
+### 参数
+
+| 参数       | 类型     | 描述                              |
+| --------------- | -------- | ---------------------------------------- |
+| node_parameters | 对象   | 定义时间线的对象，必须有`timeline`参数，且该参数值必须是一个有效的时间线数组 。|
+
+### 返回值
+
+无。
+
+### 描述
+
+在实验末尾添加时间线。
+
+### 示例
+
+```javascript
+var trial = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: 'This is a new trial.'
+}
+
+var new_timeline = {
+  timeline: [trial]
+}
+
+jsPsych.addNodeToEndOfTimeline(new_timeline)
+```
+
+---
+## jsPsych.evaluateTimelineVariable
+
+```js
+jsPsych.evaluateTimelineVariable(variable_name)
+```
+
+### 参数
+
+| 参数 | 类型 | 描述 |
+| --------- | ---- | ----------- |
+| variable_name | 字符串 | 需要计算的变量名。 |
+
+### 返回值
+
+当前时间线变量的值。
+
+### 描述
+
+不同于`jsPsych.timelineVariable()`，`evaluateTimelineVariable()`会立刻返回当前时间线变量的值。所以在不需要立刻执行的场景下不应该使用这个方法。具体来说，例如在函数内访问时间线变量的时候是可以使用这个方法的。
+timeline variable within a function, immediate evaluation is usually correct.
+
+### 示例
+
+#### 在函数内直接获取时间线变量
+
+```javascript
+const trial = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: function(){
+    return `<img style='width:100px; height:100px;' src='${jsPsych.evaluateTimelineVariable('image')}'></img>`;
+  }
+}
+
+const procedure = {
+  timeline: [trial],
+  timeline_variables: [
+    {image: 'face1.png'},
+    {image: 'face2.png'},
+    {image: 'face3.png'},
+    {image: 'face4.png'}
+  ]
 }
 ```
 
@@ -239,84 +344,6 @@ jsPsych.finishTrial(data)
 ```javascript
 // this code would be in a plugin
 jsPsych.finishTrial({correct_response: true});
-```
-
----
-## jsPsych.getAllTimelineVariables
-
-```javascript
-jsPsych.getAllTimelineVariables()
-```
-
-### 参数
-
-无。
-
-### 返回值
-
-返回一个对象，包含实验当前阶段可以使用的时间线变量。
-
-### 描述
-
-该函数可以获取实验当前阶段的时间线变量，可用于给数据添加注解，例如下面这段代码。
-
-### 示例
-
-```javascript
-var trial = {
-  type: jsPsychHtmlKeyboardResponse,
-  stimulus: 'Just a demo',
-  on_finish: function(data){
-    // merge all timeline variables available at this trial into the data for this trial
-    Object.assign(data, jsPsych.getAllTimelineVariables())
-  }
-}
-```
-
----
-## jsPsych.getCurrentTimelineNodeID
-
-```javascript
-jsPsych.getCurrentTimelineNodeID()
-```
-
-### 参数
-
-无。
-
-### 返回值
-
-返回当前的时间线节点的ID。
-
-### 描述
-
-获取当前的时间线节点的ID。ID是一个字符串，格式如下：
-
-* `"0.0"` 是第1个顶级时间线节点的ID
-* `"1.0"` 是第2个顶级时间线节点的ID
-* `"2.0"` 是第3个顶级时间线节点的ID，以此类推...
-
-如果一个时间线节点迭代了很多次 (例如，使用了loop function)，则迭代的次数会在小数点后表示出来：
-
-* `"0.0"` 是第1个顶级时间线节点第1次迭代时的ID
-* `"0.1"` 是第1个顶级时间线节点第2次迭代时的ID
-* `"0.2"` 是第1个顶级时间线节点第3次迭代时的ID，以此类推...
-
-如果时间线节点是嵌套在其他时间线节点内的，则用`"-"`表示层级结构：
-
-* `"0.0-1.0"` 是第1个顶级时间线节点内的第2个时间线节点
-* `"0.0-2.0"` 是第1个顶级时间线节点内的第3个时间线节点，以此类推...
-
-关于迭代的规则在这种层级结构中同样适用：
-
-* `"0.2-1.3"` 是第1个顶级时间线节点第3次迭代时的第2个时间线节点第4次迭代的ID
-
-
-### 示例
-
-```javascript
-var id = jsPsych.getCurrentTimelineNodeID();
-console.log('The current TimelineNode ID is '+id);
 ```
 
 ---
@@ -651,7 +678,7 @@ jsPsych.setProgressBar(0.85);
 ## jsPsych.timelineVariable
 
 ```javascript
-jsPsych.timelineVariable(variable, call_immediate)
+jsPsych.timelineVariable(variable)
 ```
 
 ### 参数
@@ -659,11 +686,10 @@ jsPsych.timelineVariable(variable, call_immediate)
 | 参数 | 类型 | 描述
 ----------|------|------------
 variable | 字符串 | 时间线变量的名称
-call_immediate | 布尔 | 可选参数，通常不会指定，会改变`jsPsych.timelineVariable`的返回值。如果为`true`，则函数会返回当前时间线变量的值，否则会返回一个返回当前时间线变量值的函数。如果不使用`call_immediate`，则会根据函数调用的环境决定返回什么值。如果把`jsPsych.timelineVariable`用作参数值，则`call_immediate`为false，这样我们就可以把`jsPsych.timelineVariable`当做[动态参数](../overview/dynamic-parameters.md)使用。如果`jsPsych.timelineVariable`在函数内使用，`call_immediate`为true。我们也可以直接把当前参数设置为true，强制`jsPsych.timelineVariable`返回当前时间线变量的值。
 
 ### 返回值
 
-返回时间线变量值的函数，或时间线变量的值，这取决于使用的环境。详见上面的`call_immediate`部分。
+返回一个占位符，jsPsych会在执行到这个试次的时候对其进行解析。
 
 ### 描述
 
@@ -671,7 +697,7 @@ call_immediate | 布尔 | 可选参数，通常不会指定，会改变`jsPsych.
 
 ### 示例
 
-#### 标准使用方式——作为试次的参数
+#### 作为试次的参数使用
 
 ```javascript
 var trial = {
@@ -689,49 +715,6 @@ var procedure = {
   ]
 }
 ```
-
-#### 在函数中直接调用
-
-```javascript
-var trial = {
-  type: jsPsychHtmlKeyboardResponse,
-  stimulus: function(){
-    return "<img style='width:100px; height:100px;' src='"+jsPsych.timelineVariable('image')+"'></img>";
-  }
-}
-
-var procedure = {
-  timeline: [trial],
-  timeline_variables: [
-    {image: 'face1.png'},
-    {image: 'face2.png'},
-    {image: 'face3.png'},
-    {image: 'face4.png'}
-  ]
-}
-```
-
-jsPsych v6.3.0版本以前，我们在函数中使用`jsPsych.timelineVariable`时必须将`call_immediate`参数设置为true，例如[动态参数](../overview/dynamic-parameters.md):
-
-```javascript
-var trial = {
-  type: jsPsychHtmlKeyboardResponse,
-  stimulus: function(){
-    return "<img style='width:100px; height:100px;' src='"+jsPsych.timelineVariable('image', true)+"'></img>";
-  }
-}
-
-var procedure = {
-  timeline: [trial],
-  timeline_variables: [
-    {image: 'face1.png'},
-    {image: 'face2.png'},
-    {image: 'face3.png'},
-    {image: 'face4.png'}
-  ]
-}
-```
-
 
 ---
 

@@ -4,6 +4,8 @@
 
 被试离开实验窗口、退出全屏模式或进入全屏模式时，该事件都会被记录到交互数据当中。所有事件数据结构如下：
 
+事件记录随实验结束而结束。
+
 ```javascript
 {
   event: 'focus', // 'focus' or 'blur' or 'fullscreenenter' or 'fullscreenexit'

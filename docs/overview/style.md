@@ -11,7 +11,7 @@
 下面的示例中，将刺激的字体设置为30px，并将文字颜色设为红色。这些调整**只**会对当前试次中stimulus中的文字生效。
 
 ```javascript
-var trial = {
+const trial = {
 	type: jsPsychHtmlKeyboardResponse,
 	stimulus: '<p style="font-size:30px;color:red;">hello world!</p>'
 }
@@ -20,14 +20,14 @@ var trial = {
 我们也可以使用[动态参数](./dynamic-parameters.md)将CSS和根据试次变化的量结合起来。这样，我们就可以很轻松地给多个试次添加相同的内联CSS语句。下面的例子中，我们就是用动态参数和[时间线变量](./timeline.md#_5):
 
 ```javascript
-var trial = {
+const trial = {
 	type: jsPsychHtmlKeyboardResponse,
 	stimulus: function() {
-        var stim = '<p style="font-size:30px;font-weight:bold;">'+jsPsych.timelineVariable('text')+'</p>';
+        const stim = '<p style="font-size:30px;font-weight:bold;">'+jsPsych.timelineVariable('text')+'</p>';
         return stim;
     }
 }
-var trial_procedure = {
+const trial_procedure = {
     timeline: [trial],
     timeline_variables: [
         {text: 'Welcome'},
@@ -146,7 +146,7 @@ CSS规则也可以使用`css_classes`参数设定，从而只对特定试次作�
   </style>
 </head>
 <script>
-var fixation = {
+const fixation = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: '+',
     choices: "NO_KEYS",
@@ -185,7 +185,7 @@ var fixation = {
   </style>
 </head>
 <script>
-var trial_procedure = {
+const trial_procedure = {
     timeline: [{
         type: jsPsychHtmlKeyboardResponse,
         stimulus: '<p id="stimulus">This is the stimulus.</p>',
@@ -217,7 +217,7 @@ var trial_procedure = {
   </style>
 </head>
 <script>
-var trial_procedure = {
+const trial_procedure = {
     timeline: [{
         type: jsPsychHtmlKeyboardResponse,
         stimulus: '<p id="stimulus">This is the stimulus.</p>',

@@ -98,35 +98,6 @@ console.log(all_data.csv());
 
 ---
 
-## jsPsych.data.getDataByTimelineNode
-
-```javascript
-jsPsych.data.getDataByTimelineNode(node_id)
-```
-
-### 参数
-
-参数 | 类型 | 描述 
-----------|------|------------
-node_id | 字符串 | 获取数据的时间线节点的ID。 
-
-### 返回值
-
-返回某个时间线节点产生的数据集对象。
-
-### 描述
-
-获取某个时间线节点的数据。
-
-### 示例
-
-```javascript
-var current_node_id = jsPsych.getCurrentTimelineNodeID();
-var data_from_current_node = jsPsych.data.getDataByTimelineNode(current_node_id);
-```
-
----
-
 ## jsPsych.data.getInteractionData
 
 ```javascript
@@ -397,8 +368,8 @@ var last_10_trials = jsPsych.data.get().last(10);
 返回一个数据集对象，但是从数据中移除了一个特定的属性。
 
 ```javascript
-// log a csv file that does not contain the internal_node_id values for each trial
-console.log(jsPsych.data.get().ignore('internal_node_id').csv());
+// log a csv file that does not contain the trial_type values for each trial
+console.log(jsPsych.data.get().ignore('trial_type').csv());
 ```
 
 #### .join()

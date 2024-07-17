@@ -102,7 +102,7 @@ var trial = {
 
 ## on_timeline_finish
 
-`on_timeline_finish`回调可以在使用时间线的试次中进行定义，在当前时间线结束时触发。如果使用了`timeline_variables`, `conditional_function`, `loop_function`, 或 `sample` ，该函数会在所有试次结束后运行。如果使用了`loop_function`，则该函数会在loop function前执行。如果使用了`repetitions`，则该函数会在每次重复后执行。
+`on_timeline_finish`回调可以在时间线节点中进行定义，在当前时间线结束时触发。如果时间线循环了，则该事件只会在所有循环结束后触发一次。
 
 ```javascript
 var procedure = {
@@ -115,10 +115,6 @@ var procedure = {
 	],
   on_timeline_finish: function() {
     console.log('This timeline has finished.');
-  },
-  loop_function: function() {
-    console.log('This loop function will execute after on_timeline_finish.');
-    return false;
   }
 }
 ```
@@ -127,7 +123,7 @@ var procedure = {
 
 ## on_timeline_start
 
-`on_timeline_start`回调可以在使用时间线的试次中进行定义，在当前时间线开始时触发，使用了`timeline_variables`,  `loop_function`, 或 `sample` 时也是这样。如果使用了`conditional_function`，则会先执行conditional function，且只有在它返回true时才会执行`on_timeline_start`。如果使用了`repetitions`，则该函数会在每次重复开始时执行。
+`on_timeline_start`回调可以在时间线节点中进行定义，在当前时间线开始时触发。如果使用了`conditional_function`，则会先执行该函数，只有返回`true`才会执行`on_timeline_start`。该事件只会触发一次，即使时间线设置了`loop_function`或`repetitions`。```javascript
 
 ```javascript
 var procedure = {

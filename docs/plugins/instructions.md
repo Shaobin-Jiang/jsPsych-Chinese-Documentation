@@ -18,6 +18,7 @@
 | button_label_next     | 字符串 | 'Next'       | 翻到下一页的按钮上的文字。                                   |
 | show_page_number      | 布尔   | false        | 如果为true，且启用了翻页的按钮，则会以x/y的形式在两个按钮之间显示页码。 |
 | page_label            | 字符串 | 'Page'       | `show_page_number`为true时，出现在页码前面的文字。           |
+| on_page_change        | 函数   | ``function (current_page) {}`` | 每次页面切换时执行的函数。该函数接受一个传入参数`current_page`，即**页面切换之后**的页面序号，从`0`开始。当离开最后一页，即结束试次的时候，该函数也会调用。|
 
 ## 数据
 

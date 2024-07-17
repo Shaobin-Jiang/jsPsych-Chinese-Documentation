@@ -7,7 +7,7 @@
 我们通过创建对象来定义一个试次。试次中最重要的属性是`type`参数，该参数告诉试次使用哪个插件。例如，如果要使用[html-keyboard-response插件](../plugins/html-keyboard-response.md)呈现一条消息，试次对象应该是这个样子：
 
 ```javascript
-var trial = {
+const trial = {
 	type: jsPsychHtmlKeyboardResponse,
 	stimulus: 'Welcome to the experiment.'
 }
@@ -18,7 +18,7 @@ var trial = {
 如果要创建一个只有一个试次的时间线并运行，就只需要把这个试次对象添加到数组里。最简单的时间线就是一个由试次对象组成的数组。
 
 ```javascript
-var timeline = [trial];
+const timeline = [trial];
 
 jsPsych.run(timeline);
 ```
@@ -32,21 +32,21 @@ jsPsych.run(timeline);
 ```javascript
 // with lots of trials, it might be easier to add the trials
 // to the timeline array as they are defined.
-var timeline = [];
+const timeline = [];
 
-var trial_1 = {
+const trial_1 = {
 	type: jsPsychHtmlKeyboardResponse,
 	stimulus: 'This is trial 1.'
 }
 timeline.push(trial_1);
 
-var trial_2 = {
+const trial_2 = {
 	type: jsPsychHtmlKeyboardResponse,
 	stimulus: 'This is trial 2.'
 }
 timeline.push(trial_2);
 
-var trial_3 = {
+const trial_3 = {
 	type: jsPsychHtmlKeyboardResponse,
 	stimulus: 'This is trial 3.'
 }
@@ -58,7 +58,7 @@ timeline.push(trial_3);
 时间线中的每个对象也可以有自己的时间线。这非常实用，原因之一是因为，对于嵌套的时间线上的试次，那些重复使用的参数我们可以只定义一次，这些参数会对这些试次都生效。下面的示例中创建了一系列使用[image-keyboard-response插件](../plugins/image-keyboard-response/)的试次，其中试次间唯一的不同在于呈现的图片文件不同。
 
 ```javascript
-var judgment_trials = {
+const judgment_trials = {
 	type: jsPsychImageKeyboardResponse,
 	prompt: '<p>Press a number 1-7 to indicate how unusual the image is.</p>',
 	choices: ['1','2','3','4','5','6','7'],
@@ -75,7 +75,7 @@ var judgment_trials = {
 我们也可以在`timeline`中的某个试次内对所有试次通用的值进行覆盖。下面的示例中，第二个试次会呈现不同的prompt信息。
 
 ```javascript
-var judgment_trials = {
+const judgment_trials = {
 	type: jsPsychImageKeyboardResponse,
 	prompt: '<p>Press a number 1-7 to indicate how unusual the image is.</p>',
 	choices: ['1','2','3','4','5','6','7'],
@@ -102,7 +102,7 @@ var judgment_trials = {
 下面是使用时间线变量的简单示例。
 
 ```javascript
-var face_name_procedure = {
+const face_name_procedure = {
 	timeline: [
 		{
 			type: jsPsychHtmlKeyboardResponse,
@@ -131,7 +131,7 @@ var face_name_procedure = {
 如果我们想要在人脸图片呈现之前显示人名呢 (或许这是一个探究人名和人脸图片出现顺序影响的实验中的一个条件)？我们可以在时间线变量中再添加一个变量，将图片和人名联系起来，然后再在时间线中加入一个试次用来显示这个名字。
 
 ```javascript
-var face_name_procedure = {
+const face_name_procedure = {
 	timeline: [
 		{
 			type: jsPsychHtmlKeyboardResponse,
@@ -161,12 +161,12 @@ var face_name_procedure = {
 }
 ```
 
-### 在函数中使用
+### 在函数中使用时间线变量
 
-继续看前一部分的例子，如果想把人脸和人名一起呈现该怎么办呢？我们可以使用[动态参数](dynamic-parameters.md) (函数)去创建一段HTML字符串，从而将两个变量传入到一个参数当中。`stimulus`参数的值就变成了一个函数，其返回值是同时包含了图片和人名的HTML字符串。
+继续看前一部分的例子，如果想把人脸和人名一起呈现该怎么办呢？我们可以使用[动态参数](dynamic-parameters.md) (函数)去创建一段HTML字符串，从而将两个变量传入到一个参数当中。不过，由于是在函数中使用时间线变量，我们需要使用`jsPsych.evaluateTimelineVariable()`而不是`jsPsych.timelienVariable()`。`.evaluateTimelineVariable()`会在被调用时直接返回相应的变量值，而`.timelineVariable()`会创建一个“占位值”，在实验进行到这里的时候才会由jsPsych进行赋值。`stimulus`参数的值就变成了一个函数，其返回值是同时包含了图片和人名的HTML字符串。
 
 ```javascript
-var face_name_procedure = {
+const face_name_procedure = {
 	timeline: [
 		{
 			type: jsPsychHtmlKeyboardResponse,
@@ -183,7 +183,7 @@ var face_name_procedure = {
 		{
 			type: jsPsychHtmlKeyboardResponse,
 			stimulus: function(){
-				var html = `
+				const html = `
 					<img src="${jsPsych.timelineVariable('face')}">
 					<p>${jsPsych.timelineVariable('name')}</p>`;
 				return html;
@@ -203,10 +203,10 @@ var face_name_procedure = {
 
 ### 试次顺序随机
 
-如果需要对试次顺序随机，可以将`randomize_order`设置为`true`。
+如果需要对时间线变量定义的试次顺序随机，可以将`randomize_order`设置为`true`。
 
 ```javascript
-var face_name_procedure = {
+const face_name_procedure = {
 	timeline: [...],
 	timeline_variables: [
 		{ face: 'person-1.jpg', name: 'Alex' },
@@ -233,7 +233,7 @@ jsPsych提供了从timeline_variables中抽取一部分试次进行执行的抽�
 `sample`参数的含义是，有重复地从时间线变量中抽取10次。
 
 ```javascript
-var face_name_procedure = {
+const face_name_procedure = {
 	timeline: [...],
 	timeline_variables: [
 		{ face: 'person-1.jpg', name: 'Alex' },
@@ -253,7 +253,7 @@ var face_name_procedure = {
 `sample`参数地设置会使得"Alex"被抽中的概率是其他的3倍。
 
 ```javascript
-var face_name_procedure = {
+const face_name_procedure = {
 	timeline: [...],
 	timeline_variables: [
 		{ face: 'person-1.jpg', name: 'Alex' },
@@ -274,7 +274,7 @@ var face_name_procedure = {
 `sample`参数的含义是从四个时间线变量中随机抽取三个。
 
 ```javascript
-var face_name_procedure = {
+const face_name_procedure = {
 	timeline: [...],
 	timeline_variables: [
 		{ face: 'person-1.jpg', name: 'Alex' },
@@ -294,7 +294,7 @@ var face_name_procedure = {
 `sample`参数的含义是将每个参数重复3次 (共计12个试次)并对顺序进行随机。
 
 ```javascript
-var face_name_procedure = {
+const face_name_procedure = {
 	timeline: [...],
 	timeline_variables: [
 		{ face: 'person-1.jpg', name: 'Alex' },
@@ -314,7 +314,7 @@ var face_name_procedure = {
 `sample`参数的含义是，将"Alex"和"Chad"放入组1，将"Beth"和"Dave"放入组2。这样，在抽样的时候，就会按照`组1` -> `组2` -> `组1` -> `组2`的顺序进行。每一个试次只能抽取一次。如果你希望有些时候`组2`也能被先抽到，则可以设置`randomize_group_order: true`。
 
 ```javascript
-var face_name_procedure = {
+const face_name_procedure = {
 	timeline: [...],
 	timeline_variables: [
 		{ face: 'person-1.jpg', name: 'Alex' },
@@ -335,7 +335,7 @@ var face_name_procedure = {
 我们也可以使用`custom`类型的抽样，此时抽取的试次顺序就由`fn`决定。该函数接受一个传入参数`t`，该参数是一个从`0`到`n-1`的数组，其中`n`是`timeline_variables`数组中试次的数量。该函数的返回值需要是指定试次顺序的数组，例如，`[3,3,2,2,1,1,0,0]`的含义是，试次顺序为 `Dave` -> `Dave` -> `Chad` -> `Chad` -> `Beth` -> `Beth` -> `Alex` -> `Alex`。
 
 ```javascript
-var face_name_procedure = {
+const face_name_procedure = {
 	timeline: [...],
 	timeline_variables: [
 		{ face: 'person-1.jpg', name: 'Alex' },
@@ -357,12 +357,12 @@ var face_name_procedure = {
 如果要将时间线重复执行，可以创建一个包含了`timeline`的对象 (节点)，其中`timeline`就是要重复的时间线数组，并指定`repetitions`，即重复次数。
 
 ```javascript
-var trial = {
+const trial = {
 	type: jsPsychHtmlKeyboardResponse,
 	stimulus: 'This trial will be repeated twice.'
 }
 
-var node = {
+const node = {
 	timeline: [trial],
 	repetitions: 2
 }
@@ -371,7 +371,7 @@ var node = {
 `repetitions`参数可以和其他参数一起使用，如timeline_variales、loop_function、以及conditional_function。如果使用了`timeline_variables`且`randomize_order`为true，则每次重复时会对时间线变量的顺序进行随机。
 
 ```javascript
-var face_name_procedure = {
+const face_name_procedure = {
 	timeline: [...],
 	timeline_variables: [
 		{ face: 'person-1.jpg', name: 'Alex' },
@@ -389,12 +389,12 @@ var face_name_procedure = {
 时间线可以通过 `loop_function` 循环执行。loop_function是一个函数，如果需要循环则返回`true`，如果需要结束则返回`false`。该函数接受一个传入参数，通常命名为`data`。该参数为时间线上一次循环中收集的[数据集对象](/core_library/jspsych-data.md#datacollection)。时间线执行一次后，会执行loop_function。
 
 ```javascript
-var trial = {
+const trial = {
 	type: jsPsychHtmlKeyboardResponse,
 	stimulus: 'This trial is in a loop. Press R to repeat this trial, or C to continue.'
 }
 
-var loop_node = {
+const loop_node = {
 	timeline: [trial],
 	loop_function: function(data){
 		if(jsPsych.pluginAPI.compareKeys(data.values()[0].response, 'r')){
@@ -410,25 +410,27 @@ var loop_node = {
 
 时间线可以通过 `conditional_function` 跳过。如果conditional_function返回`true`，则时间线正常执行；如果返回`false`，则会跳过时间线。conditional_function在运行时间线的第一个试次前执行。
 
-```javascript
-var jsPsych = initJsPsych();
+如果同一条时间线上同时使用`conditional_function`和`loop_function`，则前者只会被执行一次。
 
-var pre_if_trial = {
+```javascript
+const jsPsych = initJsPsych();
+
+const pre_if_trial = {
 	type: jsPsychHtmlKeyboardResponse,
 	stimulus: 'The next trial is in a conditional statement. Press S to skip it, or V to view it.'
 }
 
-var if_trial = {
+const if_trial = {
 	type: jsPsychHtmlKeyboardResponse,
 	stimulus: 'You chose to view the trial. Press any key to continue.'
 }
 
-var if_node = {
+const if_node = {
 	timeline: [if_trial],
 	conditional_function: function(){
 		// get the data from the previous trial,
 		// and check which key was pressed
-		var data = jsPsych.data.get().last(1).values()[0];
+		const data = jsPsych.data.get().last(1).values()[0];
 		if(jsPsych.pluginAPI.compareKeys(data.response, 's')){
 			return false;
 		} else {
@@ -437,7 +439,7 @@ var if_node = {
 	}
 }
 
-var after_if_trial = {
+const after_if_trial = {
 	type: jsPsychHtmlKeyboardResponse,
 	stimulus: 'This is the trial after the conditional.'
 }
@@ -450,7 +452,7 @@ jsPsych.run([pre_if_trial, if_node, after_if_trial]);
 我们可以在时间线开始和结束时，通过`on_timeline_start`和`on_timeline_finish`参数执行特定函数。这两个函数分别在时间线开始和结束时执行对应的回调。
 
 ```javascript
-var procedure = {
+const procedure = {
 	timeline: [trial_1, trial_2],
 	on_timeline_start: function() {
 		console.log('The trial procedure just started.')
@@ -464,7 +466,7 @@ var procedure = {
 这个示例中，如果使用时间线变量效果不会发生变化。`on_timeline_start` 和 `on_timeline_finish` 函数会在试次开始开始和结束时调用。
 
 ```javascript
-var face_name_procedure = {
+const face_name_procedure = {
 	timeline: [...],
 	timeline_variables: [
 		{ face: 'person-1.jpg', name: 'Alex' },
@@ -485,9 +487,9 @@ var face_name_procedure = {
 如果使用了`repetititons`参数 (且大于1)，则这些函数每次重复时间线的时候都会执行一次。
 
 ```javascript
-var repetition_count = 0;
+const repetition_count = 0;
 
-var procedure = {
+const procedure = {
 	timeline: [trial_1, trial_2],
 	repetitions: 3,
 	on_timeline_start: function() {

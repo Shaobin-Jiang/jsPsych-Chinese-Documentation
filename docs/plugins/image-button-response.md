@@ -15,12 +15,13 @@ stimulus_height | 整数 | null | 图片高度的像素值。如果为`null`（�
 stimulus_width | 整数 | null | 图片宽度的像素值。如果为`null`（未指定），则图片宽度为原始宽度。 
 maintain_aspect_ration | 布尔 | true | 如果**只**设置了图片的宽度或高度且当前参数值为true，则图片的另一维度会按照图片原始宽高比进行缩放。 
 choices | 字符串数组 | [] | 按钮的标签。数组中的每一个字符串都会对应一个按钮。 
-button_html | HTML字符串 | `'<button class="jspsych-btn">%choice%</button>'` | 生成按钮的HTML模板。你可以通过修改这一参数来自定义不同种类的按钮。`%choice%`会根据`choices`数组中相应的元素值进行修改。如果对于不同按钮需要使用不同的HTML进行呈现，应该把当前的参数值设置为一个数组，这种情况下该数组的长度必须和`chocies`数组的长度一致。`button_html`数组的第一个元素对应`choices`数组中第一个元素，以此类推。 
+| button_html | 函数 | ``(choice: string, choice_index: number)=>`<button class="jspsych-btn">${choice}</button>``; | 为`choices`数组中的每个按钮生成相应的HTML。该函数接受按钮的文本和序号作为传入参数，并返回相应的HTML。如果你想要为不同的按钮使用不同的样式，可以根据文本内容或序号进行条件判断。该参数默认返回一个button元素。|
 prompt | 字符串 | null | 可以包含HTML元素。该参数的内容会在`stimulus`下面进行呈现，从而起到提示被试该做什么的作用（例如：该按哪个/些键）。 
 trial_duration | 数值 | null | 允许被试做反应的时间限制。如果被试在设定的时间内没有做反应，那么其反应会被记为`null`，试次会在超出时间后结束。如果当前参数值为`null`，则试次会一直等待被试做反应。 
 stimulus_duration | 数值 | null | 呈现刺激的毫秒数。在超过这个时间后，CSS的`visibility`属性会被设置为`hidden`。如果当前参数值为`null`，则刺激会在试次结束后才消失。 
-margin_vertical | 字符串 | '0px' | 按钮的垂直方向外边距。 
-margin_horizontal | 字符串 | '8px' | 按钮的水平方向外边距。 
+| button_layout | 字符串 | 'grid' | 如果为`'grid'`，则会为包裹按钮的元素设置`display: grid`并启用`grid_rows`和`grid_columns`。如果为`'flex'`，则会为包裹按钮的元素设置`display: flex`。我们可以通过在`button_html`中添加行内CSS控制按钮的排布。|
+| grid_rows | 数值 | 1 | 按钮的行数，只有当`button_layout`为`'grid'`时生效。如果为null，则行数会根据按钮数量和列数自动计算。|
+| grid_columns | 数值 | null | 按钮的列数，只有当`button_layout`为`'grid'`时生效。如果为null，则列数会根据按钮数量和行数自动计算。|
 response_ends_trial | 布尔 | true | 如果为true，则当前试次会在被试做出反应时结束（假定被试是在`trial_duration`指定的时间范围内做出的反应）如果为false，则当前试次会持续到`trial_duration`指定的时间才结束。你可以把当前参数设置为`false`以让被试即便提前做了反应，看当前刺激的时间也要达到固定的时长。 
 render_on_canvas | boolean | true | 如果为true，图片会在canvas元素上进行渲染，从而避免在某些浏览器（如Firefox和Edge）中连续呈现的图片中间出现白屏的情况。如果为false，则图片会和此前版本的jsPsych一样在img元素上进行渲染。如果要呈现的是**动态图**，则当前参数必须为false，因为使用canvas渲染的方法仅支持静态图片。 
 enable_button_after            | 数值       | 0                                                 | 延迟多少毫秒后才允许被试点击按钮。|
