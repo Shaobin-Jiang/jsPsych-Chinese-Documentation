@@ -10,7 +10,7 @@
 
 ### 模板
 
-可以使用JavaScript或TypeScript编写插件。[JavaScript](https://github.com/jspsych/jspsych-contrib/blob/main/packages/extension-template/index.js)和[TypeScript](https://github.com/jspsych/jspsych-contrib/blob/main/packages/extension-template-ts/src/index.ts)的模板文件可以在[jspsych-contrib仓库](https://github.com/jspsych/jspsych-contrib/)中找到。
+可以使用JavaScript或TypeScript编写插件。[JavaScript](https://github.com/jspsych/jspsych-contrib/blob/main/templates/plugin-template-js/src/index.js)和[TypeScript](https://github.com/jspsych/jspsych-contrib/blob/main/templates/plugin-template-ts/src/index.ts)的模板文件可以在[jspsych-contrib仓库](https://github.com/jspsych/jspsych-contrib/)中找到。
 
 ## 插件的构成
 
