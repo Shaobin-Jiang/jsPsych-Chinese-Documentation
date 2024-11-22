@@ -2797,10 +2797,10 @@
 <td>按钮的标签。数组中的每一个字符串都会对应一个按钮。</td>
 </tr>
 <tr>
-<td></td>
 <td>button_html</td>
 <td>函数</td>
 <td><code>(choice: string, choice_index: number)=&gt;`&lt;button class="jspsych-btn"&gt;${choice}&lt;/button&gt;</code>;</td>
+<td>为<code>choices</code>数组中的每个按钮生成相应的HTML。该函数接受按钮的文本和序号作为传入参数，并返回相应的HTML。如果你想要为不同的按钮使用不同的样式，可以根据文本内容或序号进行条件判断。该参数默认返回一个button元素。</td>
 </tr>
 <tr>
 <td>prompt</td>
@@ -2821,22 +2821,22 @@
 <td>呈现刺激的毫秒数。在超过这个时间后，CSS的<code>visibility</code>属性会被设置为<code>hidden</code>。如果当前参数值为<code>null</code>，则刺激会在试次结束后才消失。</td>
 </tr>
 <tr>
-<td></td>
 <td>button_layout</td>
 <td>字符串</td>
 <td>'grid'</td>
+<td>如果为<code>'grid'</code>，则会为包裹按钮的元素设置<code>display: grid</code>并启用<code>grid_rows</code>和<code>grid_columns</code>。如果为<code>'flex'</code>，则会为包裹按钮的元素设置<code>display: flex</code>。我们可以通过在<code>button_html</code>中添加行内CSS控制按钮的排布。</td>
 </tr>
 <tr>
-<td></td>
 <td>grid_rows</td>
 <td>数值</td>
 <td>1</td>
+<td>按钮的行数，只有当<code>button_layout</code>为<code>'grid'</code>时生效。如果为null，则行数会根据按钮数量和列数自动计算。</td>
 </tr>
 <tr>
-<td></td>
 <td>grid_columns</td>
 <td>数值</td>
 <td>null</td>
+<td>按钮的列数，只有当<code>button_layout</code>为<code>'grid'</code>时生效。如果为null，则列数会根据按钮数量和行数自动计算。</td>
 </tr>
 <tr>
 <td>response_ends_trial</td>

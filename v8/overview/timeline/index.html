@@ -531,6 +531,48 @@
         <li class="md-nav__item">
   <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
+      在运行时修改时间线
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="在运行时修改时间线">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      运行时添加时间线节点
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      运行时移除时间线节点
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      添加 / 移除时间线节点的特殊情况
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
       时间线开始和结束时执行的函数
     </span>
   </a>
@@ -2883,6 +2925,48 @@
         <li class="md-nav__item">
   <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
+      在运行时修改时间线
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="在运行时修改时间线">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      运行时添加时间线节点
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      运行时移除时间线节点
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      添加 / 移除时间线节点的特殊情况
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
       时间线开始和结束时执行的函数
     </span>
   </a>
@@ -3277,7 +3361,116 @@
 
 <span class="nx">jsPsych</span><span class="p">.</span><span class="nx">run</span><span class="p">([</span><span class="nx">pre_if_trial</span><span class="p">,</span><span class="w"> </span><span class="nx">if_node</span><span class="p">,</span><span class="w"> </span><span class="nx">after_if_trial</span><span class="p">]);</span>
 </code></pre></div>
-<h2 id="_12">时间线开始和结束时执行的函数<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<h2 id="_12">在运行时修改时间线<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<p>虽然你也可以通过一系列 <code>conditional_function</code> 以及在 <code>stimulus</code> 中使用动态参数实现这一功能，jsPsych 中对于时间线的实现还是允许我们在运行过程中动态修改添加或移除试次和嵌套的时间线的。</p>
+<h3 id="_13">运行时添加时间线节点<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p>例如，实验中可能有一个节点，此时被试需要从三个选项中选出一个，不同选择会改变后续的时间线：</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">jspsych</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">initJsPsych</span><span class="p">();</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">main_timeline</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">part1_trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychHtmlKeyboardResponse</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">stimulus</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Part 1&#39;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">choice_trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychHtmlKeyboardResponse</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">stimulus</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Press 1 if you are a new participant. Press 2 for inquiries about an existing experiment run. Press 3 for Spanish.&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">choices</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;3&#39;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>此时使用 <code>conditional_function</code> 有点麻烦，因为它只能处理两个分支。此时，我们可以修改 <code>choice_trial</code> 以根据被试做出的选择在试次的末尾动态添加一条时间线。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">english_trial1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{...};</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">english_trial2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{...};</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">english_trial3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{...};</span>
+<span class="c1">// So on and so forth</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">spanish_trial3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{...};</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">english_branch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="nx">b1_t1</span><span class="p">,</span><span class="w"> </span><span class="nx">b1_t2</span><span class="p">,</span><span class="w"> </span><span class="nx">b1_t3</span><span class="p">];</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">mandarin_branch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="nx">b2_t1</span><span class="p">,</span><span class="w"> </span><span class="nx">b2_t2</span><span class="p">,</span><span class="w"> </span><span class="nx">b2_t3</span><span class="p">];</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">spanish_branch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="nx">b3_t1</span><span class="p">,</span><span class="w"> </span><span class="nx">b3_t2</span><span class="p">,</span><span class="w"> </span><span class="nx">b3_t3</span><span class="p">];</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">choice_trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychHtmlKeyboardResponse</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">stimulus</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Press 1 for English. Press 2 for Mandarin. Press 3 for Spanish.&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">choices</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;3&#39;</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">on_finish</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">switch</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">response</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="o">:</span>
+<span class="w">                </span><span class="nx">main_timeline</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">english_branch</span><span class="p">);</span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;2&#39;</span><span class="o">:</span>
+<span class="w">                </span><span class="nx">main_timeline</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">mandarin_branch</span><span class="p">);</span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;3&#39;</span><span class="o">:</span>
+<span class="w">                </span><span class="nx">main_timeline</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">spanish_branch</span><span class="p">);</span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">main_timeline</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">part1_trial</span><span class="p">,</span><span class="w"> </span><span class="nx">choice_trial</span><span class="p">);</span>
+</code></pre></div>
+<p>运行过程中，选项 1 2 3 会分别在 <code>main_timeline</code> 末尾动态添加 <code>english_branch</code>，<code>mandarin_branch</code> 和 <code>spanish_branch</code> 三条不同的时间线。</p>
+<h3 id="_14">运行时移除时间线节点<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<p>我们也可以在运行过程中从时间线中移除节点。例如，我们可以向上述示例中的 <code>choice_trial</code> 再添加第四个选项，并向 <code>main_timeline</code> 末尾添加另一条子时间线。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">choice_trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychHtmlKeyboardResponse</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">stimulus</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Press 1 for English. Press 2 for Mandarin. Press 3 for Spanish. Press 4 to exit.&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">choices</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;3&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;4&#39;</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">on_finish</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">switch</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">response</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="o">:</span>
+<span class="w">                </span><span class="nx">main_timeline</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">english_branch</span><span class="p">);</span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;2&#39;</span><span class="o">:</span>
+<span class="w">                </span><span class="nx">main_timeline</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">mandarin_branch</span><span class="p">);</span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;3&#39;</span><span class="o">:</span>
+<span class="w">                </span><span class="nx">main_timeline</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">spanish_branch</span><span class="p">);</span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;4&#39;</span><span class="o">:</span>
+<span class="w">                </span><span class="nx">main_timeline</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">part2_timeline</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">JsPsychHtmlKeyboardResponse</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">stimulus</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Part 2&#39;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// ...the rest of the part 2 trials</span>
+<span class="p">]</span>
+
+<span class="nx">main_timeline</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">part1_trial</span><span class="p">,</span><span class="w"> </span><span class="nx">choice_trial</span><span class="p">,</span><span class="w"> </span><span class="nx">part2_timeline</span><span class="p">)</span>
+</code></pre></div>
+<p>现在，如果被试选择了 1 / 2 / 3，<code>part2_timeline</code> 会在相应的试次后面运行 (<code>english_branch</code> | <code>mandarin_branch</code> | <code>spanish_branch</code>)，而如果选择了 4，<code>part2_timeline</code> 则会被移除，<code>main_timeline</code> 就此结束。</p>
+<h3 id="_15">添加 / 移除时间线节点的特殊情况<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<p>添加或移除未来的时间线节点是没问题的，但是不能向当前节点之前添加或移除节点。上述示例能正常运行是因为节点的添加和移除都是在时间线末尾通过 <code>push()</code> 和 <code>pop()</code> 完成的。如果在已经完成的时间线中添加节点，则不会被执行：</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">choice_trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychHtmlKeyboardResponse</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">stimulus</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Press 1 for English. Press 2 for Mandarin. Press 3 for Spanish. Press 4 to exit.&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">choices</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;3&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;4&#39;</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">on_finish</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">switch</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">response</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="o">:</span>
+<span class="w">                </span><span class="nx">main_timeline</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">,</span><span class="nx">english_branch</span><span class="p">);</span><span class="w"> </span><span class="c1">// Adds english_branch to the start of main_timeline</span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s1">&#39;2&#39;</span><span class="o">:</span>
+<span class="w">                </span><span class="nx">main_timeline</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">mandarin_branch</span><span class="p">);</span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+
+<span class="w">            </span><span class="p">...</span>
+
+<span class="nx">main_timeline</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">part1_trial</span><span class="p">,</span><span class="w"> </span><span class="nx">choice_trial</span><span class="p">);</span>
+</code></pre></div>
+<p>上述代码中，选项 1 向 <code>main_timeline</code> 的开头添加了 <code>english_branch</code>，这样就有 <code>main_timeline = [english_branch, part1_trial, choice_trial]</code>，但由于了这个时候进度已经过了第一个节点，新添加的 <code>english_branch</code> 并不会被执行。类似地，如果让 <code>choice_trial</code> 中的 <code>case '1'</code> 改为移除 <code>part1_trial</code>，也不会对时间线有什么改变。</p>
+<div class="admonition danger">
+<p class="admonition-title">警告</p>
+</div>
+<p>如果是循环的时间线，向当前节点前添加节点会导致当前节点被重新执行，移除当前节点前的节点会导致下一个节点被跳过。</p>
+<h2 id="_16">时间线开始和结束时执行的函数<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
 <p>我们可以在时间线开始和结束时，通过<code>on_timeline_start</code>和<code>on_timeline_finish</code>参数执行特定函数。这两个函数分别在时间线开始和结束时执行对应的回调。</p>
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">procedure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nx">timeline</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">trial_1</span><span class="p">,</span><span class="w"> </span><span class="nx">trial_2</span><span class="p">],</span>
