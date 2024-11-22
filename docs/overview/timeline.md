@@ -447,6 +447,134 @@ const after_if_trial = {
 jsPsych.run([pre_if_trial, if_node, after_if_trial]);
 ```
 
+## 在运行时修改时间线
+
+虽然你也可以通过一系列 `conditional_function` 以及在 `stimulus` 中使用动态参数实现这一功能，jsPsych 中对于时间线的实现还是允许我们在运行过程中动态修改添加或移除试次和嵌套的时间线的。
+
+### 运行时添加时间线节点
+
+例如，实验中可能有一个节点，此时被试需要从三个选项中选出一个，不同选择会改变后续的时间线：
+
+```javascript
+const jspsych = initJsPsych();
+let main_timeline = [];
+
+const part1_trial = {
+	type: jsPsychHtmlKeyboardResponse,
+	stimulus: 'Part 1'
+}
+
+const choice_trial = {
+	type: jsPsychHtmlKeyboardResponse,
+	stimulus: 'Press 1 if you are a new participant. Press 2 for inquiries about an existing experiment run. Press 3 for Spanish.',
+	choices: ['1','2','3']
+}
+```
+
+此时使用 `conditional_function` 有点麻烦，因为它只能处理两个分支。此时，我们可以修改 `choice_trial` 以根据被试做出的选择在试次的末尾动态添加一条时间线。
+
+```javascript
+const english_trial1 = {...};
+const english_trial2 = {...};
+const english_trial3 = {...};
+// So on and so forth
+const spanish_trial3 = {...};
+
+const english_branch = [b1_t1, b1_t2, b1_t3];
+const mandarin_branch = [b2_t1, b2_t2, b2_t3];
+const spanish_branch = [b3_t1, b3_t2, b3_t3];
+
+const choice_trial = {
+	type: jsPsychHtmlKeyboardResponse,
+	stimulus: 'Press 1 for English. Press 2 for Mandarin. Press 3 for Spanish.',
+	choices: ['1','2','3'],
+	on_finish: (data) => {
+		switch(data.response) {
+			case '1':
+				main_timeline.push(english_branch);
+				break;
+			case '2':
+				main_timeline.push(mandarin_branch);
+				break;
+			case '3':
+				main_timeline.push(spanish_branch);
+				break;
+		}
+	}
+}
+main_timeline.push(part1_trial, choice_trial);
+```
+
+运行过程中，选项 1 2 3 会分别在 `main_timeline` 末尾动态添加 `english_branch`，`mandarin_branch` 和 `spanish_branch` 三条不同的时间线。
+
+### 运行时移除时间线节点
+
+我们也可以在运行过程中从时间线中移除节点。例如，我们可以向上述示例中的 `choice_trial` 再添加第四个选项，并向 `main_timeline` 末尾添加另一条子时间线。
+
+```javascript
+const choice_trial = {
+	type: jsPsychHtmlKeyboardResponse,
+	stimulus: 'Press 1 for English. Press 2 for Mandarin. Press 3 for Spanish. Press 4 to exit.',
+	choices: ['1','2','3', '4'],
+	on_finish: (data) => {
+		switch(data.response) {
+			case '1':
+				main_timeline.push(english_branch);
+				break;
+			case '2':
+				main_timeline.push(mandarin_branch);
+				break;
+			case '3':
+				main_timeline.push(spanish_branch);
+				break;
+			case '4':
+				main_timeline.pop();
+				break;
+		}
+	}
+}
+
+const part2_timeline = [
+	{
+		type: JsPsychHtmlKeyboardResponse,
+		stimulus: 'Part 2'
+	}
+	// ...the rest of the part 2 trials
+]
+
+main_timeline.push(part1_trial, choice_trial, part2_timeline)
+```
+
+现在，如果被试选择了 1 / 2 / 3，`part2_timeline` 会在相应的试次后面运行 (`english_branch` | `mandarin_branch` | `spanish_branch`)，而如果选择了 4，`part2_timeline` 则会被移除，`main_timeline` 就此结束。
+
+### 添加 / 移除时间线节点的特殊情况
+
+添加或移除未来的时间线节点是没问题的，但是不能向当前节点之前添加或移除节点。上述示例能正常运行是因为节点的添加和移除都是在时间线末尾通过 `push()` 和 `pop()` 完成的。如果在已经完成的时间线中添加节点，则不会被执行：
+
+```javascript
+const choice_trial = {
+	type: jsPsychHtmlKeyboardResponse,
+	stimulus: 'Press 1 for English. Press 2 for Mandarin. Press 3 for Spanish. Press 4 to exit.',
+	choices: ['1','2','3', '4'],
+	on_finish: (data) => {
+		switch(data.response) {
+			case '1':
+				main_timeline.splice(0,0,english_branch); // Adds english_branch to the start of main_timeline
+				break;
+			case '2':
+				main_timeline.push(mandarin_branch);
+				break;
+			
+			...
+
+main_timeline.push(part1_trial, choice_trial);
+```
+
+上述代码中，选项 1 向 `main_timeline` 的开头添加了 `english_branch`，这样就有 `main_timeline = [english_branch, part1_trial, choice_trial]`，但由于了这个时候进度已经过了第一个节点，新添加的 `english_branch` 并不会被执行。类似地，如果让 `choice_trial` 中的 `case '1'` 改为移除 `part1_trial`，也不会对时间线有什么改变。
+
+!!! danger "警告"
+如果是循环的时间线，向当前节点前添加节点会导致当前节点被重新执行，移除当前节点前的节点会导致下一个节点被跳过。
+
 ## 时间线开始和结束时执行的函数
 
 我们可以在时间线开始和结束时，通过`on_timeline_start`和`on_timeline_finish`参数执行特定函数。这两个函数分别在时间线开始和结束时执行对应的回调。
