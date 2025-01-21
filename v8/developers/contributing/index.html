@@ -322,11 +322,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials/video-tutorials/" class="md-nav__link">
+      <a href="../../tutorials/community-tutorials/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    视频教程
+    社区教程
   </span>
   
 
@@ -2695,6 +2695,69 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    简报
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            简报
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../newsletter/subscribe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    订阅
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -2803,6 +2866,9 @@
 <p><strong>如果可行的话，附上使用用例。</strong>如果你是在添加新特性、编写新插件或新扩展，或对框架的某些行为造成了巨大的改变，请在<code>/examples</code>文件夹内加入使用用例。</p>
 </li>
 <li>
+<p><strong>如果你贡献的代码是插件/扩展，我们强烈推荐附上引用信息文件。</strong>这个文件应该被命名为<code>CITATION.cff</code>，位于仓库根目录。这样，使用你的插件/扩展的人就可以很方便地通过调用<code>jsPsych.getCitations([&lt;yourPlugin&gt;])</code>来引用你的工作。更多关于<code>.cff</code>文件的信息可以在<a href="https://citation-file-format.github.io/">这里</a>找到。</p>
+</li>
+<li>
 <p><strong>在pr中加入changeset</strong>。我们使用<a href="https://github.com/atlassian/changesets/blob/main/docs/adding-a-changeset.md">changesets</a>生成新的release。<a href="https://github.com/atlassian/changesets/blob/main/docs/adding-a-changeset.md">这篇关于changeset的介绍</a>说明了如何在pr中加入changeset。如果需要帮助，请随意提问。</p>
 </li>
 <li>
@@ -2815,7 +2881,8 @@
 <h2 id="jspsych-vs-jspsych-contrib">贡献代码： <code>jspsych</code> vs. <code>jspsych-contrib</code><a class="headerlink" href="#jspsych-vs-jspsych-contrib" title="Permanent link">&para;</a></h2>
 <p>如果你正在开发新的插件或扩展，可以为两个不同的仓库贡献代码：<a href="https://github.com/jspsych/jsPsych"><code>jspsych</code></a>或<a href="https://github.com/jspsych/jspsych-contrib"><code>jspsych-contrib</code></a>。</p>
 <p><code>jspsych</code>仓库用于可能被广泛使用的新插件和扩展。这个仓库中的代码需要有完备的文档以及经过充分的测试，且必须使用TypeScript。对该仓库贡献代码是受限的，因为一旦在其中加入了新插件或扩展，在后续版本中就需要对其进行更新。因而，每个新插件和扩展都可能增加我们未来的工作量，所以我们难免对这个仓库中加入的内容有所挑剔。如果你有想法想要讨论，可以开一个<a href="https://github.com/jspsych/jsPsych/discussions/new">discussion</a>，我们很乐意就这些想法展开讨论！</p>
-<p><code>jspsych-contrib</code>仓库则欢迎你贡献任何完整且能正常工作的代码，不过仍然需要提供一些基本的文档。贡献者可以选择是使用我们提供的 <a href="https://github.com/jspsych/jspsych-contrib/tree/main/packages/plugin-template-ts">TypeScript 模板</a>或<a href="https://github.com/jspsych/jspsych-contrib/tree/main/packages/plugin-template">JavaScript 模板</a> 来开发插件或扩展。我们不会对<code>jspsych-contrib</code>中的代码像<code>jspsych</code>中一样评估其价值。每隔一段时间，我们还会根据其受欢迎程度和完整性（文档和测试）考虑是否将代码从<code>jspsych-contrib</code>移入<code>jspsych</code>仓库。</p>
+<p><code>jspsych-contrib</code>仓库则欢迎你贡献任何完整且能正常工作的代码，不过仍然需要提供一些基本的文档。贡献者可以选择是使用我们提供的 <a href="https://github.com/jspsych/jspsych-contrib/blob/main/templates/plugin-template-ts/src/index.ts">TypeScript 模板</a>或<a href="https://github.com/jspsych/jspsych-contrib/blob/main/templates/plugin-template-js/src/index.js">JavaScript 模板</a> 来开发插件或扩展。你也可以参照我们的<a href="https://www.jspsych.org/latest/developers/plugin-development/">插件开发文档</a>。</p>
+<p>我们不会对<code>jspsych-contrib</code>中的代码像<code>jspsych</code>中一样评估其价值。每隔一段时间，我们还会根据其受欢迎程度和完整性（文档和测试）考虑是否将代码从<code>jspsych-contrib</code>移入<code>jspsych</code>仓库。</p>
 
 
 

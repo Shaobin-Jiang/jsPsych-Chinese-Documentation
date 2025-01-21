@@ -322,11 +322,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials/video-tutorials/" class="md-nav__link">
+      <a href="../../tutorials/community-tutorials/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    视频教程
+    社区教程
   </span>
   
 
@@ -2599,6 +2599,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#audioplayer" class="md-nav__link">
+    <span class="md-ellipsis">
+      AudioPlayer类的变动
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#finishtrial" class="md-nav__link">
     <span class="md-ellipsis">
       finishTrial()的改变
@@ -2752,6 +2761,69 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    简报
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            简报
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../newsletter/subscribe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    订阅
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -2818,6 +2890,15 @@
   <a href="#versiondata" class="md-nav__link">
     <span class="md-ellipsis">
       插件的version和data属性
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#audioplayer" class="md-nav__link">
+    <span class="md-ellipsis">
+      AudioPlayer类的变动
     </span>
   </a>
   
@@ -2896,7 +2977,7 @@
 
 
 <h1 id="v8x">将实验迁移到v8.x<a class="headerlink" href="#v8x" title="Permanent link">&para;</a></h1>
-<p>jsPsych 8.x版本主要是重写了核心部分代码，添加了新特性的同时也变得更加易于维护。多数的变化都是底层的，但也有一些重大变化，可能需要我们在实验代码中做出相应修改。</p>
+<p>jsPsych 8.x版本主要是重写了核心部分代码，添加了新特性的同时也变得更加易于维护。多数的变化都是底层的，但也有一些重大变化，可能需要我们在实验代码中做出相应修改。如果你是插件开发者，下面还列出了一些在开发或修改插件的时候需要考虑的特殊因素。</p>
 <p>本片文档主要针对从7.x升级到8.x。如果你在使用6.x或更早的版本，请先参照<a href="../migration-v7/">将实验迁移到v7.x</a>。</p>
 <h2 id="_1">时间线事件<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>在7.x中，如果时间线设置了<code>conditional_function</code>，则该函数会在每次时间线循环时都被执行。在8.x中<code>conditional_function</code>只执行一次。我们认为这样更符合直觉。这样，<code>conditional_function</code>就可以控制一条时间线是否应该执行，只要确定执行就应该一直持续下去。如果你想要像以前那样使用，可以将这条时间线嵌套在另一条循环的时间线里（<span style="color: red;">译者注：此时原本的<code>loop_function</code>应该被移到外层去</span>）。</p>
@@ -2941,13 +3022,41 @@
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p><code>button_html</code>参数还支持给不同的按钮配置不同的HTML。详见<a href="https://www.jspsych.org/plugins/jspsych-html-button-response/">插件文档</a>。</p>
+<p><code>button_html</code>参数还支持给不同的按钮配置不同的HTML。详见<a href="https://www.jspsych.org/latest/plugins/html-button-response/index.html">插件文档</a>。</p>
 <h2 id="_4">处理插件参数<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>在7.x版本中，插件可以省略<code>info</code>对象，此时jsPsych仍然可以正常处理这些参数。8.x版本对此更加严格，插件的<code>info</code>必须列出所有参数。如果某个参数没有列出，那么这个参数无法使用时间线变量和动态参数。<code>save_trial_parameters</code>参数对于没有在<code>info</code>中列出的参数也不会生效。</p>
 <h2 id="versiondata">插件的<code>version</code>和<code>data</code>属性<a class="headerlink" href="#versiondata" title="Permanent link">&para;</a></h2>
 <p>我们向插件的<code>info</code>中添加了<code>version</code>属性。该属性是一个字符串，需要在新版本插件推出时进行更新。</p>
 <p>我们还在<code>info</code>中添加了<code>data</code>属性。该属性描述了插件产生的数据。</p>
 <p>插件并不是必须要有这些属性，但我们推荐你把它加上。在8.x版本中，如果插件的<code>info</code>中没有<code>version</code>和<code>data</code>，jsPsych会警告。在9.x版本中，我们计划强制要求添加这两个属性。</p>
+<h2 id="audioplayer"><code>AudioPlayer</code>类的变动<a class="headerlink" href="#audioplayer" title="Permanent link">&para;</a></h2>
+<p>在7.x版本中，jsPsych的<code>pluginAPI</code>类通过<code>getAudioBuffer()</code>将WebAudio和HTML audio API暴露出来。然而，不同的API需要开发者进行不同的实现。在8.x中，我们使用<code>getAudioPlayer()</code>进行了替代，它为两种API提供统一的接口。</p>
+<p>这一变动仅影响插件开发者。如果你想要升级插件使用新的<code>getAudioPlayer()</code>，我们推荐你使用<code>await</code>调用这个新方法，此时<code>trial</code>函数需要是异步的：</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">audio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">pluginAPI</span><span class="p">.</span><span class="nx">getAudioPlayer</span><span class="p">(</span><span class="s1">&#39;my-sound.mp3&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>如果你还想继续使用<code>.then()</code>语法，可以这样做：</p>
+<p>7.x:</p>
+<div class="highlight"><pre><span></span><code><span class="k">this</span><span class="p">.</span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">pluginAPI</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">getAudioBuffer</span><span class="p">(</span><span class="s1">&#39;my-audio.mp3&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">audio</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// call play on audio if HTML5 audio API, create and connect buffer if WebAudio API</span>
+<span class="w">      </span><span class="p">})</span>
+<span class="w">      </span><span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;{</span>
+<span class="w">        </span><span class="c1">// handle error</span>
+<span class="w">      </span><span class="p">});</span>
+</code></pre></div>
+<p>8.x:</p>
+<div class="highlight"><pre><span></span><code><span class="k">this</span><span class="p">.</span><span class="nx">jsPsych</span><span class="p">.</span><span class="nx">pluginAPI</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">getAudioPlayer</span><span class="p">(</span><span class="s1">&#39;my-audio.mp3&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">player</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// no need to create and connect buffer, can just directly call functions on player</span>
+<span class="w">      </span><span class="p">})</span>
+<span class="w">      </span><span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// handle error</span>
+<span class="w">      </span><span class="p">})</span>
+</code></pre></div>
+<p>此外，<code>start()</code>和<code>pause()</code>也被从<code>AudioPlayer</code>移除。你仍然可以在音频结束后调用<code>stop()</code>以重新生成<code>AudioPlayer</code>，以便重新调用<code>play()</code>。</p>
+<p>关于具体实现，可以参见<a href="https://github.com/jspsych/jsPsych/blob/main/packages/plugin-audio-button-response/src/index.ts"><code>audio-button-response</code></a>插件，该插件使用了<code>await</code>语法来管理音频的播放。</p>
 <h2 id="finishtrial"><code>finishTrial()</code>的改变<a class="headerlink" href="#finishtrial" title="Permanent link">&para;</a></h2>
 <p>当插件调用<code>finishTrial()</code>或以<code>return</code>语句结尾时，jsPsych会自动清屏并结束尚未结束的倒计时。这一改变应该只会影响插件开发者。如果你在使用jsPsych官方提供的插件，应该不会注意到有什么变化。</p>
 <h2 id="_5">进度条<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>

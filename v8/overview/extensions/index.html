@@ -322,11 +322,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials/video-tutorials/" class="md-nav__link">
+      <a href="../../tutorials/community-tutorials/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    视频教程
+    社区教程
   </span>
   
 
@@ -485,15 +485,6 @@
       
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      扩展列表
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       开发扩展
     </span>
@@ -2680,6 +2671,69 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    简报
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            简报
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../newsletter/subscribe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    订阅
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -2718,15 +2772,6 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      扩展列表
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
       开发扩展
     </span>
   </a>
@@ -2753,6 +2798,7 @@
 
 <h1 id="_1">扩展<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>扩展是可以增强插件功能的jsPsych模块。一个经典的扩展使用案例就是眼动。眼动的扩展使得插件可以收集被试的注视情况并记录到插件的数据对象中。</p>
+<p>jsPsych的扩展允许我们扩展插件的功能，使得插件可以收集更多的数据，显示额外的刺激内容，等等。例如，<a href="../../extensions/webgazer/">眼动</a>扩展就可以帮插件收集严冬数据并添加到数据对象中。完整的扩展详见<a href="../../extensions/list-of-extensions/">这里</a>。</p>
 <h2 id="_2">使用扩展<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>如果要在实验中使用扩展，则需要像引入插件一样，通过<code>&lt;script&gt;</code>标签将其引入，并且要在<code>initJsPsych()</code>中对其进行初始化。</p>
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
@@ -2762,33 +2808,18 @@
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="nx">initJsPsych</span><span class="p">({</span>
 <span class="w">  </span><span class="nx">extensions</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychExtensionExample</span><span class="p">,</span><span class="w"> </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="p">{...}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychExtensionExample</span><span class="p">,</span><span class="w"> </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="p">{...}</span><span class="w"> </span><span class="p">}</span>
 <span class="w">  </span><span class="p">]</span>
 <span class="p">})</span>
 </code></pre></div>
 <p>如果需要扩展在试次中生效，则需要在试次的<code>extensions</code>属性下将需要使用的扩展添加进去。一些扩展可能还需要其他的依赖项或者是需要通过其他参数对其进行配置。</p>
 <div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">trial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nx">extensions</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="p">{</span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychExtensionExample</span><span class="p">,</span><span class="w"> </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="p">{...}</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="nx">jsPsychExtensionExample</span><span class="p">,</span><span class="w"> </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="p">{...}</span><span class="w"> </span><span class="p">}</span>
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
-<h2 id="_3">扩展列表<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>扩展</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="../../extensions/webgazer/">jspsych&#8209;ext&#8209;webgazer.js</a></td>
-<td>使用<a href="https://webgazer.cs.brown.edu/">WebGazer</a>库引入眼动功能。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="_4">开发扩展<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h2 id="_3">开发扩展<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>详见<a href="../../developers/extension-development/">开发扩展部分</a>。</p>
 
 

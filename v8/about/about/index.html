@@ -322,11 +322,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tutorials/video-tutorials/" class="md-nav__link">
+      <a href="../../tutorials/community-tutorials/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    视频教程
+    社区教程
   </span>
   
 
@@ -2623,6 +2623,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="在论文中引用jsPsych">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三方插件/扩展的引用工具
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -2646,6 +2661,69 @@
   
   <span class="md-ellipsis">
     许可证
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    简报
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            简报
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../newsletter/subscribe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    订阅
   </span>
   
 
@@ -2695,6 +2773,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="在论文中引用jsPsych">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三方插件/扩展的引用工具
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -2720,10 +2813,22 @@
 <p>jsPsych的作者是<a href="https://www.vassar.edu/faculty/jdeleeuw">Josh de Leeuw</a>。</p>
 <h3 id="jspsych_1">在论文中引用jsPsych<a class="headerlink" href="#jspsych_1" title="Permanent link">&para;</a></h3>
 <p>如果你在学术作品中使用了jsPsych，请将下面的文献添加到参考文献列表：</p>
+<blockquote>
 <p>de Leeuw, J.R., Gilbert, R.A., &amp; Luchterhandt, B. (2023). jsPsych: Enabling an open-source collaborative ecosystem of behavioral experiments. <em>Journal of Open Source Software</em>, <em>8</em>(85), 5351, <a href="https://joss.theoj.org/papers/10.21105/joss.05351">https://joss.theoj.org/papers/10.21105/joss.05351</a>.</p>
+</blockquote>
 <p>这篇文章更新了对jsPsych的介绍并包含了当前所有核心开发成员，它替代了早些的那篇文献：</p>
+<blockquote>
 <p>de Leeuw, J.R. (2015). jsPsych: A JavaScript library for creating behavioral experiments in a Web browser. <em>Behavior Research Methods</em>, <em>47</em>(1), 1-12. doi:<a href="http://link.springer.com/article/10.3758%2Fs13428-014-0458-y">10.3758/s13428-014-0458-y</a></p>
+</blockquote>
 <p>你的引用表明jsPsych得到了使用和重视，这样我们也会有动力继续开发下去。</p>
+<h4 id="_1">第三方插件/扩展的引用工具<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+<p>jsPsych是一个开源合作的生态，你使用的很多插件、扩展可能是第三方开发者贡献的。我们希望确保他们的工作得到认可，所以创建了一个命令行的引用工具，你可以用这个工具来引用jsPsych以及实验中用到的插件/扩展。你可以按照以下步骤使用该工具：</p>
+<ol>
+<li>在浏览器中启动jsPsych实验</li>
+<li>通过Ctrl + ⇧ + J (Windows) 或 ⌘ + ⌥ + J (Mac) 打开浏览器控制台</li>
+<li>输入 <code>jsPsych.getCitations()</code></li>
+</ol>
+<p>此时APA格式的jsPsych引用会被打印出来，你可以把打印出来的内容复制粘贴到你的论文中。如果要引用实验中使用到的插件/扩展，需要传入包含插件/扩展名称的数组，例如<code>jsPsych.getCitations([jsPsychHtmlKeyboardResponse, jsPsychMouseTrackingExtension])</code>。你还可以传入第二个参数，用来指定引用格式，例如<code>jsPsych.getCitations([jsPsychHtmlKeyboardResponse, jsPsychMouseTrackingExtension], "apa")</code>。目前，我们支持APA格式 (<code>"apa"</code>) 和Bibtex (<code>"bibtex"</code>)。</p>
 
 
 
