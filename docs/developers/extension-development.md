@@ -66,7 +66,7 @@ let trial = {
   extensions: [
     {type: myAwesomeExtension, params: {demo: 'value'}}
   ]
-});
+};
 
 //... extension code ...//
 class MyAwesomeExtension {
@@ -92,7 +92,7 @@ let trial = {
   extensions: [
     {type: myAwesomeExtension, params: {demo: 'value'}}
   ]
-});
+};
 
 //... extension code ...//
 class MyAwesomeExtension {
@@ -123,7 +123,7 @@ let trial = {
   on_finish: (data) => {
     console.log(data.awesome); // will output 'value'.
   }
-});
+};
 
 //... extension code ...//
 class MyAwesomeExtension {
@@ -169,9 +169,11 @@ MyAwesomeExtension.info = {
 
 `data`属性是一个包含了插件产生的数据的对象。每一个数据对象都包含`type`和`default`属性。额外说一句，这个属性只应该用于你希望产生的数据。如果你选择生成元数据，jsdoc（/** */内的注释）都会作为元数据用来生成JsPsych文档。
 
+更多关于`data`中可以包含的参数类型的相关信息详见[`ParameterType`文档](./plugin-development.md#parameter-types)。
+
 ### 可选方法
 
-扩展还可以额外加入一些方法。参见[webgazer扩展](../extensions/webgazer.md)。
+扩展还可以额外加入一些方法。参见[WebGazer扩展](../extensions/webgazer.md)。
 
 ## 关于编写扩展的建议
 

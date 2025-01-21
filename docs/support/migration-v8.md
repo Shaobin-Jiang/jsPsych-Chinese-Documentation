@@ -1,6 +1,6 @@
 # 将实验迁移到v8.x
 
-jsPsych 8.x版本主要是重写了核心部分代码，添加了新特性的同时也变得更加易于维护。多数的变化都是底层的，但也有一些重大变化，可能需要我们在实验代码中做出相应修改。
+jsPsych 8.x版本主要是重写了核心部分代码，添加了新特性的同时也变得更加易于维护。多数的变化都是底层的，但也有一些重大变化，可能需要我们在实验代码中做出相应修改。如果你是插件开发者，下面还列出了一些在开发或修改插件的时候需要考虑的特殊因素。
 
 本片文档主要针对从7.x升级到8.x。如果你在使用6.x或更早的版本，请先参照[将实验迁移到v7.x](./migration-v7.md)。
 
@@ -70,7 +70,7 @@ const trial = {
 }
 ```
 
-`button_html`参数还支持给不同的按钮配置不同的HTML。详见[插件文档](https://www.jspsych.org/plugins/jspsych-html-button-response/)。
+`button_html`参数还支持给不同的按钮配置不同的HTML。详见[插件文档](https://www.jspsych.org/latest/plugins/html-button-response/index.html)。
 
 ## 处理插件参数
 
@@ -83,6 +83,48 @@ const trial = {
 我们还在`info`中添加了`data`属性。该属性描述了插件产生的数据。
 
 插件并不是必须要有这些属性，但我们推荐你把它加上。在8.x版本中，如果插件的`info`中没有`version`和`data`，jsPsych会警告。在9.x版本中，我们计划强制要求添加这两个属性。
+
+## `AudioPlayer`类的变动
+
+在7.x版本中，jsPsych的`pluginAPI`类通过`getAudioBuffer()`将WebAudio和HTML audio API暴露出来。然而，不同的API需要开发者进行不同的实现。在8.x中，我们使用`getAudioPlayer()`进行了替代，它为两种API提供统一的接口。
+
+这一变动仅影响插件开发者。如果你想要升级插件使用新的`getAudioPlayer()`，我们推荐你使用`await`调用这个新方法，此时`trial`函数需要是异步的：
+
+```js
+const audio = await jsPsych.pluginAPI.getAudioPlayer('my-sound.mp3');
+```
+
+如果你还想继续使用`.then()`语法，可以这样做：
+
+7.x:
+
+```js
+this.jsPsych.pluginAPI
+      .getAudioBuffer('my-audio.mp3')
+      .then((audio) => {
+        // call play on audio if HTML5 audio API, create and connect buffer if WebAudio API
+      })
+      .catch((err) =>{
+        // handle error
+      });
+```
+
+8.x:
+
+```js
+this.jsPsych.pluginAPI
+      .getAudioPlayer('my-audio.mp3')
+      .then((player) => {
+        // no need to create and connect buffer, can just directly call functions on player
+      })
+      .catch((err) => {
+        // handle error
+      })
+```
+
+此外，`start()`和`pause()`也被从`AudioPlayer`移除。你仍然可以在音频结束后调用`stop()`以重新生成`AudioPlayer`，以便重新调用`play()`。
+
+关于具体实现，可以参见[`audio-button-response`](https://github.com/jspsych/jsPsych/blob/main/packages/plugin-audio-button-response/src/index.ts)插件，该插件使用了`await`语法来管理音频的播放。
 
 ## `finishTrial()`的改变
 

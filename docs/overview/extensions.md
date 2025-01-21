@@ -2,6 +2,8 @@
 
 扩展是可以增强插件功能的jsPsych模块。一个经典的扩展使用案例就是眼动。眼动的扩展使得插件可以收集被试的注视情况并记录到插件的数据对象中。
 
+jsPsych的扩展允许我们扩展插件的功能，使得插件可以收集更多的数据，显示额外的刺激内容，等等。例如，[眼动](../extensions/webgazer.md)扩展就可以帮插件收集严冬数据并添加到数据对象中。完整的扩展详见[这里](../extensions/list-of-extensions.md)。
+
 ## 使用扩展
 
 如果要在实验中使用扩展，则需要像引入插件一样，通过`<script>`标签将其引入，并且要在`initJsPsych()`中对其进行初始化。
@@ -16,7 +18,7 @@
 ```js
 initJsPsych({
   extensions: [
-    {type: jsPsychExtensionExample, params: {...} }
+    { type: jsPsychExtensionExample, params: {...} }
   ]
 })
 ```
@@ -26,16 +28,10 @@ initJsPsych({
 ```js
 var trial = {
   extensions: [
-    {type: jsPsychExtensionExample, params: {...} }
+    { type: jsPsychExtensionExample, params: {...} }
   ]
 }
 ```
-
-## 扩展列表
-
-扩展 | 描述 
------- | -----------
-[jspsych&#8209;ext&#8209;webgazer.js](../extensions/webgazer.md) | 使用[WebGazer](https://webgazer.cs.brown.edu/)库引入眼动功能。
 
 ## 开发扩展
 

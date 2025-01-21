@@ -234,7 +234,7 @@ jsPsych.pluginAPI.getAudioPlayer(filepath)
 
 #### 描述
 
-获取AudioPlayer实例，该实例包含了用来播放/停止播放可以用WebAudio API或HTML5 Audio播放的音频的方法。
+获取AudioPlayer实例，该实例包含了用来播放/停止播放可以用WebAudio API或HTML5 Audio播放的音频的方法。默认情况下，jsPsych使用WebAudio API在浏览器中播放音频，如果你想要使用HTML5 Audio，需要在`initJsPsych`中设置`use_webaudio: false`。
 
 我们强烈推荐在使用此方法前预加载音频，否则该方法会先加载响应文件，从而在实验中因为下载音频文件而带来延迟。
 
@@ -289,7 +289,7 @@ audio.play();
 ```javascript
 const audio = jsPsych.pluginAPI.getAudioPlayer(filepath);
 
-audio.play();
+audio.stop();
 ```
 
 #### 返回值
@@ -298,7 +298,7 @@ audio.play();
 
 #### 描述
 
-AudioPlayer类的方法。停止播放已经加载到AudioPlayer实例缓冲区中的音频。如果音频是一个HTMl5 audio对象，则会暂停该音频；如果是一个Webaudio API对象，则停止播放。
+AudioPlayer类的方法。停止播放已经加载到AudioPlayer实例缓冲区中的音频。如果音频是一个HTMl5 audio对象，则会暂停该音频；如果是一个Webaudio API对象，则停止播放。这样会重新生成一个音频播放器，我们可以再次调用`play()`方法。
 
 #### 示例
 
@@ -310,7 +310,6 @@ const audio = await jsPsych.pluginAPI.getAudioPlayer('my-sound.mp3');
 audio.play();
 
 audio.stop();
-
 ```
 
 详见`audio-keyboard-response`。
@@ -382,63 +381,6 @@ audio.removeEventListener('ended', end_trial());
 ---
 
 ## 其他媒体
-
-### getAudioBuffer
-
-```javascript
-jsPsych.pluginAPI.getAudioBuffer(filepath)
-```
-
-#### 参数
-
-参数 | 类型 | 描述 
-----------|------|------------
-filepath | 字符串 | 预加载的音频文件路径。
-
-#### 返回值
-
-加载音频文件时返回一个Promise对象，加载成功时的回调函数传入参数为对应的音频。如果实验使用了WebAudio API，则为一个AudioBuffer对象，否则为一个HTML5的Audio对象。加载失败时的回调函数传入参数是`preloadAudio`产生的错误。
-
-#### 描述
-
-获取WebAudio API的AudioBuffer对象或HTML5的Audio对象。
-
-我们推荐在调用当前方法前对音频文件进行预加载。如果音频文件没有被加载，则当前方法会先对文件进行加载，从而在实验中因为等待下载音频而出现较长的延迟。
-
-#### 示例
-
-##### HTML 5 Audio
-
-```javascript
-jsPsych.pluginAPI.getAudioBuffer('my-sound.mp3')
-  .then(function(audio){
-    audio.play();
-  })
-  .catch(function(err){
-    console.error('Audio file failed to load')
-  })
-```
-
-##### WebAudio API
-
-```javascript
-var context = jsPsych.pluginAPI.audioContext();
-
-jsPsych.pluginAPI.getAudioBuffer('my-sound.mp3')
-  .then(function(buffer){
-    audio = context.createBufferSource();
-    audio.buffer = buffer;
-    audio.connect(context.destination);
-    audio.start(context.currentTime);
-  })
-  .catch(function(err){
-    console.error('Audio file failed to load')
-  })
-```
-
-更多示例详见`audio-keyboard-response`插件。
-
----
 
 ### getAutoPreloadList
 
@@ -558,7 +500,7 @@ opts | `MediaRecorderOptions` | 摄像头的`MediaRecorderOptions`。见[MDN](ht
 
 #### 描述
 
-通过提供的`MediaStream`生成`MediaRecorder`并通过[getCameraRecorder()](#getcamerarecorder)存储。
+通过提供的`MediaStream`生成`MediaRecorder`并通过[`getCameraRecorder()`](#getcamerarecorder)存储。
 
 #### 示例
 
@@ -591,7 +533,7 @@ stream | `MediaStream` | 当前活跃的麦克风设备的`MediaStream`对象。
 
 #### 描述
 
-从传入的`MediaStream`生成一个`MediaRecorder`，并允许通过[getMicrophoneRecorder()](#getmicrophonerecorder)调用。
+从传入的`MediaStream`生成一个`MediaRecorder`，并允许通过[`getMicrophoneRecorder()`](#getmicrophonerecorder)调用。
 
 #### 示例
 

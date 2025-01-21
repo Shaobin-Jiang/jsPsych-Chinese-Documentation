@@ -230,42 +230,6 @@ const memoryTestProcedure = {
 ```
 
 ---
-## jsPsych.addNodeToEndOfTimeline
-
-```javascript
-jsPsych.addNodeToEndOfTimeline(node_parameters)
-```
-
-### 参数
-
-| 参数       | 类型     | 描述                              |
-| --------------- | -------- | ---------------------------------------- |
-| node_parameters | 对象   | 定义时间线的对象，必须有`timeline`参数，且该参数值必须是一个有效的时间线数组 。|
-
-### 返回值
-
-无。
-
-### 描述
-
-在实验末尾添加时间线。
-
-### 示例
-
-```javascript
-var trial = {
-  type: jsPsychHtmlKeyboardResponse,
-  stimulus: 'This is a new trial.'
-}
-
-var new_timeline = {
-  timeline: [trial]
-}
-
-jsPsych.addNodeToEndOfTimeline(new_timeline)
-```
-
----
 ## jsPsych.evaluateTimelineVariable
 
 ```js
@@ -333,10 +297,11 @@ jsPsych.finishTrial(data)
 该方法告诉jsPsych当前试次结束，用于在各个插件中结束当前试次。试次结束后会执行以下任务：
 
 * 使用`jsPsych.data.write()`存储数据
-* 执行试次的on_finish回调函数
-* 执行on_trial_finish回调函数
+* 执行试次的`on_finish`回调函数
+* 执行`on_trial_finish`回调函数
+* 清空页面，停止jsPsych创建的倒计时
 * 如果呈现了进度条，则更新进度条
-* 如果当前试次是最后一个（且on_finish回调已经执行了），则结束实验
+* 如果当前试次是最后一个（且`on_finish`回调已经执行了），则结束实验
 * 如果有下一个试次则开始下一个试次
 
 ### 示例
@@ -344,6 +309,35 @@ jsPsych.finishTrial(data)
 ```javascript
 // this code would be in a plugin
 jsPsych.finishTrial({correct_response: true});
+```
+
+---
+## jsPsych.getCitations
+
+```javascript
+jsPsych.getCitations(plugins, format)
+```
+
+### 参数
+| 参数 | 类型   | 描述                                          |
+| --------- | ------ | ---------------------------------------------------- |
+| plugins   | 数组  | 使用的插件/扩展的名字 |
+| format    | 字符串 | 输出格式 ("apa" | "bibtex")            |
+
+### 返回值
+
+生成的对jsPsych以及插件/扩展的引用，用"\n"分割。
+
+### 描述
+
+对jsPsych以及实验中使用的插件/扩展生成引用。
+
+### 示例
+
+```javascript
+// in browser console
+jsPsych.getCitations() // prints citation for jsPsych library in APA format
+jsPsych.getCitations([TestPlugin], "bibtex") // prints citation for jsPsych library and TestPlugin (if different) in BibTex format
 ```
 
 ---
@@ -466,31 +460,6 @@ alert('You have completed approximately '+progress.percent_complete+'% of the ex
 
 
 ---
-## jsPsych.getProgressBarCompleted
-
-```javascript
-jsPsych.getProgressBarCompleted()
-```
-
-### 参数
-
-无。
-
-### 返回值
-
-返回一个0 - 1之间的数值，表示目前进度条的进度。
-
-### 描述
-
-用来获取进度条当前进度。对于自动和手动控制都有效。
-
-### 示例
-
-```javascript
-var progress_bar_amount = jsPsych.getProgressBarCompleted();
-```
-
----
 
 ## jsPsych.getStartTime
 
@@ -604,9 +573,9 @@ jsPsych.resumeExperiment()
 var trial = {
   type: jsPsychHtmlKeyboardResponse,
   stimulus: 'Press p to take a 30 second break. Otherwise, press c to continue immediately.',
-  choices: ['p','c'],
+  choices: ['p', 'c'],
   on_finish: function(data){
-    if(jsPsych.pluginAPI.compareKeys(data.response, "p")) { 
+    if (jsPsych.pluginAPI.compareKeys(data.response, "p")) { 
       jsPsych.pauseExperiment();
       setTimeout(jsPsych.resumeExperiment, 30000);
     }
@@ -642,35 +611,6 @@ jsPsych.run(timeline)
 var timeline = [trial1, trial2, trial3];
 
 jsPsych.run(timeline);
-```
-
----
-
-## jsPsych.setProgressBar
-
-```javascript
-jsPsych.setProgressBar(value)
-```
-
-### 参数
-
-| 参数 | 类型    | 描述                              |
-| --------- | ------- | ---------------------------------------- |
-| value     | 数值 | 进度条进度（0 - 1之间）。 |
-
-
-### 返回值
-
-无。
-
-### 描述
-
-设置进度条进度，取值范围为0 - 1，大于1的值记为1。
-
-### 示例
-
-```javascript
-jsPsych.setProgressBar(0.85);
 ```
 
 ---

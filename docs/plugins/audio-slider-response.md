@@ -26,6 +26,7 @@
 | prompt                         | 字符串     | null        | 可以包含HTML元素。该参数的内容会在`stimulus`下面进行呈现，从而起到提示被试该做什么的作用（例如：该按哪个/些键）。 |
 | trial_duration                 | 数值       | null        | 允许被试做反应的时间限制。如果被试在设定的时间内没有做反应，那么其反应会被记为`null`，试次会在超出时间后结束。如果当前参数值为`null`，则试次会一直等待被试做反应。 |
 | response_ends_trial            | 布尔       | true        | 如果为true，则当前试次会在被试做出反应时结束（假定被试是在`trial_duration`指定的时间范围内做出的反应）如果为false，则当前试次会持续到`trial_duration`指定的时间才结束。你可以把当前参数设置为`false`以让被试即便提前做了反应也要听完前音频材料。 |
++| trial_ends_after_audio         | 布尔      | false         | 如果为真，则试次会在音频播放结束后立刻停止。 |
 | response_allowed_while_playing | 布尔       | true        | 如果为true，则允许被试在音频播放期间做反应。如果为false，则被试只能在音频播放完后才能拖动滑动条。音频播放完后，才会启用滑动条并接受被试反应（包括回放的时候）。 |
 
 ## 数据

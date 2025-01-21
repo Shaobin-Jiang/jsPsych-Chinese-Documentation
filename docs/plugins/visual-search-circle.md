@@ -30,6 +30,8 @@
 | target_absent_key  | 字符串       | 'f'         | 当目标不存在时按的键。                                       |
 | trial_duration     | 数值         | null        | 被试做反应的时间限制。如果为null，则会允许被试一直进行搜索。 |
 | fixation_duration  | 数值         | 1000        | 在呈现搜索项前多少毫秒时呈现注视点。                         |
+| randomize_item_locations | 布     | true      | 是否随机位置。如果为`false`，则第一个刺激永远在`location_first_item`指定的位置。|
+| location_first_item | 数值 | 0 | 如果`randomize_item_locations`为`false`，则指定第一个刺激的位置（以角度表示）。0°位于注视点上方，正方向为顺时针。|
 
 ## 数据
 

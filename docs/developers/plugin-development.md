@@ -8,9 +8,11 @@
 * [`trial()` function](#initialize)：第一个传入参数为一个`HTMLElement`，第二个传入参数为试次参数对象。可以传入第三个参数，用来在特定情况下[处理`on_load`事件](#asynchronous-loading)。`trial()`方法需要在合适的时候触发`jsPsych,finishTrial()`以[结束试次、保存数据](#save-data)。
 * [静态的`info`](#static-info)属性：该对象用于描述插件的参数。
 
-### 模板
+### 插件模板
 
-可以使用JavaScript或TypeScript编写插件。[JavaScript](https://github.com/jspsych/jspsych-contrib/blob/main/templates/plugin-template-js/src/index.js)和[TypeScript](https://github.com/jspsych/jspsych-contrib/blob/main/templates/plugin-template-ts/src/index.ts)的模板文件可以在[jspsych-contrib仓库](https://github.com/jspsych/jspsych-contrib/)中找到。
+插件模板可以在[jspsych-contrib](https://github.com/jspsych/jspsych-contrib)仓库找到。插件可以使用[JavaScript](https://github.com/jspsych/jspsych-contrib/blob/main/templates/plugin-template-js/src/index.js)或[TypeScript](https://github.com/jspsych/jspsych-contrib/blob/main/templates/plugin-template-ts/src/index.ts)编写。
+
+如果要使用模板编写，我们推荐我们在jspsych-contrib仓库发布的CLI工具。该工具可以自动化使用JavaScript或TypeScript插件的初始化过程。更多关于CLI工具的信息可以在jspsych-contrib仓库的[`README`](https://github.com/jspsych/jspsych-contrib?tab=readme-ov-file#creating-a-new-plugin-or-extension)找到。
 
 ## 插件的构成
 
@@ -60,6 +62,10 @@ const info = {
   ...
 }
 ```
+
+??? info "自定义构建环境下的自动化版本控制"
+
+如果你使用了自定义的构建环境，所使用的`tsconfig.json`没有继承自jsPsych，且想要使用这种自动化版本控制的语法，需要向`compilerOptions`对象添加`"resolveJsonModule": true`。
 
 如果你没有使用支持`import`和`package.json`的构建环境（比如直接编写JS文件），则可以手动写`version`。
 
@@ -153,6 +159,98 @@ const info = {
     },
   },
 }
+
+class MyAwesomePlugin {
+  constructor(...)
+
+  trial(...)
+}
+
+MyAwesomePlugin.info = info;
+```
+
+<h4 id="parameter-types">参数类型</h4>
+
+jsPsych支持以下参数类型：
+
+| 名称 | 描述 | 示例 |
+| --------- | ----------- | ------- |
+| BOOL | 布尔值 | `true`或`false` |
+| STRING | 字符串 | "Continue" |
+| INT | 数值 | 12 |
+| FLOAT | 浮点数 | 5.55 |
+| FUNCTION | JavaScript函数 | `function(tries) { return "<p>You have " + tries + " tries left." }` |
+| KEY | 单一按键，支持箭头、空格等功能键 | `"j"`, `"n"`, `"ArrowLeft"` |
+| KEYS | 按键数组，或字符串`"ALL_KEYS"`或`"NO_KEYS"` | `["f", "j"]` |
+| SELECT | 字符串数组，开发者可以从中选取一个作为参数 | `["cm", "px", "em"]` |
+| HTML_STRING | HTML字符串 | `"<p>This is the prompt.</p>"` |
+| IMAGE | 图片文件路径A string that contains the path to an image file. | `"my_image.jpg"` |
+| AUDIO | 音频文件路径 | `"my_sound.mp3"` |
+| VIDEO | 视频文件路径 | `"my_video.mp4"` |
+| OBJECT | JSON对象 | `{ rt: 350, response: "hello!", correct: true }` |
+| COMPLEX | 可以设置嵌套的JSON对象 | `{ rt: 350, response: "hello!", correct: true }` |
+| TIMELINE | jsPsych时间线 | `[{ type: jsPsychKeyboardResponse, stimulus: 'my_image.jpg }]` |
+
+我们还可以设置每个参数是不是数组，例如一个接受一系列按钮文本的参数可以这样描述：
+
+```js
+const info = {
+  // ...
+  parameters: {
+    /** The labels to be displayed on each button. */
+    labels: {
+      type: ParameterType.STRING,
+      array: true,
+      default: ["Pause", "Play", "Continue"]
+    }
+  },
+  // ...
+}
+```
+
+特定参数类型还可以有特殊的描述。对于`ParameterType.SELECT`，我们可以设置`default`属性，该属性的值必须在`options`中：
+
+```js
+const info = {
+  // ...
+  parameters: {
+    /** The units of measure used to display the length and width of the stimulus. */
+    units: {
+      type: ParameterType.SELECT,
+      options: ["em", "px", "vh", "vw"],
+      default: "px"
+    }
+  },
+  // ...
+}
+```
+
+对于`ParameterType.COMPLEX`，我们可以设置`nested`属性，指定嵌套的属性。这和正常设置参数是一样的，只不过我们现在是设置该参数内部的字段。
+
+```js
+const info = {
+  // ...
+  parameters: {
+    /** Where to display the location of the stimuli. */
+    locations: {
+      type: ParameterType.COMPLEX,
+      array: true,
+      default: undefined,
+      nested: {
+        /** The x-coordinate of the stimulus, in the units from the `units` field. */
+        x: {
+          type: ParameterType.INT
+        },
+        /** The y-coordinate of the stimulus. */
+        y: {
+          type: ParameterType.INT
+        }
+      }
+    }
+  },
+  // ...
+}
+```
 
 ## 插件的功能
 
@@ -322,7 +420,3 @@ As of version `8.0`, ending the trial will automatically clear the display eleme
 如果你希望将开发的插件加入到jsPsych的主仓库中，请参照[贡献代码指南](contributing.md#_2)。
 
 开发的插件最好能 *适用于多种场景* 。可以考虑通过参数方便用户进行自定义。例如，如果你的插件内会呈现文字，比如说按钮上的问题，可以将这些文字设置为参数。这样，适用其他语言的用户在适用插件的时候也可以对这些文字进行替换。
-
-## 插件模板
-
-插件模板可以在[jspsych-contrib](https://github.com/jspsych/jspsych-contrib)仓库找到。仓库中还提供了生成新插件的命令行工具，详见README文件。

@@ -20,6 +20,8 @@
 
 * **如果可行的话，附上使用用例。**如果你是在添加新特性、编写新插件或新扩展，或对框架的某些行为造成了巨大的改变，请在`/examples`文件夹内加入使用用例。
 
+* **如果你贡献的代码是插件/扩展，我们强烈推荐附上引用信息文件。**这个文件应该被命名为`CITATION.cff`，位于仓库根目录。这样，使用你的插件/扩展的人就可以很方便地通过调用`jsPsych.getCitations([<yourPlugin>])`来引用你的工作。更多关于`.cff`文件的信息可以在[这里](https://citation-file-format.github.io/)找到。
+
 * **在pr中加入changeset**。我们使用[changesets](https://github.com/atlassian/changesets/blob/main/docs/adding-a-changeset.md)生成新的release。[这篇关于changeset的介绍](https://github.com/atlassian/changesets/blob/main/docs/adding-a-changeset.md)说明了如何在pr中加入changeset。如果需要帮助，请随意提问。
 
 * **更新contributors.md文件**。如果你是第一次给jsPsych贡献代码，请将你的名字添加到我们的[contributors文件](https://github.com/jspsych/jsPsych/blob/main/contributors.md)。以及，十分感谢！
@@ -37,4 +39,6 @@
 
 `jspsych`仓库用于可能被广泛使用的新插件和扩展。这个仓库中的代码需要有完备的文档以及经过充分的测试，且必须使用TypeScript。对该仓库贡献代码是受限的，因为一旦在其中加入了新插件或扩展，在后续版本中就需要对其进行更新。因而，每个新插件和扩展都可能增加我们未来的工作量，所以我们难免对这个仓库中加入的内容有所挑剔。如果你有想法想要讨论，可以开一个[discussion](https://github.com/jspsych/jsPsych/discussions/new)，我们很乐意就这些想法展开讨论！
 
-`jspsych-contrib`仓库则欢迎你贡献任何完整且能正常工作的代码，不过仍然需要提供一些基本的文档。贡献者可以选择是使用我们提供的 [TypeScript 模板](https://github.com/jspsych/jspsych-contrib/tree/main/packages/plugin-template-ts)或[JavaScript 模板](https://github.com/jspsych/jspsych-contrib/tree/main/packages/plugin-template) 来开发插件或扩展。我们不会对`jspsych-contrib`中的代码像`jspsych`中一样评估其价值。每隔一段时间，我们还会根据其受欢迎程度和完整性（文档和测试）考虑是否将代码从`jspsych-contrib`移入`jspsych`仓库。
+`jspsych-contrib`仓库则欢迎你贡献任何完整且能正常工作的代码，不过仍然需要提供一些基本的文档。贡献者可以选择是使用我们提供的 [TypeScript 模板](https://github.com/jspsych/jspsych-contrib/blob/main/templates/plugin-template-ts/src/index.ts)或[JavaScript 模板](https://github.com/jspsych/jspsych-contrib/blob/main/templates/plugin-template-js/src/index.js) 来开发插件或扩展。你也可以参照我们的[插件开发文档](https://www.jspsych.org/latest/developers/plugin-development/)。
+
+我们不会对`jspsych-contrib`中的代码像`jspsych`中一样评估其价值。每隔一段时间，我们还会根据其受欢迎程度和完整性（文档和测试）考虑是否将代码从`jspsych-contrib`移入`jspsych`仓库。

@@ -36,7 +36,7 @@ nav:
 - 新手教程:
   - '基础的Hello World': 'tutorials/hello-world.md'
   - '演示实验：简单反应时实验': 'tutorials/rt-task.md'
-  - '视频教程': 'tutorials/video-tutorials.md'
+  - '社区教程': 'tutorials/community-tutorials.md'
 - 概述:
   - '创建实验：时间线': 'overview/timeline.md'
   - '插件': 'overview/plugins.md'
@@ -138,3 +138,5 @@ nav:
 - 关于:
   - '关于jsPsych': 'about/about.md'
   - '许可证': 'about/license.md'
+- 简报:
+  - '订阅': 'newsletter/subscribe.md'

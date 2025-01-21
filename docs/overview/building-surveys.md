@@ -385,7 +385,7 @@ const survey_function = (survey) => {
               elements: [
                 {
                   type: "text", 
-                  title: `Enter a word related to ${jsPsych.timelineVariable('word').toUpperCase()}:`, 
+                  title: `Enter a word related to ${jsPsych.evaluateTimelineVariable('word').toUpperCase()}:`, 
                   autocomplete: "off" 
                 }
               ], 
@@ -414,7 +414,7 @@ const survey_function = (survey) => {
       // Create question using timeline variables
       const page = survey.addNewPage('page1');
       const question = page.addNewQuestion('text'); 
-      question.title = `Enter a word related to ${jsPsych.timelineVariable('word').toUpperCase()}`;
+      question.title = `Enter a word related to ${jsPsych.evaluateTimelineVariable('word').toUpperCase()}`;
       question.autocomplete = "off";
       // Set survey-level parameters
       survey.showQuestionNumbers = false;
