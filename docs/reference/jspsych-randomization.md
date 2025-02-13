@@ -89,7 +89,7 @@ output:
 full_design = {
 	stimulus: ['a.jpg','b.jpg','b.jpg','a.jpg'],
 	ms_delay: [200, 100, 200, 100]
-]
+}
 */
 ```
 
@@ -181,6 +181,8 @@ jsPsych.randomization.repeat(array, repetitions, unpack)
 当前方法对数组随机排列，或在对各个元素分别进行一定次数的重复后再随机排列。
 
 如果数组元素是对象且这些对象具有相同属性，则该方法可以返回一个对象（详见下面的第4个示例）。我们可以在对jsPsych中的一个block进行随机时使用这个功能。
+
+当前方法返回的是数组的浅拷贝，即，对该数组内部元素的修改会影响到原始数组。如果你不希望这样，可以生成使用[`deepCopy`](./jspsych-utils.md#jspsychutilsdeepcopy)。
 
 ### 示例
 
@@ -415,6 +417,8 @@ jsPsych.randomization.sampleWithReplacement(array, sampleSize, weights)
 
 从一些给定值中随机抽取，可以重复抽取。我们可以通过`weights`指定总体中各元素的权重。
 
+当前方法返回的是数组的浅拷贝，即，对该数组内部元素的修改会影响到原始数组。如果你不希望这样，可以生成使用[`deepCopy`](./jspsych-utils.md#jspsychutilsdeepcopy)。
+
 ### 示例
 
 #### 抽中概率相等
@@ -455,6 +459,8 @@ jsPsych.randomization.sampleWithoutReplacement(array, sampleSize)
 ### 描述
 
 从一些给定值中随机抽取，不可以重复抽取。样本量不能超过总体的长度。
+
+当前方法返回的是数组的浅拷贝，即，对该数组内部元素的修改会影响到原始数组。如果你不希望这样，可以生成使用[`deepCopy`](./jspsych-utils.md#jspsychutilsdeepcopy)。
 
 ### 示例
 
@@ -529,6 +535,8 @@ jsPsych.randomization.shuffle(array)
 
 对数组进行随机排列。
 
+当前方法返回的是数组的浅拷贝，即，对该数组内部元素的修改会影响到原始数组。如果你不希望这样，可以生成使用[`deepCopy`](./jspsych-utils.md#jspsychutilsdeepcopy)。
+
 ### 示例
 
 #### 对数组进行随机排列
@@ -561,6 +569,8 @@ jsPsych.randomization.shuffleNoRepeats(array, equalityTest)
 ### 描述
 
 对数组随机排列，且随机后的数组中相邻元素不相等。
+
+当前方法返回的是数组的浅拷贝，即，对该数组内部元素的修改会影响到原始数组。如果你不希望这样，可以生成使用[`deepCopy`](./jspsych-utils.md#jspsychutilsdeepcopy)。
 
 *警告：如果用于随机排列的数组的有效排列方式太少或没有，则当前方法会失效，程序会直接卡死。*
 

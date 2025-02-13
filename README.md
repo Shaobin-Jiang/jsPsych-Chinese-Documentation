@@ -21,4 +21,7 @@
 
 我现在的设计思路是，一个版本对应一个分支，`v6`分支对应6.3，`v7`分支对应v7，`master`分支对应最新版本。这样方便用`mike`进行版本控制。如果全都混在`master`分支上，如果想要修改以前版本的文档的话，没法用`mike`去操作。现在这样，只要checkout到对应分支，然后`mike deploy <version>`就行。
 
+- 预览：`poetry run mike serve`
+- 部署：`poetry run mike deploy <version>`
+
 Anyway希望大家可以参与进来。一个人翻译这个属实太累了。如果你愿意协助一起翻译，可以fork一份代码，提PR；或者，提一个issue也可以。如果精力有限无法参与到翻译中来，也可以考虑给项目点一个star，你们的支持也是我继续做下去的动力。

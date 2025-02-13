@@ -64,6 +64,7 @@ nav:
   - 'jsPsych.data': 'reference/jspsych-data.md'
   - 'jsPsych.randomization': 'reference/jspsych-randomization.md'
   - 'jsPsych.turk': 'reference/jspsych-turk.md'
+  - 'jsPsych.utils': 'reference/jspsych-utils.md'
   - 'jsPsych.pluginAPI': 'reference/jspsych-pluginAPI.md'
 - 插件:
   - '插件列表': 'plugins/list-of-plugins.md'
