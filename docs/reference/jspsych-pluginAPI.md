@@ -471,7 +471,10 @@ jsPsych.pluginAPI.getMicrophoneRecorder()
 
 #### 描述
 
-允许我们访问[initializeMicrophoneRecorder()](#initializemicrophonerecorder)创建的`MediaRecorder`。如果不存在麦克风，则返回`null`。
+允许我们访问[initializeMicrophoneRecorder()](#initializemicrophonerecorder)创建的`MediaRecorder`。如果不存在麦克风，则返回`null`。默认情况下，`mimeType` 的值是一系列常见类型中搜索出来的第一个封装/编码格式组合，如果没有支持的组合则会被设置为`"video/webm"`。
+
+jsPsych搜索的常见封装/编码格式组合包括`"video/webm;codecs=vp9,opus"`、`"video/webm;codecs=vp8,opus"`、`"video/mp4;codecs=avc1.42E01E,mp4a.40.2"`、`"video/mp4;codecs=h264,aac"`以及`"video/mp4;codecs=hevc,aac"`。
+
 
 #### 示例
 

@@ -18,7 +18,7 @@ button_label | 字符串 | 'Use this camera.' | 选择按钮的文本。
 include_audio | 布尔 | false | 如果为真，则录像时同时录音。
 width | 整数 | null | 请求使用特定宽度录像。这一宽度不一定会生效，因为这取决于录像设备。详见[`MediaRecorder`限制](https://developer.mozilla.org/en-US/docs/Web/API/Media_Streams_API/Constraints#requesting_a_specific_value_for_a_setting)。
 height | 整数 | null | 请求使用特定高度录像。这一宽度不一定会生效，因为这取决于录像设备。详见[`MediaRecorder`限制](https://developer.mozilla.org/en-US/docs/Web/API/Media_Streams_API/Constraints#requesting_a_specific_value_for_a_setting)。
-mime_type | 字符串 | null | 使用特定[MIME类型](https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/mimeType)进行录像，例如`'video/mp4; codecs="avc1.424028, mp4a.40.2"'`。
+mime_type | 字符串 | null | 使用特定[MIME类型](https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/mimeType)进行录像，例如`'video/mp4; codecs="avc1.424028, mp4a.40.2"'`。如果采用了默认值 `null`，那么jsPsych会自动搜索兼容的封装/编码格式组合，常见组合[详见这里](../reference/jspsych-pluginAPI.md#initializecamerarecorder)。如果没有兼容的组合，则jsPsych默认使用 `'video/webm'` MIME类型。
 
 
 ## 数据

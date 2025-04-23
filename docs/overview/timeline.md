@@ -184,8 +184,8 @@ const face_name_procedure = {
 			type: jsPsychHtmlKeyboardResponse,
 			stimulus: function(){
 				const html = `
-					<img src="${jsPsych.timelineVariable('face')}">
-					<p>${jsPsych.timelineVariable('name')}</p>`;
+					<img src="${jsPsych.evaluateTimelineVariable('face')}">
+					<p>${jsPsych.evaluateTimelineVariable('name')}</p>`;
 				return html;
 			},			
 			choices: "NO_KEYS",
